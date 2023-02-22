@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    background-color:#121212;
+}
+
+.navigator {
+    height: 5.0rem;
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid darkgray ;
+    position: sticky;
+    top: 0px; /*need this for sticky */
+    margin-bottom: 0px;
+}
+
+.hamburger{
+    width: 2.8rem;
+    height: .5rem;
+    background-color: black;
+    margin: .6rem 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navigator p{
+    font-size: 2.8rem;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    color: white;
+    font-weight: bold;
+}
+
+.test {
+    background-color: #121212;
+    height: 2000px;
+    width: 100%;
+}
+
+.nav-logsign-btns{
+    margin-right: 10px;
+}
+
+.btn{
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width: 400px){
+    .navigator p{
+        font-size: 2.0rem;
+    }
+
+    .btn{
+        font-size: 1.4rem;
+    }
+}

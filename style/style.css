@@ -63,3 +63,37 @@ body{
         font-size: 1.4rem;
     }
 }
+
+.feed-area{
+    width: 90%;
+    margin-left: 5%;
+    border-left: 3px solid gray;
+    border-right: 3px solid gray;
+}
+
+.post-feedview{
+    width: 100%;
+    border-bottom: 3px solid gray;
+}
+
+.poster-feedview{
+    font-size: 1.8rem;
+    color: white;
+}
+
+.post-thumbnail{
+    height: auto;
+    max-height: 300px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.title-feedview{
+    font-size: 2.2rem;
+    color: white;
+    max-width: 90%;
+    margin-left: 5%;
+   
+}
+
+

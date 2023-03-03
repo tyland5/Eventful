@@ -6,12 +6,35 @@ import rutgers_park from "../images/rutgers-park.jpg"
 
 const FeedArea = () => {
   return (
+    <>
+    <p className="filter-btn">Filter</p>
     <div className ="feed-area">
-        <FeedPost pfp = {dummy_pfp} posterName = "Company 1" thumbnail= {dummy_post} />
-        <FeedPost pfp = {dummy_pfp} posterName = "Company 2" thumbnail= {rutgers_park}/>
-        <FeedPost pfp = {dummy_pfp} posterName = "Company 3" thumbnail= {dummy_post} />
-        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" thumbnail= {rutgers_park}/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 1" title = "Firework showing at Fairgrounds!" 
+        thumbnail= {dummy_post} numBookmarked = "400" eventTag= "Recreation"/>
+
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 2" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 3" title = "Firework showing at Fairgrounds!" 
+        thumbnail= {dummy_post} numBookmarked = "400" eventTag= "Recreation" />
+
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
+        thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
     </div>
+    </>
   )
 }
 

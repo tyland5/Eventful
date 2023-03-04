@@ -149,3 +149,32 @@ body{
       font-size: 1.8rem;
   }
 }
+
+/*Sign Up Page CSS -Start-*/
+
+.signupButton {
+  width: 200px;
+  height: 35px;
+  background-color: #FFE455;
+  font-size: 20px;
+}
+
+p.signup-title {
+  color: #FFE455;
+  height: 30px;
+}
+
+#signup-text-box {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+}
+
+.signupGreeting {
+  color: white;
+}
+
+
+/*Sign Up Page CSS -End-*/

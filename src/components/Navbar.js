@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({displaySlideoutMenu}) => {
   return (
     <div className="navigator">
         <div style = {{display: "flex", alignItems: "center"}}>
-            <div className='hamburger-icon'>
+            <div className='hamburger-icon' onClick={displaySlideoutMenu}>
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>

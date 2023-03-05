@@ -1,12 +1,10 @@
-
 import Navbar from './components/Navbar';
-import FeedArea from './components/FeedArea';
+import FeedArea from './components/home/FeedArea';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <p className="filter-btn">Filter</p>
       <FeedArea />
     </div>
   );

@@ -20,6 +20,7 @@ body{
   align-items: center;
   position: sticky;
   top: 0px; /*need this for sticky */
+  z-index: 1;
 }
 
 .hamburger{

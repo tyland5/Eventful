@@ -1,8 +1,8 @@
 import React from 'react'
 import FeedPost from './FeedPost'
-import dummy_pfp from "../images/dummy-pfp.png"
-import dummy_post from "../images/dummy-post.jpg"
-import rutgers_park from "../images/rutgers-park.jpg"
+import dummy_pfp from "../../images/dummy-pfp.png"
+import dummy_post from "../../images/dummy-post.jpg"
+import rutgers_park from "../../images/rutgers-park.jpg"
 
 const FeedArea = () => {
   return (

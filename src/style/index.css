@@ -18,7 +18,6 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid darkgray ;
   position: sticky;
   top: 0px; /*need this for sticky */
   margin-bottom: 10px;
@@ -33,7 +32,7 @@ body{
   margin-right: 10px;
 }
 
-.navigator p{
+.nav-logo{
   font-size: 2.8rem;
   margin-left: 10px;
   margin-bottom: 0px;
@@ -55,6 +54,13 @@ body{
   font-size: 1.6rem;
 }
 
+.nav-links{
+  font-size: 2.0rem;
+  font-weight: bold;
+  display: none;
+  margin-right: 40px;
+}
+
 @media screen and (max-width: 400px){
   .navigator p{
       font-size: 2.0rem;
@@ -62,5 +68,17 @@ body{
 
   .btn{
       font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .hamburger-icon{
+    display: none;
+  }
+  .nav-logo{
+    margin-right: 70px;
+  }
+  .nav-links{
+    display: inline;
   }
 }

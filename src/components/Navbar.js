@@ -4,12 +4,15 @@ const Navbar = () => {
   return (
     <div className="navigator">
         <div style = {{display: "flex", alignItems: "center"}}>
-            <div>
+            <div className='hamburger-icon'>
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>
             </div>
-            <p>Company</p>
+            <p className='nav-logo'>Company</p>
+            <p className='nav-links'>Search</p>
+            <p className='nav-links'>Notifications</p>
+            <p className='nav-links'>Profile</p>
         </div>
         <div className="nav-logsign-btns">
             <button type="button" className="btn btn-secondary">Sign up</button>

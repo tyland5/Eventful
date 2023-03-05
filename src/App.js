@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import FeedArea from './components/FeedArea';
+import FeedArea from './components/home/FeedArea';
 
 function App() {
   return (

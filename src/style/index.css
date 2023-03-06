@@ -1,5 +1,6 @@
 * {
   margin: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 html{
@@ -17,10 +18,9 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid darkgray ;
   position: sticky;
   top: 0px; /*need this for sticky */
-  margin-bottom: 10px;
+  z-index: 1;
 }
 
 .hamburger{
@@ -32,7 +32,7 @@ body{
   margin-right: 10px;
 }
 
-.navigator p{
+.nav-logo{
   font-size: 2.8rem;
   margin-left: 10px;
   margin-bottom: 0px;
@@ -54,6 +54,13 @@ body{
   font-size: 1.6rem;
 }
 
+.nav-links{
+  font-size: 2.0rem;
+  font-weight: bold;
+  display: none;
+  margin-right: 40px;
+}
+
 @media screen and (max-width: 400px){
   .navigator p{
       font-size: 2.0rem;
@@ -64,88 +71,43 @@ body{
   }
 }
 
-.filter-btn{
-  color: white;
-  font-size: 1.4rem;
-  text-align: right;
-  margin-right: 10px;
+@media screen and (min-width: 1024px){
+  .hamburger-icon{
+    display: none;
+  }
+  .nav-logo{
+    margin-right: 70px;
+  }
+  .nav-links{
+    display: inline;
+  }
 }
 
-.feed-area{
-  width: 100%;
+.slideout-menu{
+  background-color: khaki;
+  position: fixed;
+  width: 60%;
+  height: 100%;
+  overflow-y: hidden;
 }
 
-.post-feedview{
-  border-bottom: 3px solid gray;
-  display: flex;
-  margin-bottom: 20px;
+.slideout-menu ul{
+  padding: 20px;
 }
 
-.poster-feedview{
+.slideout-menu li{
+  list-style-type: none;
   font-size: 1.8rem;
-  color: white;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
-.post-thumbnail{
-  height: auto;
-  max-height: 400px;
-  width: 90%;
-  border-radius: 4px;
-  aspect-ratio: 1.5/1;
-}
-
-.title-feedview{
-  font-size: 2.2rem;
-  color: white;
-  max-width: 90%;
-  margin-bottom: 20px;
-}
-
-.lpost-feedview{
-  width: 20%;
-  position: relative;
-}
-
-.poster-pfp-feedview{
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  right: 10px;
-  z-index: -1;
-}
-
-.bookmark-feedview{
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  color: white;
-  height: 30px;
-  width: 30px;
-  z-index: -1;
-}
-
-.rpost-feedview{
-  width: 80%;
-}
-
-.post-footer-feedview{
-  display: flex;
-  color: white;
-  font-size: 1.2rem;
-  width: 90%;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.num-bookmarked-feedview{
-  margin-right: 2.0rem;
-}
-
-
-@media screen and (max-width: 400px){
-  .title-feedview{
-      font-size: 1.8rem;
+@media screen and (min-width: 768px){
+  .slideout-menu{
+    width: 40%;
+  }
+  .slideout-menu li{
+    font-size: 2.0rem;
   }
 }

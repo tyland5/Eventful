@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.button {
+  width: 200px;
+  height: 35px;
+  background-color: #FFE455;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+p.signup-title {
+  color: #FFE455;
+  height: 30px;
+}
+
+#signup-text-box {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+}
+
+.signupGreeting {
+  color: white;
+}
+
+.forgotPass {
+  color: white;
+  position: relative;
+  right: -70px;
+}
+
+.dontHaveAccount {
+  color: white;
+}
+
+.signUpButton {
+  position: relative;
+  right: -50px;
+}
+
+@media (max-width: 480px) {
+  #signup-text-box {
+    width: 250px;
+  }
+  .forgotPass {
+    font-size: 14px;
+  }
+  .dontHaveAccount {
+    font-size: 14px;
+  }
+}

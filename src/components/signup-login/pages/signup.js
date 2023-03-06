@@ -1,4 +1,4 @@
-import './App.css';
+import '../signupLogin.css';
 
 const SignUpPage = () => {
   const TextBar = (props) => {

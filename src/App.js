@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import FeedArea from './components/home/FeedArea';
 import SlideoutMenu from './components/SlideoutMenu';
+import CreateEvent from './components/createEvent/CreateEvent';
 
 import { useState } from 'react';
 
@@ -13,9 +14,12 @@ function App() {
   
   return (
     <div className="App">
+      {/* 
       <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
       {showSlideout && <SlideoutMenu />}
       <FeedArea />
+      */}
+      <CreateEvent />
     </div>
   );
 }

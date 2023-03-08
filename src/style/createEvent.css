@@ -1,0 +1,20 @@
+#create-event{
+    font-size: 2.0rem;
+    color: white;
+    margin-left: 10%;
+    margin-top: 80px;
+}
+
+#create-event label{
+    display: block;
+}
+
+.create-event-section{
+    margin-bottom: 30px;
+}
+
+.create-event-submit{
+    padding: 15px 30px;
+    background-color: #FFE455;
+    margin-top: 20px;
+}

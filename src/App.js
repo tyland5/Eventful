@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import FeedArea from './components/home/FeedArea';
 import SlideoutMenu from './components/SlideoutMenu';
+import React from 'react'
 
 import { useState } from 'react';
 
@@ -21,4 +22,3 @@ function App() {
 }
 
 export default App;
-

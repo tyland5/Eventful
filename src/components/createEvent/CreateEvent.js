@@ -9,7 +9,7 @@ const CreateEvent = () => {
     const[eventLocation, setEventLocation] = useState("")
 
     const [eventDescription, setEventDescription] = useState("")
-    const [eventImages, setEventImages] = useState([""])
+    const [eventImages, setEventImages] = useState([])
     
     function uploadImages(e){
         const imageList = e.target.files

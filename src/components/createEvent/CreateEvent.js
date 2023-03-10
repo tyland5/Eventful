@@ -1,13 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
+import PreviewImages from './PreviewImages'
 
 const CreateEvent = () => {
 
     const [eventTitle, setEventTitle] = useState("")
     const [eventDate, setEventDate] = useState("")
     const[eventLocation, setEventLocation] = useState("")
+
     const [eventDescription, setEventDescription] = useState("")
+    const [eventImages, setEventImages] = useState([""])
     
+    function uploadImages(e){
+        const imageList = e.target.files
+        const images = []
+        
+        for(let i = 0; i < imageList.length; i++){
+            images.push(URL.createObjectURL(imageList[i]))
+            console.log(`added ${imageList[i].name}`)
+        }
+
+        setEventImages(images)
+    }
+
+
     return (
         <form id='create-event'>
 
@@ -44,8 +60,10 @@ const CreateEvent = () => {
 
             <div className='create-event-section'>
                 <label hmtlfor="create-images">Event Images</label>
-                <input id="create-images" type= "file" accept='image/png, image/jpg' multiple/>
+                <input id="create-images" type= "file" accept='image/png, image/jpg' multiple onChange={(e) => uploadImages(e)}/>
             </div>
+
+            {eventImages && <PreviewImages images= {eventImages}/>}
 
             <button type = "submit" className='create-event-submit' form = "create-event">Post</button>
         </form>

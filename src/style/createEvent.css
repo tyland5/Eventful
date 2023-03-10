@@ -18,3 +18,13 @@
     background-color: #FFE455;
     margin-top: 20px;
 }
+
+.create-event-submit:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
+
+.preview-images{
+    height: 300px;
+    width: 400px;
+}

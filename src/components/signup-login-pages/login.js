@@ -1,10 +1,11 @@
-import './signupLogin.css';
+import React from 'react';
+import '../../style/signupLogin.css';
 
-const App = () => {
+const LoginPage = () => {
   const TextBar = (props) => {
     return(
       <>
-        <div className="signupDiv">
+        <div className="signup-div">
           <div className="signup-text">
             <p className="signup-title">{props.title}</p>
           </div>
@@ -19,14 +20,14 @@ const App = () => {
   const Button = (props) => {
     return(
       <>
-        <button className="button">{props.title}</button>
+        <button className="login-signup-button">{props.title}</button>
       </>
     )
   }
   
 
   return (
-    <div className="App">
+    <div className="login-signup-app">
       <h1 className="signupGreeting">Log In</h1>
       <TextBar title={"Username"}/>
       <TextBar title={"Password"}/>
@@ -43,4 +44,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default LoginPage;

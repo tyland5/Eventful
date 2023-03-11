@@ -92,7 +92,8 @@ body{
 }
 
 .slideout-menu ul{
-  padding: 20px;
+  position: relative;
+  right: 20px;
 }
 
 .slideout-menu li{

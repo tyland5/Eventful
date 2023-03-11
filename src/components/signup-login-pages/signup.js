@@ -1,4 +1,5 @@
-import '../signupLogin.css';
+import React from 'react';
+import '../../style/signupLogin.css';
 
 const SignUpPage = () => {
   const TextBar = (props) => {
@@ -25,7 +26,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="App">
+    <div className="login-signup-app">
       <h1 className="signupGreeting">Sign Up</h1>
       <TextBar title={"Username"}/>
       <TextBar title={"Email"}/>

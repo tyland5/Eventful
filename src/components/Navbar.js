@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const Navbar = ({displaySlideoutMenu}) => {
   return (
     <div className="navigator">

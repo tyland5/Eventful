@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "./style/index.css";
 import "./style/feedStyle.css";
-import "./style/createEvent.css"
+import "./style/createEvent.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

@@ -3,6 +3,7 @@ import FeedArea from './components/home/FeedArea';
 import SlideoutMenu from './components/SlideoutMenu';
 import React from 'react'
 import CreateEvent from './components/createEvent/CreateEvent';
+import PostButton from './components/createEvent/PostButton';
 
 import { useState } from 'react';
 
@@ -15,12 +16,9 @@ function App() {
   
   return (
     <div className="App">
-      {/* 
       <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
       {showSlideout && <SlideoutMenu />}
       <FeedArea />
-      */}
-      <CreateEvent />
     </div>
   );
 }

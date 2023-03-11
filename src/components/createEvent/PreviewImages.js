@@ -2,7 +2,7 @@ import React from 'react'
 
 const PreviewImages = ({images}) => {
   return (
-    <div>
+    <div className='preview-images-section'>
         {images.map(image =>{
             return <img className='preview-images' src={image} alt= "uploaded" />
         })}

@@ -3,31 +3,10 @@ import '../../style/profile.css';
 import React, {Component} from 'react'
 import { useState } from 'react';
 
-const EditProfilePage = () => {
-const Name = () => {
+const TextBox = ({title}) => {
     return (
         <div className='nameDiv'>
-            <p className='profile-text'>Name</p>
-            <br></br>
-            <input id = "profile-text-box"/>
-        </div>
-    )
-}
-
-const Username = () => {
-    return (
-        <div className='nameDiv'>
-            <p className='profile-text'>Display Name</p>
-            <br></br>
-            <input id = "profile-text-box"/>
-        </div>
-    )
-}
-
-const Website = () => {
-    return (
-        <div className='nameDiv'>
-            <p className='profile-text'>Website</p>
+            <p className='profile-text'>{title}</p>
             <br></br>
             <input id = "profile-text-box"/>
         </div>
@@ -44,6 +23,7 @@ const Bio = () => {
     )
 }
 
+const EditProfilePage = () => {
     return (
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
@@ -70,11 +50,11 @@ const Bio = () => {
             <br></br>
             <br></br>
             <br></br>
-            <Name />
+            <TextBox title = "Name"/>
             <br></br>
-            <Username />
+            <TextBox title = "Username"/>
             <br></br>
-            <Website />
+            <TextBox title = "Website"/>
             <br></br>
             <Bio />
             <br></br>
@@ -87,56 +67,6 @@ const Bio = () => {
 }
 
 const AccountSettingsPage = () => {
-    const Email = () => {
-        return (
-            <div className='nameDiv'>
-                <p className='profile-text'>Email</p>
-                <br></br>
-                <input id = "profile-text-box"/>
-            </div>
-        )
-    }
-
-    const Password = () => {
-        return (
-            <div className='nameDiv'>
-                <p className='profile-text'>Password</p>
-                <br></br>
-                <input id = "profile-text-box"/>
-            </div>
-        )
-    }
-
-    const PhoneNumber = () => {
-        return (
-            <div className='nameDiv'>
-                <p className='profile-text'>Phone Number</p>
-                <br></br>
-                <input id = "profile-text-box"/>
-            </div>
-        )
-    }
-
-    const FirstName = () => {
-        return (
-            <div className='nameDiv'>
-                <p className='profile-text'>First Name</p>
-                <br></br>
-                <input id = "profile-text-box"/>
-            </div>
-        )
-    }
-
-    const LastName = () => {
-        return (
-            <div className='nameDiv'>
-                <p className='profile-text'>Last Name</p>
-                <br></br>
-                <input id = "profile-text-box"/>
-            </div>
-        )
-    }
-
     return (
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
@@ -154,15 +84,15 @@ const AccountSettingsPage = () => {
             </div>
             </div>
             <br></br>
-            <FirstName/>
+            <TextBox title = "First Name"/>
             <br></br>
-            <LastName/>
+            <TextBox title = "Last Name"/>
             <br></br>
-            <Email />
+            <TextBox title = "Email"/>
             <br></br>
-            <PhoneNumber/>
+            <TextBox title = "Phone Number"/>
             <br></br>
-            <Password/>
+            <TextBox title = "Password"/>
             <br></br>
             <br></br>
             <button style = {{height:30, width:300, fontFamily: "Times", borderRadius: 6}}>Change Password</button>

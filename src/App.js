@@ -9,9 +9,16 @@ import React from 'react'
 
 import { useState } from 'react';
 import LoginPage from './components/signup-login-pages/login';
-import Profile from './components/Profile/Profile'
+import EditProfilePage from './components/Profile/EditProfilePage';
+import AccountSettingsPage from './components/Profile/AccountSettingsPage'
 
 function App() {
+  const [showSlideout, setShowSlideout] = useState(false)
+  
+  function displaySlideoutMenu(){
+    setShowSlideout(!showSlideout)
+  }
+  
   return (
     <>
       
@@ -24,7 +31,8 @@ function App() {
             </div>
         }>
         </Route>
-        <Route path="/Profile" element={<Profile />}></Route>
+        <Route path="/edit-profile" element={<EditProfilePage />}></Route>
+        <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
       </Routes>
@@ -35,3 +43,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,4 +1,5 @@
 import '../../style/profile.css';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const TextBox = ({title}) => {
     return (
@@ -22,10 +23,12 @@ const AccountSettingsPage = () => {
                 </div>
             <p style = {{color: "black", fontFamily: "Times", fontSize: "35px", backgroundColor: "#FFE455", textAlign:'center'}}>Settings</p>
             </div>
-            <div className='settings-button'>
-                <button style = {{backgroundColor: "#FFE455", fontFamily: "Times"}}>Edit Profile</button>
-                <button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}} onClick = {AccountSettingsPage}>Account Settings</button>
-            </div>
+            <Link to="/account-settings">
+                <div className='settings-button'>
+                    <Link to="/edit-profile"><button style = {{backgroundColor: "#FFE455", fontFamily: "Times"}}>Edit Profile</button></Link>
+                    <Link to="/account-settings"><button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}}>Account Settings</button></Link>
+                </div>
+            </Link>
             </div>
             <br></br>
             <TextBox title = "First Name"/>

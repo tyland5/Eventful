@@ -1,5 +1,6 @@
 import pfp from '../../images/pfp.jpg';
 import '../../style/profile.css';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const TextBox = ({title}) => {
     return (
@@ -34,8 +35,8 @@ const EditProfilePage = () => {
             <p style = {{color: "black", fontFamily: "Times", fontSize: "35px", backgroundColor: "#FFE455", textAlign:'center'}}>Settings</p>
             </div>
             <div className='settings-button'>
-                <button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}}>Edit Profile</button>
-                <button style = {{backgroundColor: "#FFE455", fontFamily: "Times"}}>Account Settings</button>
+                <Link to="/edit-profile"><button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}}>Edit Profile</button></Link>
+                <Link to="/account-settings"><button style = {{backgroundColor: "#FFE455", fontFamily: "Times"}}>Account Settings</button></Link>
             </div>
             </div>
             <br></br>

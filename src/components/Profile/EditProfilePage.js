@@ -1,6 +1,7 @@
 import pfp from '../../images/pfp.jpg';
 import '../../style/profile.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, {Component} from 'react'
 
 const TextBox = ({title}) => {
     return (

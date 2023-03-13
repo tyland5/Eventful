@@ -12,7 +12,9 @@ import PostButton from './components/createEvent/PostButton';
 import { useState } from 'react';
 import LoginPage from './components/signup-login-pages/login';
 import EditProfilePage from './components/Profile/EditProfilePage';
-import AccountSettingsPage from './components/Profile/AccountSettingsPage'
+import AccountSettingsPage from './components/Profile/AccountSettingsPage';
+
+
 
 function App() {
   const [showSlideout, setShowSlideout] = useState(false)
@@ -33,6 +35,7 @@ function App() {
             </div>
         }>
         </Route>
+        <Route path="create-event" element={<><CreateEvent/><PostButton/></>}></Route>
         <Route path="/edit-profile" element={<EditProfilePage />}></Route>
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>

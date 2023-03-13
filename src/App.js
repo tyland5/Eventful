@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignUpPage from './components/signup-login-pages/signup.js';
 import Profile from './components/Profile/Profile.js';
 import React from 'react'
+import CreateEvent from './components/createEvent/CreateEvent';
+import PostButton from './components/createEvent/PostButton';
 
 import { useState } from 'react';
 import LoginPage from './components/signup-login-pages/login';

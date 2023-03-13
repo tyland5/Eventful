@@ -4,18 +4,14 @@ import SlideoutMenu from './components/SlideoutMenu';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignUpPage from './components/signup-login-pages/signup.js';
+import Profile from './components/Profile/Profile.js';
+import React from 'react'
 
 import { useState } from 'react';
 import LoginPage from './components/signup-login-pages/login';
 import Profile from './components/Profile/Profile'
 
 function App() {
-  const [showSlideout, setShowSlideout] = useState(false)
-  
-  function displaySlideoutMenu(){
-    setShowSlideout(!showSlideout)
-  }
-  
   return (
     <>
       
@@ -39,4 +35,3 @@ function App() {
 }
 
 export default App;
-

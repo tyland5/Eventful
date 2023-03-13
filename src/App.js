@@ -7,6 +7,7 @@ import SignUpPage from './components/signup-login-pages/signup.js';
 
 import { useState } from 'react';
 import LoginPage from './components/signup-login-pages/login';
+import Profile from './components/Profile/Profile'
 
 function App() {
   const [showSlideout, setShowSlideout] = useState(false)
@@ -27,7 +28,7 @@ function App() {
             </div>
         }>
         </Route>
-
+        <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
       </Routes>

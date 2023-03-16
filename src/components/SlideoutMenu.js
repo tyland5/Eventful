@@ -16,10 +16,16 @@ const SlideoutMenu = () => {
     <div className='slideout-menu'>
         <ul>
             <li>
-              <Link to="/login">Log In</Link>
+              <Link to="/login" className="routing-link">Log In</Link>
             </li>
             <li>
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/signup" className="routing-link">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/edit-profile" className="routing-link">Profile</Link>
+            </li>
+            <li>
+              <Link to="/account-settings" className="routing-link">Account Settings</Link>
             </li>
         </ul>
     </div>

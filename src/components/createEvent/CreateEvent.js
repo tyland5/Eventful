@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import PreviewImages from './PreviewImages'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 //if you want to remove react-date-picker pkg, go to sprint2-staticCreateEvent branch
 //and look for first pull from dev. that's where you'll get the package-lock and package.json prior to this
@@ -127,7 +128,7 @@ const CreateEvent = () => {
 
             {eventImages && <PreviewImages images= {eventImages}/>} 
 
-            <button type= "button" className='cancel-create-event'>Cancel</button>
+            <Link to="/"><button type= "button" className='cancel-create-event'>Cancel</button></Link>
             <button type = "submit" className='create-event-submit' form = "create-event">Post</button>
 
             {!submittable && <p id="create-error">Please fill in all fields properly</p>}

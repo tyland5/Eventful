@@ -19,6 +19,7 @@
   border-color: #353d63;
   border-width: thin;
   background-color: rgba(101, 111, 203, .2);
+  color: white;
 }
 
 #email {
@@ -27,6 +28,7 @@
   border-color: #353d63;
   border-width: thin;
   background-color: rgba(101, 111, 203, .2);
+  color: white;
 }
 
 #username {
@@ -35,6 +37,7 @@
   border-color: #353d63;
   border-width: thin;
   background-color: rgba(101, 111, 203, .2);
+  color: white;
 }
 
 #password {
@@ -43,6 +46,7 @@
   border-color: #353d63;
   border-width: thin;
   background-color: rgba(101, 111, 203, .2);
+  color: white;
 }
 
 .login-form {

@@ -35,7 +35,7 @@ function App() {
             </div>
         }>
         </Route>
-        <Route path="create-event" element={<><CreateEvent/><PostButton/></>}></Route>
+        <Route path="create-event" element={<><CreateEvent/></>}></Route>
         <Route path="/edit-profile" element={<EditProfilePage />}></Route>
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>

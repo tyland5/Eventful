@@ -28,10 +28,35 @@ const SignUpPage = () => {
   return (
     <div className="login-signup-app">
       <h1 className="signupGreeting">Sign Up</h1>
-      <TextBar title={"Username"}/>
-      <TextBar title={"Email"}/>
-      <TextBar title={"Password"}/>
-      <TextBar title={"Confirm Password"}/>
+
+      <div className="signup-form">
+        <div className="signup-text">
+          <label htmlfor="username"><p className="login-title">Username</p></label>
+        </div>
+        <input type="text" name="username" id="username"></input>
+      </div>
+
+      <div className="signup-form">
+        <div className="signup-text">
+          <label htmlfor="email" ><p className="login-title">Email</p></label>
+        </div>
+        <input type="text" name="email" id="email"></input>
+      </div>
+
+      <div className="signup-form">
+        <div className="signup-text">
+          <label htmlfor="password"><p className="login-title">Password</p></label>
+        </div>
+        <input type="text" name="password" id="password"></input>
+      </div>
+
+      <div className="signup-form">
+        <div className="signup-text">
+          <label htmlfor="confirm-password" ><p className="login-title">Confirm Password</p></label>
+        </div>
+        <input type="text" name="confirm-password" id="confirm-password"></input>
+      </div>
+
       <br></br>
       <SignupButton />
     </div>

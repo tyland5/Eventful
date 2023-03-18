@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
 
-  const [details, setDetails] = useState({username: "", email: "", password: ""});
+  const [details, setDetails] = useState({username: "", email: "", password: "", conPass: ""});
   const[regSuccess, setRegSuccess] = useState("");
 
   let navigate = useNavigate();
@@ -17,23 +17,41 @@ const SignUpPage = () => {
 
     setRegSuccess("");
     
+    const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     axios.post('http://localhost/register.php', {
         username : details.username,
         password : details.password,
-        email : details.email
+        email : details.email,
+        conPass : details.conPass
         
       }).then(val => {
 
     if(val.data === "Username already taken"){
-      console.log("Username already taken");
-      setRegSuccess("Username already taken");
+        console.log("Username already taken");
+        setRegSuccess("Username already taken");
       
       
+    } else if (val.data === "Email already taken"){ 
+        console.log("Email already taken");
+        setRegSuccess("Email already taken");
+
+    } else if (val.data === "Missing Information"){
+        console.log("Missing information");
+        setRegSuccess("Missing information");
+
+    } else if (!details.email.match(isValidEmail)) {
+        console.log("Please enter in a correct email");
+        setRegSuccess("Please enter in a correct email");
+        
+    } else if (val.data === "Password Mismatch"){
+        console.log("Password Mismatch");
+        setRegSuccess("Password Mismatch");
+
     } else{
-      console.log(val.data);
-      console.log("Successfully Registered");
-      setRegSuccess("Successfully Registered");
+        console.log(val.data);
+        console.log("Successfully Registered");
+        setRegSuccess("Successfully Registered");
     }
       
   })
@@ -55,21 +73,21 @@ const SignUpPage = () => {
         <div className="signup-text">
           <label htmlfor="email" ><p className="login-title">Email</p></label>
         </div>
-        <input type="text" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}></input>
+        <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}></input>
       </div>
 
       <div className="signup-form">
         <div className="signup-text">
           <label htmlfor="password"><p className="login-title">Password</p></label>
         </div>
-        <input type="text" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
+        <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
       </div>
 
       <div className="signup-form">
         <div className="signup-text">
           <label htmlfor="confirm-password" ><p className="login-title">Confirm Password</p></label>
         </div>
-        <input type="text" name="confirm-password" id="confirm-password"></input>
+        <input type="password" name="confirm-password" id="confirm-password" onChange={e => setDetails({...details, conPass: e.target.value})} value={details.conPass}></input>
       </div>
 
       <br></br>

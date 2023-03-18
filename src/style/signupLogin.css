@@ -64,6 +64,11 @@
   text-align: center;
 }
 
+.error {
+  color: #ff6e55;
+  height: 30px;
+  font-size: 16px;
+}
 .login-title {
   color: #FFE455;
   height: 30px;

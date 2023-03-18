@@ -29,6 +29,10 @@ const LoginPage = () => {
       console.log("Wrong Username or Password");
       setError("Wrong Username or Password");
       
+    } else if (val.data === "Missing information"){
+        console.log("Missing information");
+        setError("Missing information");
+
     } else{
       
       console.log(val.data);
@@ -59,7 +63,7 @@ const isSecondRender = useRef(true)
 
     if (user.username !== ""){
       navigate("/");
-    } else alert("invalid user"); console.log(user.username);
+    } else console.log(user.username);
 
   }, [user]); // 👈️ add state variables you want to track
 
@@ -77,7 +81,7 @@ const isSecondRender = useRef(true)
         <div className="login-text">
           <label htmlfor="password"><p className="login-title">Password</p></label>
         </div>
-        <input type="text" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
+        <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
       </div>
       <p className="forgotPass">forgot your password?</p>
       <br></br>
@@ -85,7 +89,7 @@ const isSecondRender = useRef(true)
       <p className="dontHaveAccount">Don't have an account?</p>
 
       <div className="signUpButton">
-        <button className="login-signup-button">Sign Up</button>
+        <button className="login-signup-button" onClick={() => navigate('/signup')}>Sign Up</button>
       </div>
       
     

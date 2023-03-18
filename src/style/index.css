@@ -23,6 +23,11 @@ body{
   z-index: 2;
 }
 
+.routing-link {
+  color: black;
+  text-decoration: none;
+}
+
 .hamburger{
   width: 2.8rem;
   height: .5rem;

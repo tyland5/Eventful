@@ -3,6 +3,7 @@ import FeedPost from './FeedPost'
 import dummy_pfp from "../../images/dummy-pfp.png"
 import dummy_post from "../../images/dummy-post.jpg"
 import rutgers_park from "../../images/rutgers-park.jpg"
+import PostButton from '../createEvent/PostButton'
 
 const FeedArea = () => {
   return (
@@ -33,6 +34,10 @@ const FeedArea = () => {
         thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
         <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
         thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+    </div>
+
+    <div>
+      <PostButton />
     </div>
     </>
   )

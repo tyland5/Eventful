@@ -8,7 +8,7 @@ import e from 'cors';
 function EditProfile () {
 
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
-    const [save, setSave] = useState(false);
+    const [save, setSave]=useState(false);
 
     const SaveProfile = details => {
         console.log(details);

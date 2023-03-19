@@ -6,7 +6,7 @@ import Axios from 'axios';
 const AccountSettingsPage = () => {
 
     const [details, setDetails] = useState({firstname: "", lastname: "", email: "", phonenumber: "", password: ""});
-    const [save, setSave] = useState(false);
+    const [save, setSave]=useState(false);
     const SaveSettings = details => {
         console.log(details);
         async function updateProfile(){

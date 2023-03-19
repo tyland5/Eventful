@@ -19,7 +19,7 @@ else{
 }
 
 //Upon receiving a POST request from axios
-if (isset($_POST)) {
+if (isset($_POST)){
     $data = json_decode(file_get_contents('php://input'), true);
     
     $firstname = $data['firstname'];

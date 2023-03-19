@@ -1,0 +1,154 @@
+#create-event{
+    font-size: 2.0rem;
+    color: white;
+    margin-left: 10%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+#create-event label{
+    display: block;
+    margin-bottom: 20px;
+}
+
+.create-event-section{
+    margin-bottom: 30px;
+}
+
+.create-event-submit{
+    padding: 15px 30px;
+    background-color: #FFE455;
+    margin-top: 20px;
+}
+
+.create-event-submit:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
+
+.cancel-create-event{
+    padding: 15px 30px;
+    background-color: grey;
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+.cancel-create-event:hover{
+    cursor: pointer;
+    background-color: darkgray;
+}
+
+.preview-images{
+    width: 20%;
+    aspect-ratio: 1.5/1;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.react-datetime-picker__wrapper{
+    background-color: white;
+    color: black;
+}
+
+.react-datetime-picker__inputGroup__divider{
+    color: black;
+}
+
+.create-event-section input[type=text]{
+    height: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    width: 300px;
+}
+
+#create-tag{
+    font-size: 1.6rem;
+}
+
+#create-description{
+    font-size: 1.6rem;
+    width: 600px;
+    height: 300px;
+    resize: none;
+}
+
+#create-error{
+    font-size: 1.6rem;
+    color: red;
+    margin-top: 10px;
+}
+
+#preview-thumbnail{
+    aspect-ratio: 1.5/1;
+    width: 30%;
+    margin-bottom: 40px;
+}
+
+.preview-images-section{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#post-btn{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    height : 60px;
+    width: 60px;
+}
+  
+#post-btn:hover{
+    height : 70px;
+    width: 70px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1023px){
+    #preview-thumbnail{
+        width: 50%;
+    }
+    .preview-images{
+        width: 30%;
+    }
+
+    #create-event{
+        margin-left: 3%;
+    }
+
+    #create-description{
+        width: 400px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width:425px){
+    .create-event-section input[type=text]{
+        font-size: 1.8rem;
+    }
+
+    .react-datetime-picker__wrapper{
+        font-size: 1.8rem;
+    }
+    .react-datetime-picker__wrapper .react-datetime-picker__calendar-button{
+        display: none;
+    }
+    
+    #preview-thumbnail{
+        width: 60%;
+    }
+
+    .preview-images{
+        width: 40%;
+    }
+
+    #create-description{
+        font-size: 1.4rem;
+        width: 250px;
+        height: 100px;
+    }
+
+    .create-event-section input[type=text]{
+        width: 250px;
+    }
+}

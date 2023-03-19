@@ -1,0 +1,41 @@
+p.profile-text {
+    font-family: Times;
+    font-size: 15px;
+    color: #FFE455;
+    height: 15px;
+  }
+
+  #profile-text-box {
+    height: 30px;
+    width: 300px;
+    border-color: #353d63;
+    border-width: thin;
+    background-color: rgba(101, 111, 203, .2);
+    border-radius: 6px;
+  }
+
+  #bio-text-box {
+    height: 60px;
+    width: 300px;
+    border-color: #353d63;
+    border-width: thin;
+    background-color: rgba(101, 111, 203, .2);
+    border-radius: 6px;
+  }
+  
+  .profile-pfp {
+    height: 90px;
+    width: 90px;
+  }
+
+  .settings-button{
+    padding: 50px;
+    font-family: "Times";
+    background-color: "#FFE455";
+    text-align:'end';
+    font-size: 20;
+  }
+
+  .profile-button{
+    padding: 150px;
+  }

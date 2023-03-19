@@ -1,0 +1,138 @@
+.login-signup-app {
+  position: relative;
+  text-align: center;
+  bottom: -100px;
+}
+
+.login-signup-button {
+  width: 200px;
+  height: 35px;
+  background-color: #FFE455;
+  font-size: 20px;
+  cursor: pointer;
+  bottom: -20px;
+}
+
+#confirm-password {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+  color: white;
+}
+
+#email {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+  color: white;
+}
+
+#username {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+  color: white;
+}
+
+#password {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+  color: white;
+}
+
+.login-form {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.signup-form {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.signup-div {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.error {
+  color: #ff6e55;
+  height: 30px;
+  font-size: 16px;
+}
+.login-title {
+  color: #FFE455;
+  height: 30px;
+  font-size: 13px;
+}
+
+p.signup-title {
+  color: #FFE455;
+  height: 30px;
+  font-size: 13px;
+}
+
+#signup-text-box {
+  height: 30px;
+  width: 300px;
+  border-color: #353d63;
+  border-width: thin;
+  background-color: rgba(101, 111, 203, .2);
+}
+
+.signupGreeting {
+  position: relative;
+  color: white;
+  font-size: 25px;
+  bottom: 20px;
+}
+
+.forgotPass {
+  color: white;
+  position: relative;
+  right: -70px;
+  font-size: 13px;
+}
+
+.dontHaveAccount {
+  position: relative;
+  color: white;
+  bottom: -10px;
+  font-size: 13px;
+}
+
+.signUpButton {
+  position: relative;
+  bottom: -20px;
+  right: -52px;
+}
+
+.signupButton {
+  position: relative;
+  width: 200px;
+  height: 35px;
+  background-color: #FFE455;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  #signup-text-box {
+    width: 250px;
+  }
+  .forgotPass {
+    font-size: 14px;
+  }
+  .dontHaveAccount {
+    font-size: 14px;
+  }
+}

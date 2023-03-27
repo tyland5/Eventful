@@ -54,14 +54,28 @@ if (isset($_POST)) {
 
 	$sql = "SELECT * FROM `Users` WHERE `Username` = '".$username."' AND `Password` = '".$password."' ";
 	$res = $conn->query($sql);
-    if ($res->num_rows > 0) {
-		//send results
-		// echo '<pre>'; print_r($result); echo '</pre>';
-		// while($row = mysqli_fetch_array($res)){							IF YOU WANT TO GET THE OUTPUT FROM $RESULT ARRAY
-		// 	// Assuming DB's default fetchmode is DB_FETCHMODE_ORDERED
-		// 	echo $row[0] . "\n";
-		// }
-		echo "Good to go";
+    
+	//successful login
+	if ($res->num_rows > 0) {
+		
+		//create session id for the now logged in user and store into db.
+		session_start();
+		
+		//setting up a persistent cookie and pairing up with the database
+        //persistent lasts even with browser closed until expiration
+        $cookie_name = "session";
+        $cookie_value = session_id(); //grab the unique identifier to be stored into database
+        $expiration = time() + 86400; // 86400 seconds or 1 day
+        setcookie($cookie_name, $cookie_value, $expiration, "/"); 
+        
+        //inserting the cookie into database
+        $sess_id = $cookie_value;
+        $mysql_exp = date("Y-m-d H:i:s", $expiration - 14400); // -4 hours to match with mysql time (daylight savings)
+        $result = mysqli_query($conn, "INSERT INTO Sessions (username, session_id, expiration) VALUES ('$username', '$sess_id', '$mysql_exp') ");
+
+		//header('Location: https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/build/'); //redirect to home page. doesnt work?
+		echo $sess_id; //return session id to react app
+
 	} else {
 		//send error Wrong username or password
 		$message = "Wrong username or password";

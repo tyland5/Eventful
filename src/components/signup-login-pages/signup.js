@@ -13,7 +13,7 @@ const SignUpPage = () => {
   const registerHandler = async (e) => {
     e.preventDefault();
     
-    console.log(details);
+    //console.log(details);
 
     setRegSuccess("");
     
@@ -28,30 +28,31 @@ const SignUpPage = () => {
       }).then(val => {
 
     if(val.data === "Username already taken"){
-        console.log("Username already taken");
+        //console.log("Username already taken");
         setRegSuccess("Username already taken");
       
       
     } else if (val.data === "Email already taken"){ 
-        console.log("Email already taken");
+        //console.log("Email already taken");
         setRegSuccess("Email already taken");
 
     } else if (val.data === "Missing Information"){
-        console.log("Missing information");
+        //console.log("Missing information");
         setRegSuccess("Missing information");
 
     } else if (!details.email.match(isValidEmail)) {
-        console.log("Please enter in a correct email");
+        //console.log("Please enter in a correct email");
         setRegSuccess("Please enter in a correct email");
         
     } else if (val.data === "Password Mismatch"){
-        console.log("Password Mismatch");
+        //console.log("Password Mismatch");
         setRegSuccess("Password Mismatch");
 
     } else{
-        console.log(val.data);
-        console.log("Successfully Registered");
+        //console.log(val.data);
+        //console.log("Successfully Registered");
         setRegSuccess("Successfully Registered");
+        navigate('/login')
     }
       
   })

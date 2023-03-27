@@ -3,7 +3,7 @@ import '../../style/signupLogin.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = ({setSessionId}) => {
   
   const [details, setDetails] = useState({username: "", password: ""});
   const[user, setUser] = useState({username: "", password: ""});
@@ -15,7 +15,7 @@ const LoginPage = () => {
     e.preventDefault();
     
 
-    console.log(details);
+    //console.log(details);
     setError("");
 
     // Login(details);
@@ -26,46 +26,30 @@ const LoginPage = () => {
     }).then(val => {
  
     if(val.data === "Wrong username or password"){
-      console.log("Wrong Username or Password");
+      //console.log("Wrong Username or Password");
       setError("Wrong Username or Password");
       
     } else if (val.data === "Missing information"){
-        console.log("Missing information");
+        //console.log("Missing information");
         setError("Missing information");
 
     } else{
       
-      console.log(val.data);
-      console.log("Logged in");
+      //console.log(val.data);
+      //console.log("Logged in");
       setUser({
         username: details.username,
         password: details.password
       })
-      console.log(user.username);
+
+      //set the global session id to be the returned sessionId in login.php
+      setSessionId(val.data); 
+      navigate("/");
     }
     
   })
 
 }
-const isFirstRender = useRef(true);
-const isSecondRender = useRef(true)
-//two useRefs because react hooks double render when react strict mode is on
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return; // 👈️ return early if initial render
-    }
-    if (isSecondRender.current) {
-      isSecondRender.current = false;
-      return; // 👈️ return early if initial render
-    }
-
-    if (user.username !== ""){
-      navigate("/");
-    } else console.log(user.username);
-
-  }, [user]); // 👈️ add state variables you want to track
 
   return (
     <div className="login-signup-app">

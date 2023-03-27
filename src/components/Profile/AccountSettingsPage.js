@@ -10,7 +10,7 @@ const AccountSettingsPage = () => {
     const SaveSettings = details => {
         console.log(details);
         async function updateProfile(){
-            const {data} = await Axios.post('http://localhost/edit-settings.php', {
+            const {data} = await Axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-settings.php', {
                 firstname: details.firstname,
                 lastname: details.lastname,
                 email: details.email,

@@ -13,7 +13,7 @@ function EditProfile () {
     const SaveProfile = details => {
         console.log(details);
         async function updateProfile(){
-            const {data} = await Axios.post('http://localhost/edit-profile.php', {
+            const {data} = await Axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-profile.php', {
                 name: details.name,
                 displayname: details.displayname,
                 website: details.website,

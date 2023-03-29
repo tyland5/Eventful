@@ -15,7 +15,7 @@ const SignUpPage = () => {
     
     //console.log(details);
 
-    setRegSuccess("");
+    //setRegSuccess("");
     
     const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
@@ -51,7 +51,7 @@ const SignUpPage = () => {
     } else{
         //console.log(val.data);
         //console.log("Successfully Registered");
-        setRegSuccess("Successfully Registered");
+        //setRegSuccess("Successfully Registered");
         navigate('/login')
     }
       

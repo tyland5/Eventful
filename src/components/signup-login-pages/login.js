@@ -16,7 +16,7 @@ const LoginPage = ({setSessionId}) => {
     
 
     //console.log(details);
-    setError("");
+    //setError("");
 
     // Login(details);
 

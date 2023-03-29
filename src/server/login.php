@@ -63,15 +63,21 @@ if (isset($_POST)) {
 		
 		//setting up a persistent cookie and pairing up with the database
         //persistent lasts even with browser closed until expiration
+        //note that you won't see cookies when you npm run. You only see them on the built application on the server 
+        //since the php file is on there
         $cookie_name = "session";
         $cookie_value = session_id(); //grab the unique identifier to be stored into database
         $expiration = time() + 86400; // 86400 seconds or 1 day
         setcookie($cookie_name, $cookie_value, $expiration, "/"); 
         
+        //getting the user id from the user datatable so we can insert into sessions datatable
+        $row = mysqli_fetch_row($res); //columns accessible by 0-based index
+        $userID = $row[0];
+
         //inserting the cookie into database
         $sess_id = $cookie_value;
         $mysql_exp = date("Y-m-d H:i:s", $expiration - 14400); // -4 hours to match with mysql time (daylight savings)
-        $result = mysqli_query($conn, "INSERT INTO Sessions (username, session_id, expiration) VALUES ('$username', '$sess_id', '$mysql_exp') ");
+        $result = mysqli_query($conn, "INSERT INTO Sessions (user_id, session_id, expiration) VALUES ('$userID', '$sess_id', '$mysql_exp') ");
 
 		//header('Location: https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/build/'); //redirect to home page. doesnt work?
 		echo $sess_id; //return session id to react app

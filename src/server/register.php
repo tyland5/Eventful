@@ -1,6 +1,7 @@
 <?php
 // PLACE THIS FILE IN YOUR HTDOCS
-header("Access-Control-Allow-Origin: http://localhost:3000");
+//header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: POST");
@@ -19,21 +20,6 @@ else{
     //print("Connected fine");
 }
 
-//returns false on error. returns array of results if successful. could be empty array 
-$result = mysqli_query($conn, "SELECT * FROM Users");
-
-if(!$result){
-    die(mysqli_error($conn));
-}
-
-//checks the number of results returned
-if (mysqli_num_rows($result) > 0) {
-    
-    //gets each result returned. each result referred to as a "row"
-    while($rowData = mysqli_fetch_array($result)){
-            //print($rowData["Username"]); //print the particular field value
-    }
-}
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 	header('HTTP/1.1 200 OK');
 	exit();

@@ -35,7 +35,7 @@ const LoginPage = ({setSessionId}) => {
 
     } else{
       
-      //console.log(val.data);
+      console.log(val.data);
       //console.log("Logged in");
       setUser({
         username: details.username,

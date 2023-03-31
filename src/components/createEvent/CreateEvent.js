@@ -1,7 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PreviewImages from './PreviewImages'
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { enforceHTTPS, checkSessionId } from '../../App';
 
 //if you want to remove react-date-picker pkg, go to sprint2-staticCreateEvent branch
 //and look for first pull from dev. that's where you'll get the package-lock and package.json prior to this
@@ -18,7 +20,17 @@ const CreateEvent = () => {
     const [eventImages, setEventImages] = useState([])
     const [submittable, setSubmittable] = useState(true)
     
+    const navigate = useNavigate()
+    useEffect(() => {
 
+        enforceHTTPS()
+        //checks if user is logged in
+        checkSessionId().then(validUser =>{
+            if(!validUser){
+                navigate("/login")
+            }
+        })
+    })
 
     function uploadImages(e){
         const imageList = e.target.files
@@ -45,7 +57,7 @@ const CreateEvent = () => {
         }
     }
 
-    function onSubmit(e){
+    async function onSubmit(e){
         e.preventDefault()
 
         //Check input for users
@@ -59,8 +71,18 @@ const CreateEvent = () => {
 
         //got past all the checks so
         setSubmittable(true)
-
         /*
+        response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
+            title: eventTitle,
+            date: details.password,
+            time: o,
+            location: eventLocation,
+            type: eventType,
+            thumbnail: o,
+            images: eventImages
+        })
+        */
+        
         // used for testing
         console.log(eventTitle)
         console.log(eventDateTime)
@@ -69,7 +91,7 @@ const CreateEvent = () => {
         console.log(eventDescription)
         console.log(eventThumbnail)
         console.log(eventImages)
-        */
+        
 
         //put whatever php/sql things you need here
 

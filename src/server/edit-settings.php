@@ -15,11 +15,19 @@ if($conn -> connect_error){
 
 }
 else{
-    print("Connected fine");
+    print("Connected fine\n");
 }
 
+$sess_id = "v51fllvag31alj1u0gp5e7vevn";
+$sess_id2 = "ko9o0p72jhh6vs2hb6gnsnvren";
+$sess_id3 = "f9lb341f559gg3d5745m1r3gvh";
+$sql = "SELECT * FROM `Sessions` WHERE `session_id` = '$sess_id3'";
+$res = $conn->query($sql);
+$row = mysqli_fetch_row($res);
+$user_id = $row[0];
+
 //Upon receiving a POST request from axios
-if (isset($_POST)){
+if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
     
     $firstname = $data['firstname'];
@@ -28,24 +36,7 @@ if (isset($_POST)){
     $phonenumber = $data['phonenumber'];
     $password = $data['password'];
 
-	// print($username);
-    // print($password);
-
-	$sql = "INSERT INTO `Account Settings` (`First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
-	$res = $conn->query($sql);
-    if ($res->num_rows > 0) {
-		//send results
-		// echo '<pre>'; print_r($result); echo '</pre>';
-		// while($row = mysqli_fetch_array($res)){							IF YOU WANT TO GET THE OUTPUT FROM $RESULT ARRAY
-		// 	// Assuming DB's default fetchmode is DB_FETCHMODE_ORDERED
-		// 	echo $row[0] . "\n";
-		// }
-		echo "Good to go";
-	} else {
-		//send error Wrong username or password
-		$message = "Wrong username or password";
-		echo $message;
-	}
-	
+	$sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
+	$res = $conn->query($sql);	
 }
-    ?>
+?>

@@ -72,7 +72,7 @@ function EditProfile () {
             <br></br>
             <p className='profile-text'>Website</p>
             <br></br>
-            <input  id = "profile-text-box" onChange={e => setDetails({...details, website: e.target.value})} value={details.website}/>
+            <input id = "profile-text-box" onChange={e => setDetails({...details, website: e.target.value})} value={details.website}/>
             <br></br>
             <br></br>
             <p className = "profile-text">Bio</p>

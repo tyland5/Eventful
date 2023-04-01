@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import EventPopup from '../event-popup/event-popup-view'
-import Overlay from "react-overlay-component";
 import Xbutton from '../../images/X-button.png'
 import FeedArea from './FeedArea';
 

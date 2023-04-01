@@ -22,9 +22,9 @@ const CreateEvent = () => {
     
     const navigate = useNavigate()
     useEffect(() => {
-
+        // forces https connection
         enforceHTTPS()
-        //checks if user is logged in
+        // checks if user is logged in. if not, make them log in
         checkSessionId().then(validUser =>{
             if(!validUser){
                 navigate("/login")
@@ -83,6 +83,7 @@ const CreateEvent = () => {
         })
         */
         
+        /*
         // used for testing
         console.log(eventTitle)
         console.log(eventDateTime)
@@ -91,7 +92,7 @@ const CreateEvent = () => {
         console.log(eventDescription)
         console.log(eventThumbnail)
         console.log(eventImages)
-        
+        */
 
         //put whatever php/sql things you need here
 

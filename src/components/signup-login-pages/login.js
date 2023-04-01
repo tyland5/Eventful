@@ -31,8 +31,7 @@ const LoginPage = ({setSessionId}) => {
     //setError("");
 
     // Login(details);
-    //"http://localhost/login.php"
-    //'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/login.php'
+
     axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/login.php", {
       username: details.username,
       password: details.password

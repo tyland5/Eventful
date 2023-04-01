@@ -24,12 +24,9 @@ function App() {
     setShowSlideout(!showSlideout)
   }
 
-  // i could probably just make these 2 functions export default so you can just import and not use them as props
-  
-
   return (
     <>
-      
+
       <Routes>
         <Route path ='/' element={
             <div className="App">

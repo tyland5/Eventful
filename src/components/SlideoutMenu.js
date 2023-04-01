@@ -13,14 +13,15 @@ const SlideoutMenu = () => {
     )
   }
 
-  const SignoutFunction = async (e) =>{
-    e.preventDefault();
+  const SignoutFunction = async () =>{
     
-    axios.get({
-      method: 'get',
-      url: 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/sign-out.php'
-    }).then((response) => {
-      console.log(response);
+    await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
+      if(response.data === "not connected"){
+        console.log("not connected to database")
+      }
+      else if (response.data === "hello"){
+        console.log("all done")
+      }
     }, (error) => {
       console.log(error);
     });

@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
@@ -11,6 +12,20 @@ const SlideoutMenu = () => {
       </>
     )
   }
+
+  const SignoutFunction = async (e) =>{
+    e.preventDefault();
+    
+    axios.get({
+      method: 'get',
+      url: 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/sign-out.php'
+    }).then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  
 
   return (
     <div className='slideout-menu'>
@@ -26,6 +41,9 @@ const SlideoutMenu = () => {
             </li>
             <li>
               <Link to="/account-settings" className="routing-link">Account Settings</Link>
+            </li>
+            <li>
+              <p onClick={SignoutFunction}>Sign Out</p>
             </li>
         </ul>
     </div>

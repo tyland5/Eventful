@@ -27,14 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 //Upon receiving a POST request from axios
 if (isset($_POST)) {
-
-    //attempts to redirect to secure site if not using https
-    if(!isset($_SERVER['HTTPS'])||($_SERVER['HTTPS']!='on')){
-        //header('Location: '.
-        //'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/build/login');
-        echo "Missing information";
-        return;
-    }
         
     $data = json_decode(file_get_contents('php://input'), true);
     
@@ -63,8 +55,10 @@ if (isset($_POST)) {
         $cookie_name = "session";
         $cookie_value = session_id(); //grab the unique identifier to be stored into database
         $expiration = time() + 86400; // 86400 seconds or 1 day
-        setcookie($cookie_name, $cookie_value, $expiration, "/CSE442-542", ".cse.buffalo.edu", 1); 
         
+        setcookie($cookie_name, $cookie_value, $expiration, "/CSE442-542", ".cse.buffalo.edu", 1); 
+        //setcookie($cookie_name, $cookie_value, $expiration, "/CSE442-542"); 
+
         //getting the user id from the user datatable so we can insert into sessions datatable
         $row = mysqli_fetch_row($res); //columns accessible by 0-based index
         $userID = $row[0];

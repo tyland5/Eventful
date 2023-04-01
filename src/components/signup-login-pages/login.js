@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../style/signupLogin.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { checkSessionId, enforceHTTPS } from '../../App';
 
 const LoginPage = ({setSessionId}) => {
   
@@ -12,11 +13,14 @@ const LoginPage = ({setSessionId}) => {
   let navigate = useNavigate();
 
   useEffect(() => {
-
-    //ENFORCE https. reroutes if using http
-    if(window.location.href.startsWith("http:")){
-      window.location.href = "https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/build/login";
-    }
+    enforceHTTPS()
+    //checks if a valid user is logged in
+    checkSessionId().then(validUser =>{
+      if(validUser){
+        navigate("/")
+      }
+    })
+    
   })
 
   const loginHandler = async (e) => {
@@ -28,7 +32,7 @@ const LoginPage = ({setSessionId}) => {
 
     // Login(details);
 
-    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/login.php', {
+    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/login.php", {
       username: details.username,
       password: details.password
     }).then(val => {

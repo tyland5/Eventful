@@ -27,14 +27,16 @@ if (isset($_GET)) {
 
    $session_id = $_COOKIE["session"];
   
+   
    //check if the session id is actually valid and not some forged session id in cookie
-   $sql = "SELECT * FROM Sessions WHERE session_id = ? ";
+   $sql = "SELECT COUNT(1) FROM Sessions WHERE session_id = ? ";
    $stsm = $conn->prepare($sql);
-   $stsm->bind_param("i", $session_id);
+   $stsm->bind_param("s", $session_id);
    $stsm->execute();
-   $result = $stsm->get_result();
-
-   if ($result->num_rows === 0){
+   $stsm->bind_result($num_rows);
+   $stsm->fetch();
+   
+   if ($num_rows === 0){
     echo "invalid"; //i may have to put this instead of "" cause good will always be echo'd?
     return;
    }

@@ -34,11 +34,16 @@ if (isset($_POST)) {
 	$email = $data['email'];
 	$conPass = $data['conPass'];
 
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 	if ($username === "" | $password === "" | $email === "" | $conPass === "") {
 		echo "Missing Information";
 		return;
 	} else if ($password != $conPass) {
 		echo "Password Mismatch";
+		return;
+	} else if (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*(_|[^\w])).{8,16}$/', $password)) {
+		echo "Password Too Weak";
 		return;
 	}
 	
@@ -57,7 +62,7 @@ if (isset($_POST)) {
 		
 		$sql = "INSERT INTO Users (Username, Password, Email) VALUES (?,?,?)";
 		$stsm = $conn->prepare($sql);
-		$stsm->bind_param("sss", $username, $password, $email);
+		$stsm->bind_param("sss", $username, $hashed_password, $email);
 		$stsm->execute();
 
 		$message = "Inserted into DB";

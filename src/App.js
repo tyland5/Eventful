@@ -14,6 +14,8 @@ import EditProfilePage from './components/Profile/EditProfilePage';
 import AccountSettingsPage from './components/Profile/AccountSettingsPage';
 
 import axios from 'axios';
+import EventPopup from './components/event-popup/event-popup-view';
+
 
 
 function App() {

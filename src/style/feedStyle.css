@@ -18,6 +18,13 @@
     margin-bottom: 20px;
 }
 
+.post-feedview-opaque {
+    border-bottom: 3px solid gray;
+    display: flex;
+    margin-bottom: 20px;
+    opacity: 50%;
+}
+
 .poster-feedview{
     font-size: 1.8rem;
     color: white;

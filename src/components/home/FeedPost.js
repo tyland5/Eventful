@@ -1,8 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
+import EventPopup from '../event-popup/event-popup-view'
+import Xbutton from '../../images/X-button.png'
+import FeedArea from './FeedArea';
 
-const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag}) => {
+
+const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent}) => {
+    
+    const [showEventPopup, setEventPopup] = useState(false)
+    let postFeedView = "post-feedview"
+
+    function displayEventPopup(){
+        setEventPopup(!showEventPopup)
+
+        if (showEventPopup){
+            postFeedView = "post-feedview-opaque"
+        }
+        else{
+            postFeedView = "post-feedview"
+        }
+    }
+
+    function checkAllowClickableEvent(){
+        if (allowClickEvent.allowClickEvent) {
+            displayEventPopup()
+        }
+    }
+
+
+
+    const configs = {
+        animate:true
+    };
+    
   return (
     <>
+    
         <div className="post-feedview">
                     
             <div className="lpost-feedview">
@@ -16,7 +48,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag}) 
             <div className = "rpost-feedview">
                 <p className="poster-feedview">{posterName}</p>
 
-                <img className ="post-thumbnail" src={thumbnail} alt= {`${posterName}'s thumbnail`} />
+                <img className ="post-thumbnail" src={thumbnail} alt= {`${posterName}'s thumbnail`} onClick={displayEventPopup}/>
+
                 <p className="title-feedview">{title}</p>
                 
                 <div className="post-footer-feedview">
@@ -24,8 +57,16 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag}) 
                     <p className="tags-feedview">{eventTag}</p>
                 </div>
             </div>
-
+            
         </div>
+
+        <div className='event-popup-display'>
+            {showEventPopup && <img className ="poster-pfp-popup-feedview" src={pfp} alt = {`${posterName}'s profile pic`}/>}
+            {showEventPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventPopup}></img>}
+            {showEventPopup && (<EventPopup pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
+        </div>
+       
+        
     </>
   )
 }

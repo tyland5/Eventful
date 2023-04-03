@@ -12,6 +12,7 @@ const LoginPage = ({setSessionId}) => {
 
   let navigate = useNavigate();
 
+  
   useEffect(() => {
     enforceHTTPS()
     //checks if a valid user is logged in
@@ -21,6 +22,11 @@ const LoginPage = ({setSessionId}) => {
       }
     })
     
+    
+    //ENFORCE https. reroutes if using http
+    if(window.location.href.startsWith("http:")){
+      window.location.href = "https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/build/login";
+    }
   })
 
   const loginHandler = async (e) => {

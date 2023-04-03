@@ -10,22 +10,32 @@ function EditProfile () {
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
 
-    const SaveProfile = details => {
+    async function FillProfile(details) {
+        const response = await Axios.get('http://localhost/edit-profile.php');
+        console.log("Response data: ")
+        console.log(response.data)
+        //setDetails({...details, name: response[1]})
+        console.log("Details: ")
         console.log(details);
+    }
+
+    const fillHandler = async(e) => {
+        e.preventDefault();
+        FillProfile(details);
+    }
+
+    const SaveProfile = details => {
         async function updateProfile(){
             const {data} = await Axios.post('http://localhost/edit-profile.php', {
                 name: details.name,
                 displayname: details.displayname,
                 website: details.website,
                 bio: details.bio
-        })
-        console.log(data)
-        return data
-            };
-            updateProfile().then(val => {
-                console.log(val);
-                console.log("Changes Saved");
             })
+            console.log(data)
+            return data
+        };
+            updateProfile()
         }
 
     const SaveHandler = async (e) => {
@@ -58,6 +68,7 @@ function EditProfile () {
             <button style = {{fontFamily: "Times", backgroundColor: "#FFE455", borderRadius:6}}>Edit Profile Photo</button>
             <br></br>
             <br></br>
+            <button style = {{fontFamily: "Times", backgroundColor: "white", height: 40, borderRadius:6}} onClick = {fillHandler}>Autofill Info</button>
             <br></br>
             <br></br>
             <p className='profile-text'>Name</p>

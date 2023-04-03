@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 $sess_id = "v51fllvag31alj1u0gp5e7vevn";
-$sess_id2 = "ko9o0p72jhh6vs2hb6gnsnvren";
+$sess_id2 = "k08r5tt8rh38ooh0ortg9ogsfe";
 $sess_id3 = "f9lb341f559gg3d5745m1r3gvh";
 $sql = "SELECT * FROM `Sessions` WHERE `session_id` = '$sess_id2'";
 $res = $conn->query($sql);

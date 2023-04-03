@@ -10,18 +10,17 @@ function EditProfile () {
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
 
-    async function FillProfile(details) {
-        const response = await Axios.get('http://localhost/edit-profile.php');
-        console.log("Response data: ")
-        console.log(response.data)
-        //setDetails({...details, name: response[1]})
-        console.log("Details: ")
+    async function FillProfile() {
+        const response = await Axios.get('http://localhost/loadSettings.php');
+        console.log("Response data: ");
+        console.log(response.data);
+        setDetails({...details, name: response.data[1], displayname: response.data[2], website: response.data[3], bio: response.data[4]})
         console.log(details);
     }
-
+    
     const fillHandler = async(e) => {
         e.preventDefault();
-        FillProfile(details);
+        FillProfile();
     }
 
     const SaveProfile = details => {
@@ -73,7 +72,7 @@ function EditProfile () {
             <br></br>
             <p className='profile-text'>Name</p>
             <br></br>
-            <input  id = "profile-text-box" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+            <input id = "profile-text-box" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
             <br></br>
             <br></br>
             <p className='profile-text'>Display Name</p>

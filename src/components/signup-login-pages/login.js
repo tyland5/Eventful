@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../style/signupLogin.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { checkSessionId, enforceHTTPS } from '../App';
+//import { checkSessionId, enforceHTTPS } from '../../App';
 
 const LoginPage = ({setSessionId}) => {
   
@@ -12,16 +12,16 @@ const LoginPage = ({setSessionId}) => {
 
   let navigate = useNavigate();
 
-  useEffect(() => {
-    enforceHTTPS()
-    //checks if a valid user is logged in
-    checkSessionId().then(validUser =>{
-      if(validUser){
-        navigate("/")
-      }
-    })
+  // useEffect(() => {
+  //   enforceHTTPS()
+  //   //checks if a valid user is logged in
+  //   checkSessionId().then(validUser =>{
+  //     if(validUser){
+  //       navigate("/")
+  //     }
+  //   })
     
-  })
+  // })
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const LoginPage = ({setSessionId}) => {
 
     // Login(details);
 
-    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/login.php", {
+    axios.post('http://localhost/login.php', {
       username: details.username,
       password: details.password
     }).then(val => {
@@ -47,6 +47,7 @@ const LoginPage = ({setSessionId}) => {
 
     } else{
       
+      console.log("Sess-id:");
       console.log(val.data);
       //console.log("Logged in");
       setUser({
@@ -69,13 +70,13 @@ const LoginPage = ({setSessionId}) => {
       {(error !== "") ? (<div className="error">{error}</div> ): ""}
       <div className="login-form">
         <div className="login-text">
-          <label htmlfor="username"><p className="login-title">Username</p></label>
+          <label htmlFor="username"><p className="login-title">Username</p></label>
         </div>
         <input type="text" name="username" id="username" onChange={e => setDetails({...details, username: e.target.value})} value={details.username}></input>
       </div>
       <div className="login-form">
         <div className="login-text">
-          <label htmlfor="password"><p className="login-title">Password</p></label>
+          <label htmlFor="password"><p className="login-title">Password</p></label>
         </div>
         <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
       </div>

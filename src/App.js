@@ -19,6 +19,7 @@ import EventPopup from './components/event-popup/event-popup-view';
 
 function App() {
   const [showSlideout, setShowSlideout] = useState(false)
+  const [sessionId, setSessionId] = useState("")
   
   function displaySlideoutMenu(){
     setShowSlideout(!showSlideout)
@@ -41,7 +42,7 @@ function App() {
         <Route path="create-event" element={<><CreateEvent/></>}></Route>
         <Route path="/edit-profile" element={<EditProfilePage />}></Route>
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
       </Routes>
 

@@ -1,6 +1,6 @@
 <?php
 // PLACE THIS FILE IN YOUR HTDOCS
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: POST");
@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
     
-    $name = $data['Name'];
-    $displayname = $data['Display Name'];
-    $website = $data['Website']
-    $bio = $data['Bio']
+    $name = $data['name'];
+    $displayname = $data['displayname'];
+    $website = $data['website'];
+    $bio = $data['bio'];
 
 	// print($username);
     // print($password);

@@ -14,21 +14,46 @@ $conn = mysqli_connect("oceanus.cse.buffalo.edu", "dchen83", "50360060", "cse442
 if($conn -> connect_error){
     die("connection failed");
 }
-else{
-    print("Connected fine");
-}
 
 //Upon receiving a POST request from axios
 if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
     
     $title = $data["title"];
-    $date = $data["date"];
-    $time = $data["time"];
+    $dateTime = $data["dateTime"];
     $location = $data["location"];
     $type = $data["type"];
     $thumbnail = $data["thumbnail"];
     $images = $data["images"];
+    $session_id = $_COOKIE["session"];
+    
+    $dateTime = intdiv($dateTime, 1000);
+    $dateTime = $dateTime - 14400;
+    $dateTime = date("Y-m-d H:i:s", $dateTime);
+    $la2 = "fd";
+    
+
+    $sql = "SELECT Username FROM Sessions JOIN Users USING (user_id) WHERE session_id = (?) LIMIT 1";
+    //$sql = "SELECT Username FROM Users LIMIT 1";
+    $stsm = $conn->prepare($sql);
+    $stsm->bind_param("s", $session_id);
+    $stsm->execute();
+    $stsm->bind_result($username);
+    $stsm->fetch();
+    $stsm->close(); //need this to do another query
+    
+   
+    $sql2 = "INSERT INTO Posts VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stsm2 = $conn->prepare($sql2);
+    //$stsm->bind_param("ssissss", "fdaf", "fdas", 434343, "fdsafsd", "fdsafsdf", "flksajfadaf", "sjksalfsjadf;");
+    
+    $stsm2->bind_param("sssssss", $username, $title, $dateTime, $location, $type, $la2, $la2);
+    $stsm2->execute();
+    
+    //move_uploaded_file()
+
+    return;
+    
 }
 
 

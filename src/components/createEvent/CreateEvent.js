@@ -16,8 +16,10 @@ const CreateEvent = () => {
     const [eventLocation, setEventLocation] = useState("")
     const [eventType, setEventType] = useState("")
     const [eventDescription, setEventDescription] = useState("")
+    const [eventThumbnailPrev, setEventThumbnailPrev] = useState("")
+    const [eventImagesPrev, setEventImagesPrev] = useState([])
     const [eventThumbnail, setEventThumbnail] = useState("")
-    const [eventImages, setEventImages] = useState([])
+    const [eventImages, setEventImages] = useState("")
     const [submittable, setSubmittable] = useState(true)
     
     const navigate = useNavigate()
@@ -42,18 +44,20 @@ const CreateEvent = () => {
 
         //note this might not be the final format necessary for storage of images 
         //in data base. This only guarantees an preview of the images in the page
-        setEventImages(images)
+        setEventImagesPrev(images)
         
     }
 
     function uploadThumbnail(e){
         if(e.target.files.length !== 0){
+            console.log(e.target.files)
             const image = URL.createObjectURL(e.target.files[0])
-            setEventThumbnail(image)
+            setEventThumbnailPrev(image)
+            setEventThumbnail(e.target.files[0]) //gives a standard file object
         }
         else{
             //get rid of preview and fail submit since user didn't properly select
-            setEventThumbnail("") 
+            setEventThumbnailPrev("") 
         }
     }
 
@@ -64,29 +68,30 @@ const CreateEvent = () => {
         //might have to use google api to validate address
         //might have to check date so it's not before current
         if(eventTitle === "" || eventLocation === "" || eventType === "" || eventType === "Select Type" || 
-        eventThumbnail === "" || eventImages.length === 0 || eventDescription ===""){
+        eventThumbnailPrev === "" || eventImagesPrev.length === 0 || eventDescription ===""){
             setSubmittable(false)
             return
         }
 
         //got past all the checks so
         setSubmittable(true)
-        /*
-        response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
+        
+        
+        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
             title: eventTitle,
-            date: details.password,
-            time: o,
+            dateTime: eventDateTime.getTime(), //2014-12-15T19:42:27.100Z format
             location: eventLocation,
             type: eventType,
-            thumbnail: o,
-            images: eventImages
+            thumbnail: eventThumbnail,
+            images: eventImages,
         })
-        */
+        
+        console.log(response.data)
         
         /*
         // used for testing
         console.log(eventTitle)
-        console.log(eventDateTime)
+        console.log(eventDateTime.getTime())
         console.log(eventLocation)
         console.log(eventType)
         console.log(eventDescription)
@@ -142,14 +147,14 @@ const CreateEvent = () => {
                 <input id="create-thumbnail" type= "file" accept='image/png, image/jpg' onChange={(e) => uploadThumbnail(e)}/>
             </div>
 
-            {eventThumbnail && <img id="preview-thumbnail" alt = "preview-thumbnail" src= {eventThumbnail}/>}
+            {eventThumbnailPrev && <img id="preview-thumbnail" alt = "preview-thumbnail" src= {eventThumbnailPrev}/>}
 
             <div className='create-event-section'>
                 <label hmtlFor="create-images">Event Images</label>
                 <input id="create-images" type= "file" accept='image/png, image/jpg' multiple onChange={(e) => uploadImages(e)}/>
             </div>
 
-            {eventImages && <PreviewImages images= {eventImages}/>} 
+            {eventImagesPrev && <PreviewImages images= {eventImagesPrev}/>} 
 
             <Link to="/"><button type= "button" className='cancel-create-event'>Cancel</button></Link>
             <button type = "submit" className='create-event-submit' form = "create-event">Post</button>

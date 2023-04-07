@@ -18,6 +18,12 @@ if($conn -> connect_error){
 //Upon receiving a POST request from axios
 if (isset($_POST)) {
 
+    //in case a user's session has expired
+    if(!isset($_COOKIE["session"])){
+        echo "invalid session";
+        return;
+    }
+
     // htmlspecialchars used to prevent Cross Site Scripting
     $title = htmlspecialchars($_POST['title']);
     $dateTime = $_POST['dateTime'];
@@ -25,34 +31,11 @@ if (isset($_POST)) {
     $type = $_POST['type'];
     $description = htmlspecialchars($_POST['description']);
     $thumbnail = $_FILES["thumbnail"];
-    $images = $_FILES["images"];
+    $images = $_FILES["images"]; //works now
+
     $session_id = $_COOKIE["session"];
 
-    /*
-    //rmdir("uploads/posts");
-    if(move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnail['name'])){ 
-        echo "transferred";
-    }
-    $fileNames = array_filter($_FILES['images']['name']); 
-    if (!empty($fileNames)){
-        echo "reached";
-    }
-    echo gettype($images);
-    echo count($images);
-    foreach($_FILES["images"]["error"] as $key => $error) {
-        echo "reached";
-        if ($error == UPLOAD_ERR_OK) {
-            $tmp_name = $_FILES["images"]["tmp_name"][$key];
-            // basename() may prevent filesystem traversal attacks;
-            // further validation/sanitation of the filename may be appropriate
-            $name = basename($_FILES["images"]["name"][$key]);
-            move_uploaded_file($tmp_name, "uploads/" . $name);
-        }
-    }
-
-    return;
-    */
-
+    //set up date time of event properly
     $dateTime = intdiv($dateTime, 1000);
     $dateTime = $dateTime - 14400;
     $dateTime = date("Y-m-d H:i:s", $dateTime);
@@ -75,8 +58,8 @@ if (isset($_POST)) {
     $stsm2->fetch();   
     $stsm2->close();
 
+    //setting the name for thumbnail that will be in the webserver and database
     $postID = $postID + 1;
-    //the name for thumbnail that will be in the webserver and database
     $thumbnailName = "post" . $postID . "_thumbnail." . pathinfo($thumbnail['name'], PATHINFO_EXTENSION);    
    
     //insert post information into database
@@ -85,7 +68,19 @@ if (isset($_POST)) {
     $stsm3->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $la2);
     $stsm3->execute();
     
+    //upload thumbnail onto webserver
     move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);
+
+    //upload images onto webserver
+    $counter = 1;
+    foreach ($images["error"] as $key => $error) {
+        if ($error == UPLOAD_ERR_OK) {
+            $tmp_name = $images["tmp_name"][$key];
+            $name = "post" . $postID . "_img" . $counter . "." . pathinfo($images['name'][$key], PATHINFO_EXTENSION);
+            $counter += 1;
+            move_uploaded_file($tmp_name, "uploads/" . $name);
+        }
+    }
     return;
     
 }

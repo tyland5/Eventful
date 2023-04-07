@@ -32,7 +32,7 @@ const CreateEvent = () => {
                 navigate("/login")
             }
         })
-    })
+    }, [])
 
     function uploadImages(e){
         const imageList = e.target.files
@@ -49,7 +49,6 @@ const CreateEvent = () => {
 
     function uploadThumbnail(e){
         if(e.target.files.length !== 0){
-            console.log(e.target.files)
             const image = URL.createObjectURL(e.target.files[0])
             setEventThumbnailPrev(image)
             setEventThumbnail(e.target.files[0]) //gives a standard file object
@@ -73,9 +72,6 @@ const CreateEvent = () => {
             return
         }
         
-        console.log(eventImagesPrev.length)
-        console.log(eventImages.length)
-        console.log(eventImages)
         //got past all the checks so
         setSubmittable(true)
         const fd = new FormData()
@@ -85,21 +81,18 @@ const CreateEvent = () => {
         fd.append('type', eventType)
         fd.append('description', eventDescription)
         fd.append('thumbnail', eventThumbnail)
-        fd.append('images', eventImages)
+        for(let i = 0; i < eventImages.length; i++){
+            fd.append('images[]', eventImages[i])
+        }
         const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', fd)
-        /*
-        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
-            title: eventTitle,
-            dateTime: eventDateTime.getTime(), //2014-12-15T19:42:27.100Z format
-            location: eventLocation,
-            type: eventType,
-            thumbnail: eventThumbnail,
-            images: eventImages,
-        })
-        */
         
-        console.log(response.data)
-        
+        // make user log in again for having expired session. skill issue, bad luck :)
+        if(response.data === "invalid session"){
+            navigate("/login")
+            return
+        }
+
+        navigate("/")
         /*
         // used for testing
         console.log(eventTitle)
@@ -110,10 +103,6 @@ const CreateEvent = () => {
         console.log(eventThumbnail)
         console.log(eventImages)
         */
-
-        //put whatever php/sql things you need here
-
-
     }
 
 

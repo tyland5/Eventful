@@ -36,16 +36,15 @@ const CreateEvent = () => {
 
     function uploadImages(e){
         const imageList = e.target.files
+        const imagesPrev = []
         const images = []
-        
         for(let i = 0; i < imageList.length; i++){
-            images.push(URL.createObjectURL(imageList[i]))
+            imagesPrev.push(URL.createObjectURL(imageList[i]))
+            images.push(imageList[i])
         }
 
-        //note this might not be the final format necessary for storage of images 
-        //in data base. This only guarantees an preview of the images in the page
-        setEventImagesPrev(images)
-        
+        setEventImages(images)
+        setEventImagesPrev(imagesPrev)
     }
 
     function uploadThumbnail(e){
@@ -58,6 +57,7 @@ const CreateEvent = () => {
         else{
             //get rid of preview and fail submit since user didn't properly select
             setEventThumbnailPrev("") 
+            setEventThumbnail("")
         }
     }
 
@@ -72,11 +72,22 @@ const CreateEvent = () => {
             setSubmittable(false)
             return
         }
-
+        
+        console.log(eventImagesPrev.length)
+        console.log(eventImages.length)
+        console.log(eventImages)
         //got past all the checks so
         setSubmittable(true)
-        
-        
+        const fd = new FormData()
+        fd.append('title', eventTitle)
+        fd.append('dateTime', eventDateTime.getTime())
+        fd.append('location', eventLocation)
+        fd.append('type', eventType)
+        fd.append('description', eventDescription)
+        fd.append('thumbnail', eventThumbnail)
+        fd.append('images', eventImages)
+        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', fd)
+        /*
         const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
             title: eventTitle,
             dateTime: eventDateTime.getTime(), //2014-12-15T19:42:27.100Z format
@@ -85,6 +96,7 @@ const CreateEvent = () => {
             thumbnail: eventThumbnail,
             images: eventImages,
         })
+        */
         
         console.log(response.data)
         

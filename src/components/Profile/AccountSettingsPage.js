@@ -7,6 +7,20 @@ const AccountSettingsPage = () => {
 
     const [details, setDetails] = useState({firstname: "", lastname: "", email: "", phonenumber: "", password: ""});
     const [save, setSave]=useState(false);
+
+    async function FillProfile() {
+        const response = await Axios.get('http://localhost/loadAccSettings.php');
+        console.log("Response data: ");
+        console.log(response.data);
+        setDetails({...details, firstname: response.data[1], lastname: response.data[2], email: response.data[3], phonenumber: response.data[4], password: response.data[5]})
+        console.log(details);
+    }
+    
+    const fillHandler = async(e) => {
+        e.preventDefault();
+        FillProfile();
+    }
+
     const SaveSettings = details => {
         console.log(details);
         async function updateProfile(){
@@ -51,6 +65,9 @@ const AccountSettingsPage = () => {
                 </div>
             </div>
             <br></br>
+            <button style = {{fontFamily: "Times", backgroundColor: "white", height: 40, borderRadius:6}} onClick = {fillHandler}>Autofill Info</button>
+            <br></br>
+            <br></br>
             <p className='profile-text'>First Name</p>
             <br></br>
             <input id = "profile-text-box" onChange={e => setDetails({...details, firstname: e.target.value})} value={details.firstname}/>
@@ -73,7 +90,7 @@ const AccountSettingsPage = () => {
             <br></br>
             <p className='profile-text'>Password</p>
             <br></br>
-            <input  id = "profile-text-box" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
+            <input type = "password" id = "profile-text-box" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
             <br></br>
             <br></br>
             <button style = {{height:30, width:300, fontFamily: "Times", borderRadius: 6}}>Change Password</button>

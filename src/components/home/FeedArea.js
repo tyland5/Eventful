@@ -4,6 +4,7 @@ import dummy_pfp from "../../images/dummy-pfp.png"
 import dummy_post from "../../images/dummy-post.jpg"
 import rutgers_park from "../../images/rutgers-park.jpg"
 import PostButton from '../createEvent/PostButton'
+import axios from 'axios'
 
 const FeedArea = () => {
   const[allowClickEvent, setClickEvent] = useState(true)
@@ -16,10 +17,40 @@ const FeedArea = () => {
     return allowClickEvent
   }
 
+
+  const [post, setPost] = useState({"poster": "", "title": "", "type": "", "location": "", "description": "", "thumbnail": "", "images": ""});
+  const[error, setError] = useState("");
+
+  const LoadPost = async (e) => {
+      e.preventDefault();
+    
+      // axios.get("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-event.php")
+      axios.get("http://localhost/load-event.php")
+      .then(val => {
+
+      if (val.data === "Nothing"){
+        // No images
+      } else {
+          console.log(val.data)
+
+      }
+    })
+
+
+  }
+
+
+
+
+
+
+
   return (
+    
+    
     <>
     <p className="filter-btn">Filter</p>
-    <div className ="feed-area">
+    <div className ="feed-area" onLoad={LoadPost}>
         <FeedPost pfp = {dummy_pfp} posterName = "Company 1" title = "Firework showing at Fairgrounds!" 
         thumbnail= {dummy_post} numBookmarked = "400" eventTag= "Recreation" allowClickEvent={allowClickEvent}/>
 

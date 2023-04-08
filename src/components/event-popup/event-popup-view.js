@@ -30,21 +30,21 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
           <div className='description-box-container'>
             <p className='description-box-title'>Description</p>
             <p className='description'>
-                hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
+                Come to the event for tons of fun and games!
             </p>
           </div>
 
           <div className='location-box-container'>
             <p className='location-box-title'>Location</p>
             <p className='location'>
-                over there over there over there over over there over there there over there over there over there over there over there
+                madison square garden
             </p>
           </div>
 
           <div className='comments-box-container'>
             <p className='comments-box-title'>Comments</p>
             <p className='comments'>
-                very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow very wow 
+                10/10 event, would go again
             </p>
           </div>
         </div>

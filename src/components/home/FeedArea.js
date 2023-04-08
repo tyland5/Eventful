@@ -19,6 +19,7 @@ const FeedArea = () => {
   return (
     <>
     <p className="filter-btn">Filter</p>
+    <PostButton />
     <div className ="feed-area">
         <FeedPost pfp = {dummy_pfp} posterName = "Company 1" title = "Firework showing at Fairgrounds!" 
         thumbnail= {dummy_post} numBookmarked = "400" eventTag= "Recreation" allowClickEvent={allowClickEvent}/>
@@ -44,11 +45,10 @@ const FeedArea = () => {
         thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
         <FeedPost pfp = {dummy_pfp} posterName = "Company 4" title = "Basketball Tournament @ Ruckers!" 
         thumbnail= {rutgers_park} numBookmarked = "400" eventTag= "Recreation"/>
+        
+       
     </div>
 
-    <div>
-      <PostButton />
-    </div>
     </>
   )
 }

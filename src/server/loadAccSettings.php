@@ -23,28 +23,11 @@ $res = $conn->query($sql);
 $row = mysqli_fetch_row($res);
 $user_id = $row[0];
 
-//Upon receiving a POST request from axios
-if (isset($_POST)) {
-
-    $data = json_decode(file_get_contents('php://input'), true);
-    
-    $name = $data['name'];
-    $displayname = $data['displayname'];
-    $website = $data['website'];
-    $bio = $data['bio'];
-
-    $sql = "SELECT * FROM `Edit Profile` WHERE `User ID` = '$user_id'";
+//Upon receiving a GET request from axios
+if (isset($_GET)) {
+    $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
     $res = $conn->query($sql);
-
-    if($res->num_rows > 0) {
-        $sql = "UPDATE `Edit Profile` SET `User ID`= '$user_id',`Name`='$name',`Display Name`= '$displayname',`Website`='$website', `Bio`='$bio' WHERE `User ID`='$user_id'";
-        $res = $conn->query($sql);
-    }
-
-    else {
-        $sql = "INSERT INTO `Edit Profile`(`User ID`, `Name`, `Display Name`, `Website`, `Bio`) VALUES ('".$user_id."', '".$name."','".$displayname."','".$website."','".$bio."')";
-	    $res = $conn->query($sql);
-    }
+    $row = mysqli_fetch_row($res);
+    echo json_encode($row);
 }
-
 ?>

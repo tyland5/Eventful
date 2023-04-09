@@ -88,4 +88,3 @@ const LoginPage = ({setSessionId}) => {
 }
 
 export default LoginPage;
-

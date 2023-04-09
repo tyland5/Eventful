@@ -7,17 +7,15 @@ const AccountSettingsPage = () => {
 
     const [details, setDetails] = useState({firstname: "", lastname: "", email: "", phonenumber: "", password: ""});
     const [save, setSave]=useState(false);
+    const [refreshed, setRefresh] = useState(true);
 
     async function FillProfile() {
         const response = await Axios.get('http://localhost/loadAccSettings.php');
-        console.log("Response data: ");
-        console.log(response.data);
         setDetails({...details, firstname: response.data[1], lastname: response.data[2], email: response.data[3], phonenumber: response.data[4], password: response.data[5]})
-        console.log(details);
     }
     
-    const fillHandler = async(e) => {
-        e.preventDefault();
+    if(refreshed){
+        setRefresh(false);
         FillProfile();
     }
 
@@ -64,8 +62,6 @@ const AccountSettingsPage = () => {
                     <Link to="/account-settings"><button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}}>Account Settings</button></Link>
                 </div>
             </div>
-            <br></br>
-            <button style = {{fontFamily: "Times", backgroundColor: "white", height: 40, borderRadius:6}} onClick = {fillHandler}>Autofill Info</button>
             <br></br>
             <br></br>
             <p className='profile-text'>First Name</p>

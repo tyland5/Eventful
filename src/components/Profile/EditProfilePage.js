@@ -9,17 +9,15 @@ function EditProfile () {
 
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
+    const [refreshed, setRefresh] = useState(true);
 
     async function FillProfile() {
         const response = await Axios.get('http://localhost/loadSettings.php');
-        console.log("Response data: ");
-        console.log(response.data);
         setDetails({...details, name: response.data[1], displayname: response.data[2], website: response.data[3], bio: response.data[4]})
-        console.log(details);
     }
-    
-    const fillHandler = async(e) => {
-        e.preventDefault();
+
+    if(refreshed){
+        setRefresh(false);
         FillProfile();
     }
 
@@ -67,12 +65,11 @@ function EditProfile () {
             <button style = {{fontFamily: "Times", backgroundColor: "#FFE455", borderRadius:6}}>Edit Profile Photo</button>
             <br></br>
             <br></br>
-            <button style = {{fontFamily: "Times", backgroundColor: "white", height: 40, borderRadius:6}} onClick = {fillHandler}>Autofill Info</button>
-            <br></br>
             <br></br>
             <p className='profile-text'>Name</p>
             <br></br>
-            <input id = "profile-text-box" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+            <input id = "profile-text-box" onChange = {e => setDetails({...details, name: e.target.value})} value={details.name}/>
+            <script>console.log(refreshed);</script>
             <br></br>
             <br></br>
             <p className='profile-text'>Display Name</p>

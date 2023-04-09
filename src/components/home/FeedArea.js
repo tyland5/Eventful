@@ -49,7 +49,7 @@ const FeedArea = () => {
     <>
     <p className="filter-btn" >Filter</p>
     <div className ="feed-area">
-
+      <PostButton/>
     {post.map((value, idx) => {
           return (
             <FeedPost pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} 

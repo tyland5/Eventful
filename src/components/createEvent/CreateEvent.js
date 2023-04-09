@@ -145,14 +145,14 @@ const CreateEvent = () => {
 
             <div className='create-event-section'>
                 <label hmtlFor="create-thumbnail">Event Thumbnail</label>
-                <input id="create-thumbnail" type= "file" accept='image/png, image/jpg' onChange={(e) => uploadThumbnail(e)}/>
+                <input id="create-thumbnail" type= "file" accept='image/png, image/jpg, image/jpeg' onChange={(e) => uploadThumbnail(e)}/>
             </div>
 
             {eventThumbnailPrev && <img id="preview-thumbnail" alt = "preview-thumbnail" src= {eventThumbnailPrev}/>}
 
             <div className='create-event-section'>
                 <label hmtlFor="create-images">Event Images</label>
-                <input id="create-images" type= "file" accept='image/png, image/jpg' multiple onChange={(e) => uploadImages(e)}/>
+                <input id="create-images" type= "file" accept="image/png, image/jpg, image/jpeg" multiple onChange={(e) => uploadImages(e)}/>
             </div>
 
             {eventImagesPrev && <PreviewImages images= {eventImagesPrev}/>} 

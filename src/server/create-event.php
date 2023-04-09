@@ -61,15 +61,7 @@ if (isset($_POST)) {
     //setting the name for thumbnail that will be in the webserver and database
     $postID = $postID + 1;
     $thumbnailName = "post" . $postID . "_thumbnail." . pathinfo($thumbnail['name'], PATHINFO_EXTENSION);    
-   
-    //insert post information into database
-    $sql3 = "INSERT INTO Posts (poster, title, time, location, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stsm3 = $conn->prepare($sql3);
-    $stsm3->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $la2);
-    $stsm3->execute();
-    
-    //upload thumbnail onto webserver
-    move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);
+    $imageNames = "";
 
     //upload images onto webserver
     $counter = 1;
@@ -77,10 +69,21 @@ if (isset($_POST)) {
         if ($error == UPLOAD_ERR_OK) {
             $tmp_name = $images["tmp_name"][$key];
             $name = "post" . $postID . "_img" . $counter . "." . pathinfo($images['name'][$key], PATHINFO_EXTENSION);
+            $imageNames = $imageNames . $name . " ";
             $counter += 1;
             move_uploaded_file($tmp_name, "uploads/" . $name);
         }
     }
+   
+    //insert post information into database
+    $sql3 = "INSERT INTO Posts (poster, title, time, location, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stsm3 = $conn->prepare($sql3);
+    $stsm3->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $imageNames);
+    $stsm3->execute();
+    
+    //upload thumbnail onto webserver
+    move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);
+
     return;
     
 }

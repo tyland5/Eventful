@@ -33,11 +33,11 @@ if (isset($_POST)) {
     $phonenumber = $data['phonenumber'];
     $password = $data['password'];
 
-	$sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
-	$res = $conn->query($sql);
+    $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
+    $res = $conn->query($sql);
 
     if($res->num_rows > 0) {
-        $sql = "UPDATE `Edit Profile` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`='$password' WHERE `User ID`='$user_id'";
+        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`='$password' WHERE `User ID`='$user_id'";
         $res = $conn->query($sql);
     }
 

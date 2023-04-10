@@ -10,8 +10,10 @@ const AccountSettingsPage = () => {
     const [refreshed, setRefresh] = useState(true);
 
     async function FillProfile() {
-        const response = await Axios.get('http://localhost/loadAccSettings.php');
-        setDetails({...details, firstname: response.data[1], lastname: response.data[2], email: response.data[3], phonenumber: response.data[4], password: response.data[5]})
+        const response = await Axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/loadAccSettings.php');
+        console.log(response);
+        if(response.data)
+            setDetails({...details, firstname: response.data[1], lastname: response.data[2], email: response.data[3], phonenumber: response.data[4], password: response.data[5]})
     }
     
     if(refreshed){

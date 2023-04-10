@@ -32,25 +32,23 @@ const CreateEvent = () => {
                 navigate("/login")
             }
         })
-    })
+    }, [])
 
     function uploadImages(e){
         const imageList = e.target.files
+        const imagesPrev = []
         const images = []
-        
         for(let i = 0; i < imageList.length; i++){
-            images.push(URL.createObjectURL(imageList[i]))
+            imagesPrev.push(URL.createObjectURL(imageList[i]))
+            images.push(imageList[i])
         }
 
-        //note this might not be the final format necessary for storage of images 
-        //in data base. This only guarantees an preview of the images in the page
-        setEventImagesPrev(images)
-        
+        setEventImages(images)
+        setEventImagesPrev(imagesPrev)
     }
 
     function uploadThumbnail(e){
         if(e.target.files.length !== 0){
-            console.log(e.target.files)
             const image = URL.createObjectURL(e.target.files[0])
             setEventThumbnailPrev(image)
             setEventThumbnail(e.target.files[0]) //gives a standard file object
@@ -58,6 +56,7 @@ const CreateEvent = () => {
         else{
             //get rid of preview and fail submit since user didn't properly select
             setEventThumbnailPrev("") 
+            setEventThumbnail("")
         }
     }
 
@@ -72,22 +71,28 @@ const CreateEvent = () => {
             setSubmittable(false)
             return
         }
-
+        
         //got past all the checks so
         setSubmittable(true)
+        const fd = new FormData()
+        fd.append('title', eventTitle)
+        fd.append('dateTime', eventDateTime.getTime())
+        fd.append('location', eventLocation)
+        fd.append('type', eventType)
+        fd.append('description', eventDescription)
+        fd.append('thumbnail', eventThumbnail)
+        for(let i = 0; i < eventImages.length; i++){
+            fd.append('images[]', eventImages[i])
+        }
+        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', fd)
         
-        
-        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', {
-            title: eventTitle,
-            dateTime: eventDateTime.getTime(), //2014-12-15T19:42:27.100Z format
-            location: eventLocation,
-            type: eventType,
-            thumbnail: eventThumbnail,
-            images: eventImages,
-        })
-        
-        console.log(response.data)
-        
+        // make user log in again for having expired session. skill issue, bad luck :)
+        if(response.data === "invalid session"){
+            navigate("/login")
+            return
+        }
+
+        navigate("/")
         /*
         // used for testing
         console.log(eventTitle)
@@ -98,10 +103,6 @@ const CreateEvent = () => {
         console.log(eventThumbnail)
         console.log(eventImages)
         */
-
-        //put whatever php/sql things you need here
-
-
     }
 
 
@@ -144,14 +145,14 @@ const CreateEvent = () => {
 
             <div className='create-event-section'>
                 <label hmtlFor="create-thumbnail">Event Thumbnail</label>
-                <input id="create-thumbnail" type= "file" accept='image/png, image/jpg' onChange={(e) => uploadThumbnail(e)}/>
+                <input id="create-thumbnail" type= "file" accept='image/png, image/jpg, image/jpeg' onChange={(e) => uploadThumbnail(e)}/>
             </div>
 
             {eventThumbnailPrev && <img id="preview-thumbnail" alt = "preview-thumbnail" src= {eventThumbnailPrev}/>}
 
             <div className='create-event-section'>
                 <label hmtlFor="create-images">Event Images</label>
-                <input id="create-images" type= "file" accept='image/png, image/jpg' multiple onChange={(e) => uploadImages(e)}/>
+                <input id="create-images" type= "file" accept="image/png, image/jpg, image/jpeg" multiple onChange={(e) => uploadImages(e)}/>
             </div>
 
             {eventImagesPrev && <PreviewImages images= {eventImagesPrev}/>} 

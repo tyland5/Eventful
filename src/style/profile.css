@@ -12,6 +12,7 @@ p.profile-text {
     border-width: thin;
     background-color: rgba(101, 111, 203, .2);
     border-radius: 6px;
+    color: white
   }
 
   #bio-text-box {
@@ -21,6 +22,7 @@ p.profile-text {
     border-width: thin;
     background-color: rgba(101, 111, 203, .2);
     border-radius: 6px;
+    color: white
   }
   
   .profile-pfp {

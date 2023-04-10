@@ -2,8 +2,23 @@ import React from 'react'
 import axios from 'axios'
 
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import {checkSessionId, enforceHTTPS } from '../App';
 
 const SlideoutMenu = () => {
+
+  const [loggedin, setLoggedin] = useState(false);
+
+  useEffect(() => {
+    // forces https connection
+    enforceHTTPS()
+    // checks if user is logged in. If so, set state
+    checkSessionId().then(validUser =>{
+        if(validUser){
+            setLoggedin(true)
+        }
+    })
+  }, [])
 
   const Button = (props) => {
     return(
@@ -32,19 +47,19 @@ const SlideoutMenu = () => {
     <div className='slideout-menu'>
         <ul>
             <li>
-              <Link to="/login" className="routing-link">Log In</Link>
+            {!loggedin && <Link to="/login" className="routing-link">Log In</Link>}
             </li>
             <li>
-              <Link to="/signup" className="routing-link">Sign Up</Link>
+            {!loggedin && <Link to="/signup" className="routing-link">Sign Up</Link>}
             </li>
             <li>
-              <Link to="/edit-profile" className="routing-link">Profile</Link>
+            {loggedin && <Link to="/edit-profile" className="routing-link">Profile</Link>}
             </li>
             <li>
-              <Link to="/account-settings" className="routing-link">Account Settings</Link>
+            {loggedin && <Link to="/account-settings" className="routing-link">Account Settings</Link>}
             </li>
             <li>
-              <p onClick={SignoutFunction}>Sign Out</p>
+            {loggedin && <p onClick={SignoutFunction}>Sign Out</p>}
             </li>
         </ul>
     </div>

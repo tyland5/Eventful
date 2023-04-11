@@ -51,9 +51,6 @@ function Navbar ({displaySlideoutMenu}) {
             {loggedin && <p className='nav-links' onClick={SignoutFunction}>Sign Out</p>}
 
         </div>
-        <div className="nav-logsign-btns">
-            {!loggedin && <button type="button" className="btn btn-secondary">Sign up</button>}
-        </div>
     </div>
   )
 }

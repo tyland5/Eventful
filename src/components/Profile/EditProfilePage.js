@@ -3,13 +3,19 @@ import '../../style/profile.css';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react'
 import Axios from 'axios';
-import e from 'cors';
+import Navbar from '../Navbar';
 
 function EditProfile () {
 
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
     const [refreshed, setRefresh] = useState(true);
+
+    const [showSlideout, setShowSlideout] = useState(false)
+    
+    function displaySlideoutMenu(){
+        setShowSlideout(!showSlideout)
+    }
 
     async function FillProfile() {
         const response = await Axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/loadSettings.php');
@@ -46,16 +52,7 @@ function EditProfile () {
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
             <div style = {{display: "flex"}}>
-                <div>
-                    <div className = "hamburger"></div>
-                    <div className = "hamburger"></div>
-                    <div className = "hamburger"></div>
-                </div>
-            <p style = {{color: "black", fontFamily: "Times", fontSize: "35px", backgroundColor: "#FFE455", textAlign:'center'}}>Settings</p>
-            </div>
-            <div className='settings-button'>
-                <Link to="/edit-profile"><button style = {{backgroundColor: "#B3B3B3", fontFamily: "Times"}}>Edit Profile</button></Link>
-                <Link to="/account-settings"><button style = {{backgroundColor: "#FFE455", fontFamily: "Times"}}>Account Settings</button></Link>
+            <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
             </div>
             </div>
             <br></br>

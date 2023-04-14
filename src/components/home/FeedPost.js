@@ -8,7 +8,7 @@ import CommentButton from '../../images/comment-button.png'
 import PostButton from '../createEvent/PostButton';
 
 
-const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent}) => {
+const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent}) => {
     
     const [showEventPopup, setEventPopup] = useState(false)
     let postFeedView = "post-feedview"
@@ -71,7 +71,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             {showEventPopup && <img className='dislike-event-button'src={LikeButton}></img>}
             {showEventPopup && <img className='share-event-button'src={ShareButton}></img>}
             {showEventPopup && <img className='comment-event-button'src={CommentButton}></img>}
-            {showEventPopup && (<EventPopup pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
+            {showEventPopup && (<EventPopup post_id = {post_id} pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
         </div>
         {showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div>}
     </>

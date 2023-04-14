@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "../../style/eventPopup.css";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Xbutton from '../../images/X-button.png'
 import FeedPost from '../home/FeedPost'
+import axios from 'axios'
 
 
-const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup}) => {
+const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup}) => {
   
   var date = new Date().getDate(); //To get the Current Date
   var month = new Date().getMonth() + 1; //To get the Current Month
@@ -23,6 +24,28 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
       </>
     )
   }
+
+  const [comment, setComment] = useState([]);
+  const[error, setError] = useState("");
+
+  useEffect(() => {
+
+    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-comment.php", post_id)
+    // axios.get("http://localhost/load-event.php")
+    .then(val => {
+
+      if(val.data !== "Nothing"){
+        setComment(val.data)
+      }
+      
+      })
+
+  }, [comment]);
+
+
+
+
+
 
   return (
     <>
@@ -47,6 +70,13 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
             <div className='comments-box-title'>Comments
               <div className='comments'>
                 <p className='commenter'>
+
+                {comment.map((value, idx) => {
+                    return (
+                      <p pfp = {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date} />
+                    )
+                    })}
+
                   <p className='comment-time-stamp'>{month}/{date}/{year}</p>
                   <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
                   <p className='commenter-username'>carrot eater:</p>

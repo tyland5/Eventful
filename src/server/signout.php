@@ -24,7 +24,13 @@ else{
 if (isset($_GET)){
 
     $current_cookies = $_COOKIE["session"];
-    $result = mysqli_query($conn, "DELETE FROM `Sessions` WHERE `session_id`='$current_cookies'");
+    $sql2 = "DELETE FROM `Sessions` WHERE `session_id`=(?)";
+    $stsm1 = $conn->prepare($result);
+    $stsm1->bind_param("i", $current_cookies);
+    $stsm1->execute();
+    $stsm1->bind_result($result);
+    $stsm1->fetch();   
+    $stsm1->close();
 
     $cookie_name = "session";
     $cookie_value = ""; //grab the unique identifier to be stored into database

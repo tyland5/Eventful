@@ -9,8 +9,15 @@
 
 .like-counter{
     position: relative;
-    margin-left: 50%;
-    bottom: 25px;
+    margin-left: 58%;
+    bottom: 35px;
+    color: white;
+}
+
+.dislike-counter{
+    position: relative;
+    margin-left: 32%;
+    bottom: 60px;
     color: white;
 }
 
@@ -78,7 +85,7 @@
     height: 40px;
     width: 40px;
     position: relative;
-    left: 15%;
+    left: 30%;
     z-index: 2;
 }
 .like-event-button:hover{
@@ -300,7 +307,17 @@
         position: relative;
         margin-left: -5%;
     }
-    .poster-pfp-popup-feedview{
+    .like-counter{
+        position: relative;
+        margin-left: 63%;
+        bottom: 25px;
+        color: white;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 36%;
+        bottom: 50px;
+        color: white;
     }
     .comment-event-button{
         bottom: -605px;
@@ -314,7 +331,7 @@
         width: 40px;
         position: relative;
         top: 600px;
-        right: -17%;
+        right: -32%;
         z-index: 2;
     }
     .like-event-button:hover{
@@ -377,7 +394,17 @@
         position: relative;
         margin-left: -10%;
     }
-    .poster-pfp-popup-feedview{
+    .like-counter{
+        position: relative;
+        margin-left: 71%;
+        bottom: 25px;
+        color: white;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 42%;
+        bottom: 50px;
+        color: white;
     }
     .like-event-button{
         all: unset;
@@ -386,7 +413,7 @@
         width: 40px;
         position: relative;
         top: 600px;
-        right: -20%;
+        right: -36%;
         z-index: 2;
     }
     .like-event-button:hover{
@@ -453,6 +480,20 @@
         position: relative;
         top: 50px;
     }
+    .like-counter{
+        position: relative;
+        margin-left: 77%;
+        bottom: 41px;
+        color: white;
+        font-size: 15px;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 47%;
+        bottom: 60px;
+        color: white;
+        font-size: 15px;
+    }
     .like-event-button{
         all: unset;
         border-radius: 50%;
@@ -460,7 +501,7 @@
         width: 30px;
         position: relative;
         top: 560px;
-        right: -16%;
+        right: -30%;
         z-index: 2;
     }
     .like-event-button:hover{
@@ -533,6 +574,20 @@
         position: relative;
         top: 50px;
     }
+    .like-counter{
+        position: relative;
+        margin-left: 80%;
+        bottom: 41px;
+        color: white;
+        font-size: 15px;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 50%;
+        bottom: 60px;
+        color: white;
+        font-size: 15px;
+    }
     .like-event-button{
         all: unset;
         border-radius: 50%;
@@ -540,7 +595,7 @@
         width: 30px;
         position: relative;
         top: 560px;
-        right: -20%;
+        right: -28%;
         z-index: 2;
     }
     .like-event-button:hover{
@@ -553,7 +608,7 @@
         width: 30px;
         position: relative;
         top: 565px;
-        right: 10%;
+        right: 14%;
         transform: scaleY(-1);
         z-index: 2;
     }

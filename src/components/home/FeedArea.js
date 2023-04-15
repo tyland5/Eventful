@@ -48,6 +48,8 @@ const FeedArea = () => {
     
     <>
     <p className="filter-btn" >Filter</p>
+    <p className="filter-btn">Filter</p>
+ 
     <div className ="feed-area">
       <PostButton/>
     {post.map((value, idx) => {

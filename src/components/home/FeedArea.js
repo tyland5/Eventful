@@ -8,10 +8,6 @@ import axios from 'axios'
 
 const FeedArea = () => {
   const[allowClickEvent, setClickEvent] = useState(true)
-  const[showFilters, setShowFilters] = useState(false)
-  const[filter, setFilter] = useState(new Set()) //upon first render of page, want to show all events
-  const[updatePage, setUpdatePage] = useState(true)
-  const eventTags = ["Recreation", "Volunteer", "Entertainment", "Food", "Adult"] //Need this event tags array for check boxes
 
   function allowClickableEvent(){
     setClickEvent(!allowClickEvent)
@@ -21,77 +17,37 @@ const FeedArea = () => {
     return allowClickEvent
   }
 
-  function alterFilter(e){
-    const tag = e.target.value
-    
-    //constant time so not bad
-    if(filter.has(tag)){
-      filter.delete(tag)
-    }
-    else{
-      filter.add(tag)
-    }
-  }
-
-  function applyFilter(){
-    //Just in case people want to be weird. no filter applied
-    if(filter.size ===0){
-      setFilter(new Set())
-      filter.add("all")
-    }
-    setShowFilters(!showFilters)
-    setUpdatePage(!updatePage)
-  }
-
 
   // const [post, setPost] = useState([{poster: "", title: "", type: "", location: "", description: "", thumbnail: "", images: ""}]);
   const [post, setPost] = useState([]);
   const[error, setError] = useState("");
 
   
-    useEffect(() => {
-      
-      //enforcehttps here in the future. Not needed now
-      
-      //For first render. All events should show
-      if(filter.size === 0){
-        filter.add("all")
-      }
-
-      const filterList = Array.from(filter)
-      const fd = new FormData()
-      for(let i = 0; i < filterList.length; i++){
-        fd.append('filters[]', filterList[i])
-      }
-
-      axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-event.php", fd)
+    
+      axios.get("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-event.php")
       // axios.get("http://localhost/load-event.php")
       .then(val => {
 
-        if(val.data !== "Nothing"){
+      if (val.data === "Nothing"){
+        // No images
+      } else {
+         
           setPost(val.data)
-        }
-        
-      })
-
-    }, [updatePage]);
+          
+      }
+    })
+    useEffect(() => {
+      if (post.length !== 0){
+          //console.log(post)
+      }
+  }, [post]);
     
 
   return (
+    
+    
     <>
-
-    {/* Filter section */}
-    <p className='filter-btn' onClick={() => {setShowFilters(!showFilters); setFilter(new Set())}}>Filters</p>
-    {showFilters && eventTags.map(event => {
-      return(
-      <div className='filter-choice'>
-      <input className = "filter-box" type= "checkbox" id={event} value={event} onChange={e=>alterFilter(e)}/>
-      <label className = "filter-label" htmlFor= {event}>{event}</label> 
-      </div>
-      )})}
-    {showFilters && <button id = 'filter-submit-btn' onClick={applyFilter}>Filter Posts</button>}
-
-
+    <p className="filter-btn" >Filter</p>
     <div className ="feed-area">
       <PostButton/>
     {post.map((value, idx) => {
@@ -100,7 +56,10 @@ const FeedArea = () => {
         thumbnail= {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
            )
           })}
+
+       
     </div>
+
     </>
   )
 }

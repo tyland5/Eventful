@@ -5,7 +5,7 @@ import Xbutton from '../../images/X-button.png'
 import FeedPost from '../home/FeedPost'
 
 
-const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup}) => {
+const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup, event}) => {
   
   var date = new Date().getDate(); //To get the Current Date
   var month = new Date().getMonth() + 1; //To get the Current Month

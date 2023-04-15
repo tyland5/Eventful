@@ -3,15 +3,46 @@ import EventPopup from '../event-popup/event-popup-view'
 import Xbutton from '../../images/X-button.png'
 import FeedArea from './FeedArea';
 import LikeButton from '../../images/thumbup.png'
+import GreenLikeButton from '../../images/thumbup-green.png'
 import ShareButton from '../../images/share-button.png'
 import CommentButton from '../../images/comment-button.png'
 import PostButton from '../createEvent/PostButton';
+import axios from 'axios'
 
 
-const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent}) => {
+const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
     
     const [showEventPopup, setEventPopup] = useState(false)
     let postFeedView = "post-feedview"
+
+    let likeThumbsUpImage = LikeButton
+    let dislikeThumbsUpImage = LikeButton
+    const [likeThumbsUp, setlikeThumbsUp] = useState(true)
+
+    function SwapLikeThumbsup(e){
+        setlikeThumbsUp(!likeThumbsUp)
+
+        if (likeThumbsUp){
+            e.target.setAttribute('src', GreenLikeButton)
+            //likeThumbsUpImage = GreenLikeButton
+        }
+        else{
+            likeThumbsUpImage = LikeButton
+        }
+    }
+
+    const [dislikeThumbsUp, setdislikeThumbsUp] = useState(true)
+    function SwapDislikeThumbsup(e){
+        setdislikeThumbsUp(!dislikeThumbsUp)
+
+        if (dislikeThumbsUp){
+            e.target.setAttribute('src', GreenLikeButton)
+            //likeThumbsUpImage = GreenLikeButton
+        }
+        else{
+            //e.target.setAttribute('src', LikeButton)  this should remove the user specific dislike
+        }
+    }
 
     function displayEventPopup(){
         setEventPopup(!showEventPopup)
@@ -35,6 +66,47 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     const configs = {
         animate:true
     };
+
+    const ClickedLike = async (e) =>{
+        console.log("clicked like")
+        console.log("eventID: ")
+        console.log(eventID)
+        
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/like-event.php", {
+            id: eventID}).then((val) =>{
+                console.log(val.data)
+            if(val.data === "not connected"){
+                console.log("not connected to database")
+                }
+                else if (val.data === "done"){
+                console.log("all done")
+                }
+            }, (error) => {
+                console.log(error);
+            });
+
+        SwapLikeThumbsup(e)
+    }
+
+    const ClickedDislike = async (e) =>{
+        console.log("clicked dislike")
+        console.log("eventID: ")
+        console.log(eventID)
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/dislike-event.php", {
+            id: eventID}).then((val) =>{
+                console.log(val.data)
+            if(val.data === "not connected"){
+                console.log("not connected to database")
+                }
+                else if (val.data === "done"){
+                console.log("all done")
+                }
+            }, (error) => {
+                console.log(error);
+            });
+        SwapDislikeThumbsup(e)
+    }
+
     
   return (
     <>
@@ -67,11 +139,14 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         <div className='event-popup-display'>
             {showEventPopup && <img className ="poster-pfp-popup-feedview" src={pfp} alt = {`${posterName}'s profile pic`}/>}
             {showEventPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventPopup}></img>}
-            {showEventPopup && <img className='like-event-button'src={LikeButton}></img>}
-            {showEventPopup && <img className='dislike-event-button'src={LikeButton}></img>}
+            {showEventPopup && <img className='like-event-button'src={LikeButton} onClick={ClickedLike}></img>}
+            {showEventPopup && <img className='dislike-event-button'src={LikeButton} onClick={ClickedDislike}></img>}
+
             {showEventPopup && <img className='share-event-button'src={ShareButton}></img>}
+
             {showEventPopup && <img className='comment-event-button'src={CommentButton}></img>}
             {showEventPopup && (<EventPopup pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
+            {/*{showEventPopup && <h1 className='like-counter'>likes</h1>}*/}
         </div>
         {showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div>}
     </>

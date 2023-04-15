@@ -22,7 +22,7 @@ if (isset($_POST)) {
     $filters = $_POST['filters']; //works properly
 
     if($filters[0] == "all"){
-        $sql = "SELECT poster, title, type, location, description, thumbnail, images FROM Posts";
+        $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images FROM Posts";
         $stsm = $conn->prepare($sql);
         $stsm->execute();
 

@@ -23,6 +23,7 @@ const CreateEvent = () => {
     const [submittable, setSubmittable] = useState(true)
     
     const navigate = useNavigate()
+    
     useEffect(() => {
         // forces https connection
         enforceHTTPS()

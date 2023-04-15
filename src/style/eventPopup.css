@@ -7,6 +7,13 @@
     top: 0px;
 }
 
+.like-counter{
+    position: relative;
+    margin-left: 50%;
+    bottom: 25px;
+    color: white;
+}
+
 .event-popup-display{
     position: fixed;
     bottom: -15px;
@@ -71,7 +78,11 @@
     height: 40px;
     width: 40px;
     position: relative;
-    left: 85%;
+    left: 15%;
+    z-index: 2;
+}
+.like-event-button:hover{
+    cursor: pointer;
 }
 
 .dislike-event-button{
@@ -81,6 +92,10 @@
     position: relative;
     right: 4%;
     transform: scaleY(-1);
+    z-index: 2;
+}
+.dislike-event-button:hover{
+    cursor: pointer;
 }
 
 .description-box-container {
@@ -237,6 +252,12 @@
         top: -650px;
         right: 16%;
     }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
     .event-x-button{
         all: unset;
         border-radius: 50%;
@@ -294,6 +315,10 @@
         position: relative;
         top: 600px;
         right: -17%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
     }
     .dislike-event-button{
         all: unset;
@@ -304,6 +329,10 @@
         top: 610px;
         right: 5%;
         transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
     }
 
     .event-x-button{
@@ -358,6 +387,10 @@
         position: relative;
         top: 600px;
         right: -20%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
     }
     .dislike-event-button{
         all: unset;
@@ -368,6 +401,10 @@
         top: 610px;
         right: 5%;
         transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
     }
 
     .event-x-button{
@@ -424,6 +461,10 @@
         position: relative;
         top: 560px;
         right: -16%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
     }
     .dislike-event-button{
         all: unset;
@@ -434,6 +475,10 @@
         top: 565px;
         right: 12%;
         transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
     }
     .share-event-button{
         bottom: -560px;
@@ -496,6 +541,10 @@
         position: relative;
         top: 560px;
         right: -20%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
     }
     .dislike-event-button{
         all: unset;
@@ -506,6 +555,10 @@
         top: 565px;
         right: 10%;
         transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
     }
     .share-event-button{
         bottom: -560px;
@@ -524,4 +577,3 @@
         left: -48%;
     }
   }
-  

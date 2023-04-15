@@ -8,6 +8,7 @@ function Navbar ({displaySlideoutMenu}) {
   
   const [loggedin, setLoggedin] = useState(false);
 
+  
   useEffect(() => {
     // forces https connection
     enforceHTTPS()

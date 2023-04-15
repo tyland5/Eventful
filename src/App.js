@@ -12,6 +12,7 @@ import PostButton from './components/createEvent/PostButton';
 import LoginPage from './components/signup-login-pages/login';
 import EditProfilePage from './components/Profile/EditProfilePage';
 import AccountSettingsPage from './components/Profile/AccountSettingsPage';
+import NewFeedArea from './components/EditDelete/NewFeedArea'
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
@@ -43,6 +44,11 @@ function App() {
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/event-manager" element={<div className="App">
+        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+              {showSlideout && <SlideoutMenu />}
+              <NewFeedArea />
+        </div>}></Route>
       </Routes>
 
       

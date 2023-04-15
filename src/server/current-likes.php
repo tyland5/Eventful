@@ -1,6 +1,5 @@
 <?php
 // PLACE THIS FILE IN YOUR HTDOCS
-//header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
 header("Access-Control-Allow-Headers: *");
@@ -11,7 +10,6 @@ header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-
 $conn = mysqli_connect("oceanus.cse.buffalo.edu", "dchen83", "50360060", "cse442_2023_spring_team_b_db", "3306");
 if($conn -> connect_error){
     echo "not connected";
@@ -21,22 +19,26 @@ else{
     //print("Connected fine");
 }
 
-if (isset($_GET)){
+//Upon receiving a POST request from axios
+if (isset($_POST)) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    $postID = $data["id"];
 
-    $current_cookies = $_COOKIE["session"];
-    $sql2 = "DELETE FROM `Sessions` WHERE `session_id`=(?)";
-    $stsm1 = $conn->prepare($result);
-    $stsm1->bind_param("i", $current_cookies);
+    //$currentLikes = "SELECT likes FROM Posts";
+    $sql2 = "SELECT likes FROM Posts WHERE post_id=(?)"; 
+    $stsm1 = $conn->prepare($sql2);
+    $stsm1->bind_param("i", $postID);
     $stsm1->execute();
-    $stsm1->bind_result($result);
+    $stsm1->bind_result($currentLikes);
     $stsm1->fetch();   
     $stsm1->close();
 
-    $cookie_name = "session";
-    $cookie_value = ""; //grab the unique identifier to be stored into database
-    $expiration = time() -86400; // 86400 seconds or 1 day
-    setcookie($cookie_name, $cookie_value, $expiration, "/CSE442-542", ".cse.buffalo.edu"); 
 
-    echo "hello";
+    echo $currentLikes;
+
+    
 }
+
+
 ?>

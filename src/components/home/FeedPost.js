@@ -130,8 +130,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }, (error) => {
                 console.log(error);
             });
-
-        SwapLikeThumbsup(e)
+        CheckCurrentLikes()
+        //SwapLikeThumbsup(e) // use this when you have specific user likes
     }
 
     const ClickedLike = async (e) =>{
@@ -162,7 +162,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }, (error) => {
                 console.log(error);
             });
-        SwapDislikeThumbsup(e)
+        CheckCurrentDislikes()
+        //SwapDislikeThumbsup(e) // use this when you have specific user dislikes
     }
 
     const ClickedDislike = async (e) =>{

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import EventPopup from '../event-popup/event-popup-view'
 import Xbutton from '../../images/X-button.png'
 import FeedArea from './FeedArea';
@@ -8,10 +8,13 @@ import ShareButton from '../../images/share-button.png'
 import CommentButton from '../../images/comment-button.png'
 import PostButton from '../createEvent/PostButton';
 import axios from 'axios'
+import { enforceHTTPS, checkSessionId } from '../../App';
+import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
+import CheckSession from '../event-popup/event-like-dislike-function';
 
 
 const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
-    
+    const navigate = useNavigate()
     const [showEventPopup, setEventPopup] = useState(false)
     let postFeedView = "post-feedview"
 
@@ -67,7 +70,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         animate:true
     };
 
-    const ClickedLike = async (e) =>{
+    const ClickedLikeAndSignedIn = async (e) =>{
         console.log("clicked like")
         console.log("eventID: ")
         console.log(eventID)
@@ -88,7 +91,19 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         SwapLikeThumbsup(e)
     }
 
-    const ClickedDislike = async (e) =>{
+    const ClickedLike = async (e) =>{
+        
+        checkSessionId().then(validUser =>{
+            if(!validUser){
+                navigate("/login")
+            }
+            else{
+                ClickedLikeAndSignedIn(e)
+            }
+        })
+    }
+
+    const ClickedDislikeAndSignedIn = async (e) =>{
         console.log("clicked dislike")
         console.log("eventID: ")
         console.log(eventID)
@@ -105,6 +120,18 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 console.log(error);
             });
         SwapDislikeThumbsup(e)
+    }
+
+    const ClickedDislike = async (e) =>{
+
+        checkSessionId().then(validUser =>{
+            if(!validUser){
+                navigate("/login")
+            }
+            else{
+                ClickedDislikeAndSignedIn(e)
+            }
+        })
     }
 
     

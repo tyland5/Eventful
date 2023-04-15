@@ -46,6 +46,7 @@ function Navbar ({displaySlideoutMenu}) {
             <p className='nav-links'>Notifications</p>
             {loggedin && <Link to="/edit-profile" className="routing-link" ><p className='nav-links'>Profile</p></Link>}
             {loggedin && <Link to="/account-settings" className="routing-link" ><p className='nav-links'>Account Settings</p></Link>}
+            {loggedin && <Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link>}
             {!loggedin && <Link to="/login" className="routing-link" ><p className='nav-links'>Login</p></Link>}
             {!loggedin && <Link to="/signup" className="routing-link" ><p className='nav-links'>Sign Up</p></Link>}
             {loggedin && <p className='nav-links' onClick={SignoutFunction}>Sign Out</p>}

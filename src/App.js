@@ -47,7 +47,7 @@ function App() {
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}
-              <NewFeedArea />
+              <NewFeedArea/>
         </div>}></Route>
       </Routes>
 

@@ -21,7 +21,7 @@ function Navbar ({displaySlideoutMenu}) {
   }, [])
 
   const SignoutFunction = async () =>{
-    
+    setLoggedin(false)
     await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
@@ -50,7 +50,7 @@ function Navbar ({displaySlideoutMenu}) {
             {loggedin && <Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link>}
             {!loggedin && <Link to="/login" className="routing-link" ><p className='nav-links'>Login</p></Link>}
             {!loggedin && <Link to="/signup" className="routing-link" ><p className='nav-links'>Sign Up</p></Link>}
-            {loggedin && <p className='nav-links' onClick={SignoutFunction}>Sign Out</p>}
+            {loggedin && <Link to = "/" classname="routing-link" ><p className='nav-links' onClick={SignoutFunction}>Sign Out</p></Link>}
 
         </div>
     </div>

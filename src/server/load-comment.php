@@ -21,12 +21,13 @@ ini_set('display_errors', 'on');
 if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
     
-    $post_id = $data['post_id'];
+    $post_id = $data;
+    
 
-    $sql = "SELECT post_id, comment, date, user_id FROM Comments WHERE post_id = ?";
+    $sql = "SELECT post_id, user_id, username, comment, date FROM Comments WHERE post_id = ?";
     //find all comments for specific post
     $stsm = $conn->prepare($sql);
-    $stsm->bind_param("s", $post_id);
+    $stsm->bind_param("i", $post_id);
     $stsm->execute();
     // $stsm->store_result();
     // $stsm->bind_result($poster, $title, $type, $location, $description, $thumbnail, $images);

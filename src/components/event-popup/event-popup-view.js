@@ -36,6 +36,7 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
 
       if(val.data !== "Nothing"){
         setComment(val.data)
+        // console.log(val.data);
       }
       
       })
@@ -73,27 +74,18 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
 
                 {comment.map((value, idx) => {
                     return (
-                      <p pfp = {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date} />
+                      <>
+                      <p className='commenter'> </p>
+                          <p className='comment-time-stamp'>{comment[idx].date}</p>
+                          <img className='comments-pfp' src = {pfp}></img>
+                          <p className='commenter-username'>{comment[idx].username} :</p>
+                          <p className='the-comment'>{comment[idx].comment}</p>
+                          {/* <p > {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date}</p > */}
+                      </>
                     )
                     })}
 
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>carrot eater:</p>
-                  <p className='the-comment'>I enjoyed this event</p>
-                </p>
-                <p className='commenter'>
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>garry:</p>
-                  <p className='the-comment'>Event could have been longer</p>
-                </p>
-                <p className='commenter'>
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>bonvoyage:</p>
-                  <p className='the-comment'>Food stands were decent. However, there was one lady who didn't give me enough popcorn, so 7/10 event</p>
-                </p>
+                  </p>
               </div>
             </div>
           </div>

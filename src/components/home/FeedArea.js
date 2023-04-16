@@ -64,7 +64,7 @@ const FeedArea = () => {
         fd.append('filters[]', filterList[i])
       }
 
-      axios.post("http://localhost/load-event.php", fd)
+      axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-event.php", fd)
       // axios.get("http://localhost/load-event.php")
       .then(val => {
 

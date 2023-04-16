@@ -57,7 +57,7 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
                 <p className="title-feedview">{title}</p>
                 
                 <div className="post-footer-feedview">
-                    <p className = "num-bookmarked-feedview">{numBookmarked} people are following this event</p>
+                    <p className = "num-bookmarked-feedview">{numBookmarked} people are following this event {post_id} is the post id</p>
                     <p className="tags-feedview">{eventTag}</p>
                 </div>
             </div>

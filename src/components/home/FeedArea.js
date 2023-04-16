@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import FeedPost from './FeedPost'
 import dummy_pfp from "../../images/dummy-pfp.png"
 import dummy_post from "../../images/dummy-post.jpg"
 import rutgers_park from "../../images/rutgers-park.jpg"
 import PostButton from '../createEvent/PostButton'
+import axios from 'axios'
 
 const FeedArea = () => {
   const[allowClickEvent, setClickEvent] = useState(true)
@@ -12,7 +13,7 @@ const FeedArea = () => {
   const[updatePage, setUpdatePage] = useState(true)
   const eventTags = ["Recreation", "Volunteer", "Entertainment", "Food", "Adult"] //Need this event tags array for check boxes
 
-  function allowClickableEvent(){
+  function allowClickableEvent(){   
     setClickEvent(!allowClickEvent)
   }
 

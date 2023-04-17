@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react'
 import Axios from 'axios';
 import Navbar from '../Navbar';
+import SlideoutMenu from '../SlideoutMenu';
 
 function EditProfile () {
 
@@ -52,7 +53,10 @@ function EditProfile () {
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
             <div style = {{display: "flex"}}>
-            <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+            <div className="App" style = {{textAlign: 'left'}}>
+              <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+              {showSlideout && <SlideoutMenu />}
+            </div>
             </div>
             </div>
             <br></br>

@@ -29,7 +29,7 @@ const SlideoutMenu = () => {
   }
 
   const SignoutFunction = async () =>{
-    
+    setLoggedin(false)
     await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
@@ -59,7 +59,7 @@ const SlideoutMenu = () => {
             {loggedin && <Link to="/account-settings" className="routing-link">Account Settings</Link>}
             </li>
             <li>
-            {loggedin && <p onClick={SignoutFunction}>Sign Out</p>}
+            {loggedin && <Link to = "/" className='routing-link'><p onClick={SignoutFunction}>Sign Out</p></Link>}
             </li>
         </ul>
     </div>

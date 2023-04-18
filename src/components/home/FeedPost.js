@@ -23,6 +23,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
 
     const [currentLikes, setCurrentLikes] = useState(0)
     const [currentDislikes, setCurrentDislikes] = useState(0)
+    const [eventCode, setEventCode] = useState("")
+    const [feedBack, setFeedback] = useState("")
 
     const CheckCurrentLikes = async () =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-likes.php", {
@@ -178,6 +180,19 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         })
     }
 
+    async function checkEventCode(){
+        //axios post to php code here
+        //"https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-event-code.php"
+        const response = await axios.post('http://localhost/check-event-code.php',{
+          eventID: eventID,
+          eventCode: eventCode
+        }) 
+    
+        console.log(response.data)
+        setFeedback(response.data)
+    
+      }
+
     
   return (
     <>
@@ -219,6 +234,12 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             {showEventPopup && (<EventPopup pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
             {showEventPopup && <h1 className='like-counter'>{currentLikes}</h1>}
             {showEventPopup && <h1 className='dislike-counter'>{currentDislikes}</h1>}
+            {showEventPopup && <><div className='event-code-submit'>
+            <label htmlFor='event-code-enter' style={{display:'block', color: 'white'}}>Enter event code here for attendance</label>
+            <input id = 'event-code-enter' type='text' style={{display:'block'}} onChange={(e) => setEventCode(e.target.value)}/>
+            <button id="code-submit-btn" onClick={checkEventCode}>Submit Code</button>
+            </div></>}
+            {feedBack && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
         </div>
         {showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div>}
     </>

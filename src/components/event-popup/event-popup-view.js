@@ -68,8 +68,6 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
             </div>
           </div>
         </div>
-  
-        
 
       
 

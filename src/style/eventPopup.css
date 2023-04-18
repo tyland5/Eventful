@@ -232,6 +232,12 @@
     color: beige;
 }
 
+.event-code-submit{
+    margin-top: 30px;
+    position: relative;
+    bottom: 20px;
+}
+
 @media screen and (max-width: 480px) {
     .event-popup-display {
         width: 60%;

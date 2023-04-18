@@ -211,34 +211,34 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             });
     }
 
-    const RemoveUserFromDislikedEvent = async (e) =>{
-        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-disliked-event.php", {
-            id: eventID}).then((val) =>{
-            if(val.data === "disliked"){
-                console.log("Disliked")
-                return true
-                console.log("not connected to database")
-            }
-            else if (val.data === "not disliked"){
-                console.log("Not Disliked")
-                return false  
-            }
-            }, (error) => {
-                console.log(error);
-            });
-
-    }
-
     const RemoveDislike = async (e) => {
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-dislike.php", {
             id: eventID}).then((val) =>{
             if(val.data === "disliked"){
+
             }
             else if (val.data === "not disliked"){
+
             }
             }, (error) => {
                 console.log(error);
             });
+        CheckCurrentDislikes(e)
+    }
+
+    const RemoveUserFromDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "removed"){
+                RemoveDislike(e)
+            }
+            else if (val.data === "not disliked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+
     }
 
     const DislikeEvent = async (e) => {

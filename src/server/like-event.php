@@ -26,7 +26,7 @@ if (isset($_POST)) {
     $postID = $data["id"];
 
     //$currentLikes = "SELECT likes FROM Posts";
-    $sql2 = "SELECT likes FROM Posts WHERE post_id=(?)"; 
+    $sql2 = "SELECT likes FROM `Post Analytics` WHERE post_id=(?)"; 
     $stsm1 = $conn->prepare($sql2);
     $stsm1->bind_param("i", $postID);
     $stsm1->execute();
@@ -43,7 +43,7 @@ if (isset($_POST)) {
     $newLikes = $currentLikes + 1;
     //$result = mysqli_query($conn, "UPDATE `Posts` SET `likes`='$currentLikes' WHERE `post_id`='$postID'");
 
-    $result = "UPDATE Posts SET likes=(?) WHERE post_id=(?)"; 
+    $result = "UPDATE `Post Analytics` SET likes=(?) WHERE post_id=(?)"; 
     $stsm2 = $conn->prepare($result);
     $stsm2->bind_param("ii", $newLikes, $postID);
     $stsm2->execute();

@@ -44,7 +44,7 @@ if (isset($_POST)) {
     //$stsm->bind_param("i", $id);
     //$stsm->execute();
     
-    $sql3 = "SELECT user_ids_who_liked FROM `Post Analytics` WHERE post_id=(?)"; 
+    $sql3 = "SELECT user_ids_who_disliked FROM `Post Analytics` WHERE post_id=(?)"; 
     $stsm3 = $conn->prepare($sql3);
     $stsm3->bind_param("i", $postID);
     $stsm3->execute();
@@ -73,22 +73,15 @@ if (isset($_POST)) {
     
 
     $list_of_users = json_decode($json_list_of_users);
-    if (is_array($list_of_users)) { 
-        array_push($list_of_users, $current_user);
+    $list_removed_user = array_diff($list_of_users, $current_user);
 
-        $to_insert = json_encode($list_of_users);
-        $sql5 = "UPDATE `Post Analytics` SET `user_ids_who_liked`=(?) WHERE `post_id`=(?)";
-        $stsm5 = $conn->prepare($sql5);
-        $stsm5->bind_param("si", $to_insert, $postID);
-        $stsm5->execute();   
-    }else{
-        $user_in_list = [$current_user];
-        $first_insert = json_encode($user_in_list);
-        $sql4 = "UPDATE `Post Analytics` SET user_ids_who_liked=(?) WHERE post_id=(?)";
-        $stsm4 = $conn->prepare($sql4);
-        $stsm4->bind_param("si", $first_insert, $postID);
-        $stsm4->execute();
-    }
+
+    $to_insert = json_encode($list_removed_user);
+    $sql5 = "UPDATE `Post Analytics` SET `user_ids_who_disliked`=(?) WHERE `post_id`=(?)";
+    $stsm5 = $conn->prepare($sql5);
+    $stsm5->bind_param("si", $to_insert, $postID);
+    $stsm5->execute();   
+    
 
     //$newLikes = $currentLikes + 1;
     //$result = mysqli_query($conn, "UPDATE `Posts` SET `likes`='$currentLikes' WHERE `post_id`='$postID'");
@@ -102,7 +95,7 @@ if (isset($_POST)) {
     //$stsm2->close();
     //echo $newLikes;
 
-    echo gettype($list_of_users);
+    echo "removed";
 
     
 }

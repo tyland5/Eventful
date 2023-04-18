@@ -174,7 +174,61 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         })
     }
 
-    const ClickedDislikeAndSignedIn = async (e) =>{
+    const AddUserToDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-disliked-event.php", {
+            id: eventID}).then((val) =>{
+                console.log("users who disliked event json: ")
+                console.log(val.data)
+                console.log(isArray(val.data))
+                if (val.data == null){
+                    console.log("null")
+                }else{console.log("not null")}
+            if(val.data === "not connected"){
+                console.log("not connected to database")
+                }
+                else if (val.data === "done"){
+                console.log("added user to liked event")
+                }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    const CheckIfUserDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "disliked"){
+                console.log("Disliked")
+                return true
+                console.log("not connected to database")
+            }
+            else if (val.data === "not disliked"){
+                console.log("Not Disliked")
+                return false  
+            }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    const RemoveUserFromDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "disliked"){
+                console.log("Disliked")
+                return true
+                console.log("not connected to database")
+            }
+            else if (val.data === "not disliked"){
+                console.log("Not Disliked")
+                return false  
+            }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    const DislikeEvent = async (e) => {
         console.log("clicked dislike")
         console.log("eventID: ")
         console.log(eventID)
@@ -190,8 +244,14 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }, (error) => {
                 console.log(error);
             });
+        console.log("add use to disliked")
+        AddUserToDislikedEvent()
         CheckCurrentDislikes()
-        //SwapDislikeThumbsup(e) // use this when you have specific user dislikes
+    }
+
+    const ClickedDislikeAndSignedIn = async (e) =>{
+        
+        DislikeEvent()
     }
 
     const ClickedDislike = async (e) =>{

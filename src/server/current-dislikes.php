@@ -26,7 +26,7 @@ if (isset($_POST)) {
     $postID = $data["id"];
 
     //$currentLikes = "SELECT likes FROM Posts";
-    $sql2 = "SELECT dislikes FROM Posts WHERE post_id=(?)"; 
+    $sql2 = "SELECT dislikes FROM `Post Analytics` WHERE post_id=(?)"; 
     $stsm1 = $conn->prepare($sql2);
     $stsm1->bind_param("i", $postID);
     $stsm1->execute();

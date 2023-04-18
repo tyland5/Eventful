@@ -10,6 +10,7 @@ import PostButton from '../createEvent/PostButton';
 import axios from 'axios'
 import { enforceHTTPS, checkSessionId } from '../../App';
 import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
+import { isArray, isNull } from 'lodash';
 
 
 const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
@@ -27,8 +28,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     const CheckCurrentLikes = async () =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-likes.php", {
             id: eventID}).then((val) =>{
-                console.log("current likes: ")
-                console.log(val.data)
+                //console.log("current likes: ")
+                //console.log(val.data)
                 setCurrentLikes(val.data)
             if(val.data === "not connected"){
                 console.log("not connected to database")
@@ -39,16 +40,16 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }, (error) => {
                 console.log(error);
             });
-        console.log("the current likes: ")
-        console.log(currentDislikes)
+        //console.log("the current likes: ")
+        //console.log(currentDislikes)
     }
     CheckCurrentLikes()
 
     const CheckCurrentDislikes = async () =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-dislikes.php", {
             id: eventID}).then((val) =>{
-                console.log("current dislikes: ")
-                console.log(val.data)
+                //console.log("current dislikes: ")
+                //console.log(val.data)
                 setCurrentDislikes(val.data)
             if(val.data === "not connected"){
                 console.log("not connected to database")
@@ -59,8 +60,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }, (error) => {
                 console.log(error);
             });
-        console.log("the current dislikes: ")
-        console.log(currentDislikes)
+        //console.log("the current dislikes: ")
+        //console.log(currentDislikes)
     }
     CheckCurrentDislikes()
 
@@ -113,14 +114,10 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         animate:true
     };
 
-    const ClickedLikeAndSignedIn = async (e) =>{
-        console.log("clicked like")
-        console.log("eventID: ")
-        console.log(eventID)
-        
+    const LikeEvent = async (e) =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/like-event.php", {
             id: eventID}).then((val) =>{
-                console.log(val.data)
+                //console.log(val.data)
             if(val.data === "not connected"){
                 console.log("not connected to database")
                 }
@@ -131,6 +128,37 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 console.log(error);
             });
         CheckCurrentLikes()
+        AddUserToLikedEvent()
+
+    }
+
+    const AddUserToLikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-liked-event.php", {
+            id: eventID}).then((val) =>{
+                console.log("users who liked event json: ")
+                console.log(val.data)
+                console.log(isArray(val.data))
+                if (val.data == null){
+                    console.log("null")
+                }else{console.log("not null")}
+            if(val.data === "not connected"){
+                console.log("not connected to database")
+                }
+                else if (val.data === "done"){
+                console.log("added user to liked event")
+                }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+    const ClickedLikeAndSignedIn = async (e) =>{
+        //console.log("clicked like")
+        //console.log("eventID: ")
+        //console.log(eventID)
+
+
+        
+        LikeEvent()
         //SwapLikeThumbsup(e) // use this when you have specific user likes
     }
 

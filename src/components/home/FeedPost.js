@@ -151,14 +151,58 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 console.log(error);
             });
     }
+    
+
+    const RemoveLike = async (e) => {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-like.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "liked"){
+
+            }
+            else if (val.data === "not liked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+        CheckCurrentLikes(e)
+    }
+
+    const RemoveUserFromLikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "removed"){
+                RemoveLike(e)
+                //SwapDislikeThumbsup(e)
+            }
+            else if (val.data === "not liked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+
+    }
+
     const ClickedLikeAndSignedIn = async (e) =>{
         //console.log("clicked like")
         //console.log("eventID: ")
         //console.log(eventID)
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "liked"){
+                console.log("remove like")
+                RemoveUserFromLikedEvent(e)
+            }
+            else if (val.data === "not liked"){
+                console.log("add like")
+                LikeEvent(e) 
+            }
+            }, (error) => {
+                console.log(error);
+            });
 
-
-        
-        LikeEvent()
+        //LikeEvent()
         //SwapLikeThumbsup(e) // use this when you have specific user likes
     }
 
@@ -173,6 +217,9 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             }
         })
     }
+
+
+
 
     const AddUserToDislikedEvent = async (e) =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-disliked-event.php", {
@@ -189,23 +236,6 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 else if (val.data === "done"){
                 console.log("added user to liked event")
                 }
-            }, (error) => {
-                console.log(error);
-            });
-    }
-
-    const CheckIfUserDislikedEvent = async (e) =>{
-        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-disliked-event.php", {
-            id: eventID}).then((val) =>{
-            if(val.data === "disliked"){
-                console.log("Disliked")
-                return true
-                console.log("not connected to database")
-            }
-            else if (val.data === "not disliked"){
-                console.log("Not Disliked")
-                return false  
-            }
             }, (error) => {
                 console.log(error);
             });
@@ -231,6 +261,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             id: eventID}).then((val) =>{
             if(val.data === "removed"){
                 RemoveDislike(e)
+                //SwapDislikeThumbsup(e)
             }
             else if (val.data === "not disliked"){
 
@@ -260,6 +291,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         console.log("add use to disliked")
         AddUserToDislikedEvent(e)
         CheckCurrentDislikes(e)
+        //SwapDislikeThumbsup(e)
     }
 
     const ClickedDislikeAndSignedIn = async (e) =>{
@@ -267,11 +299,11 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-disliked-event.php", {
             id: eventID}).then((val) =>{
             if(val.data === "disliked"){
-                console.log("Disliked")
+                console.log("remove dislike")
                 RemoveUserFromDislikedEvent(e)
             }
             else if (val.data === "not disliked"){
-                console.log("Not Disliked")
+                console.log("add disliked")
                 DislikeEvent(e) 
             }
             }, (error) => {

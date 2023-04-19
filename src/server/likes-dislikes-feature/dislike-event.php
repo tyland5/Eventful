@@ -26,16 +26,31 @@ if (isset($_POST)) {
     $postID = $data["id"];
 
     //$currentLikes = "SELECT likes FROM Posts";
-    $sql2 = "SELECT dislikes FROM Posts WHERE post_id=(?)"; 
+    $sql2 = "SELECT dislikes FROM `Post Analytics` WHERE post_id=(?)"; 
     $stsm1 = $conn->prepare($sql2);
     $stsm1->bind_param("i", $postID);
     $stsm1->execute();
     $stsm1->bind_result($currentDislikes);
     $stsm1->fetch();   
     $stsm1->close();
+    //$id = $postID
+    //$stsm = $conn->prepare($currentLikes);
+    //$stsm->bind_param("i", $id);
+    //$stsm->execute();
 
 
-    echo $currentDislikes;
+
+    $newDislikes = $currentDislikes + 1;
+    //$result = mysqli_query($conn, "UPDATE `Posts` SET `likes`='$currentLikes' WHERE `post_id`='$postID'");
+
+    $result = "UPDATE `Post Analytics` SET dislikes=(?) WHERE post_id=(?)"; 
+    $stsm2 = $conn->prepare($result);
+    $stsm2->bind_param("ii", $newDislikes, $postID);
+    $stsm2->execute();
+    $stsm2->bind_result($result2);
+    $stsm2->fetch();   
+    $stsm2->close();
+    echo $newDislikes;
 
     
 }

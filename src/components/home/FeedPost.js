@@ -10,6 +10,7 @@ import PostButton from '../createEvent/PostButton';
 import axios from 'axios'
 import { enforceHTTPS, checkSessionId } from '../../App';
 import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
+import { isArray, isNull, result } from 'lodash';
 
 
 const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
@@ -24,43 +25,45 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     const [currentLikes, setCurrentLikes] = useState(0)
     const [currentDislikes, setCurrentDislikes] = useState(0)
 
+    // checks the current likes sets the likes to that number for displaying
     const CheckCurrentLikes = async () =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-likes.php", {
             id: eventID}).then((val) =>{
-                console.log("current likes: ")
-                console.log(val.data)
+                //console.log("current likes: ")
+                //console.log(val.data)
                 setCurrentLikes(val.data)
             if(val.data === "not connected"){
-                console.log("not connected to database")
+                //console.log("not connected to database")
                 }
                 else if (val.data === "done"){
-                console.log("all done")
+                //console.log("all done")
                 }
             }, (error) => {
                 console.log(error);
             });
-        console.log("the current likes: ")
-        console.log(currentDislikes)
+        //console.log("the current likes: ")
+        //console.log(currentDislikes)
     }
     CheckCurrentLikes()
 
+    // checks the current dislikes sets the dislikes to that number for displaying
     const CheckCurrentDislikes = async () =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-dislikes.php", {
             id: eventID}).then((val) =>{
-                console.log("current dislikes: ")
-                console.log(val.data)
+                //console.log("current dislikes: ")
+                //console.log(val.data)
                 setCurrentDislikes(val.data)
             if(val.data === "not connected"){
-                console.log("not connected to database")
+                //console.log("not connected to database")
                 }
                 else if (val.data === "done"){
-                console.log("all done")
+                //console.log("all done")
                 }
             }, (error) => {
                 console.log(error);
             });
-        console.log("the current dislikes: ")
-        console.log(currentDislikes)
+        //console.log("the current dislikes: ")
+        //console.log(currentDislikes)
     }
     CheckCurrentDislikes()
 
@@ -113,27 +116,114 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         animate:true
     };
 
-    const ClickedLikeAndSignedIn = async (e) =>{
-        console.log("clicked like")
-        console.log("eventID: ")
-        console.log(eventID)
-        
+    // returns true if the user liked an event, false if otherwise
+    const CheckIfUserLikedEvent = async (e) => {
+        result = false
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "liked"){
+                //console.log("event is liked")
+                result = true
+            }
+            else if (val.data === "not liked"){
+                //console.log("event is not liked")
+                result = false
+            }
+            }, (error) => {
+                console.log(error);
+            });
+        return result
+    }
+
+    // increases the like counter for an event by 1
+    const LikeEvent = async (e) =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/like-event.php", {
             id: eventID}).then((val) =>{
-                console.log(val.data)
+                //console.log(val.data)
             if(val.data === "not connected"){
-                console.log("not connected to database")
+                //console.log("not connected to database")
                 }
                 else if (val.data === "done"){
-                console.log("all done")
+                //console.log("all done")
                 }
             }, (error) => {
                 console.log(error);
             });
         CheckCurrentLikes()
+        AddUserToLikedEvent()
+
+    }
+
+    // adds user to list of likes for an event
+    const AddUserToLikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "not connected"){
+                }
+                else if (val.data === "done"){
+                console.log("added user to liked event")
+                }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+    
+
+    // reduces the like count for an event by 1
+    const RemoveLike = async (e) => {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-like.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "liked"){
+
+            }
+            else if (val.data === "not liked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+        CheckCurrentLikes(e)
+    }
+
+    // removes user from the list of likes on an event
+    const RemoveUserFromLikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "removed"){
+                RemoveLike(e)
+                //SwapDislikeThumbsup(e)
+            }
+            else if (val.data === "not liked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+
+    }
+
+    // this will either remove a user and their like if they already liked, or it will like the event otherwise
+    const ClickedLikeAndSignedIn = async (e) =>{
+        //console.log("clicked like")
+        //console.log("eventID: ")
+        //console.log(eventID)
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-liked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "liked"){
+                RemoveUserFromLikedEvent(e)
+            }
+            else if (val.data === "not liked"){
+                LikeEvent(e) 
+            }
+            }, (error) => {
+                console.log(error);
+            });
+
+        //LikeEvent()
         //SwapLikeThumbsup(e) // use this when you have specific user likes
     }
 
+    // checks if the user is signed in, if they are then the like processes
     const ClickedLike = async (e) =>{
         
         checkSessionId().then(validUser =>{
@@ -141,31 +231,120 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 navigate("/login")
             }
             else{
-                ClickedLikeAndSignedIn(e)
+                CheckIfUserDislikedEvent(e).then((val) =>{
+                    if (val === true){
+
+                    }else{
+                        ClickedLikeAndSignedIn(e)
+                    }
+                })
             }
         })
     }
 
-    const ClickedDislikeAndSignedIn = async (e) =>{
-        console.log("clicked dislike")
-        console.log("eventID: ")
-        console.log(eventID)
-        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/dislike-event.php", {
+
+
+    // adds a user to the list of likes on an event
+    const AddUserToDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-disliked-event.php", {
             id: eventID}).then((val) =>{
-                console.log(val.data)
             if(val.data === "not connected"){
-                console.log("not connected to database")
+
                 }
                 else if (val.data === "done"){
-                console.log("all done")
+
                 }
             }, (error) => {
                 console.log(error);
             });
-        CheckCurrentDislikes()
-        //SwapDislikeThumbsup(e) // use this when you have specific user dislikes
     }
 
+    // decreases the count of dislikes on an event by 1
+    const RemoveDislike = async (e) => {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-dislike.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "disliked"){
+
+            }
+            else if (val.data === "not disliked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+        CheckCurrentDislikes(e)
+    }
+
+    // removes a user from the list of dislikes on an event
+    const RemoveUserFromDislikedEvent = async (e) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "removed"){
+                RemoveDislike(e)
+                //SwapDislikeThumbsup(e)
+            }
+            else if (val.data === "not disliked"){
+
+            }
+            }, (error) => {
+                console.log(error);
+            });
+
+    }
+
+    // increases count for dislikes on an event by 1
+    const DislikeEvent = async (e) => {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/dislike-event.php", {
+            id: eventID}).then((val) =>{
+
+            if(val.data === "not connected"){
+
+                }
+                else if (val.data === "done"){
+
+                }
+            }, (error) => {
+                console.log(error);
+            });
+        AddUserToDislikedEvent(e)
+        CheckCurrentDislikes(e)
+        //SwapDislikeThumbsup(e)
+    }
+
+    // checks if the user disliked the event, returns true if they did
+    const CheckIfUserDislikedEvent = async (e) => {
+        result = false
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "disliked"){
+                result = true
+            }
+            else if (val.data === "not disliked"){
+                result = false
+            }
+            }, (error) => {
+                console.log(error);
+            });
+        return result
+    }
+
+    // // this will either remove a user and their dislike if they already disliked, or it will dislike the event otherwise
+    const ClickedDislikeAndSignedIn = async (e) =>{
+
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-if-user-disliked-event.php", {
+            id: eventID}).then((val) =>{
+            if(val.data === "disliked"){
+                RemoveUserFromDislikedEvent(e)
+            }
+            else if (val.data === "not disliked"){
+                DislikeEvent(e) 
+            }
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    // checks if the user is logged in, if they are then the dislike processes
     const ClickedDislike = async (e) =>{
 
         checkSessionId().then(validUser =>{
@@ -173,7 +352,13 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                 navigate("/login")
             }
             else{
-                ClickedDislikeAndSignedIn(e)
+                // if the user liked the event, they cannot dislike it
+                CheckIfUserLikedEvent(e).then((val) =>{
+                    if (val === true){
+                    }else{
+                        ClickedDislikeAndSignedIn(e)
+                    }
+                })
             }
         })
     }

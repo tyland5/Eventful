@@ -158,6 +158,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     const AddUserToLikedEvent = async (e) =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-liked-event.php", {
             id: eventID}).then((val) =>{
+            console.log("users in like:")
+            console.log(val.data)
             if(val.data === "not connected"){
                 }
                 else if (val.data === "done"){
@@ -189,6 +191,8 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     const RemoveUserFromLikedEvent = async (e) =>{
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/remove-user-from-liked-event.php", {
             id: eventID}).then((val) =>{
+            console.log("current user: ")
+            console.log(val.data)
             if(val.data === "removed"){
                 RemoveLike(e)
                 //SwapDislikeThumbsup(e)

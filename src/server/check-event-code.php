@@ -18,11 +18,19 @@ if($conn -> connect_error){
 if(isset($_POST)){
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $userID = 61;
     $eventCode = $data['eventCode'];
     $eventID = $data['eventID'];
 
-    $sql = "SELECT COUNT(*) FROM `User Attendance` WHERE user_id=(?) AND post_id = (?)";
+    $sql0 = "SELECT user_id FROM Sessions WHERE session_id = (?)";
+    $stsm0 = $conn->prepare($sql0);
+    $stsm0->bind_param("s", $_COOKIE['session']);
+    $stsm0->execute();
+    $stsm0->bind_result($userID);
+    $stsm0->fetch();
+    $stsm0->close();
+
+
+    $sql = "SELECT COUNT(*) FROM `Event Attendance` WHERE user_id=(?) AND post_id = (?)";
     $stsm = $conn->prepare($sql);
     $stsm->bind_param("ii", $userID, $eventID);
     $stsm->execute();
@@ -48,11 +56,30 @@ if(isset($_POST)){
         return;
     }
     
-    $sql3 = "INSERT INTO `User Attendance` (user_id, post_id) VALUES (?, ?)";
+    $sql3 = "INSERT INTO `Event Attendance` (user_id, post_id) VALUES (?, ?)";
     $stsm3= $conn->prepare($sql3);
     $stsm3->bind_param("ii", $userID, $eventID);
     $stsm3-> execute();
+    $stsm3->close();
     echo "Successfully Marked Attended";
+
+    
+    $sql4 = "SELECT type FROM Posts WHERE post_id = (?)";
+    $stsm4 = $conn->prepare($sql4);
+    $stsm4->bind_param("i", $eventID);
+    $stsm4->execute();
+    $stsm4->bind_result($eventType);
+    $stsm4->fetch();
+    $stsm4->close();
+
+    
+    $eventType = strtolower($eventType);
+    //$sql5 = "UPDATE `User Attendance` SET total_events = total_events + 1 AND " . $eventType . " = " . $eventType . " + 1 WHERE user_id = ?";
+    $sql5 = "UPDATE `User Attendance` SET total_events = total_events + 1, " . $eventType . " = " .  $eventType . " + 1 WHERE user_id = (?)";
+    $stsm5 = $conn->prepare($sql5);
+    $stsm5->bind_param("i", $userID);
+    $stsm5->execute();
+    
     return;
 }
 

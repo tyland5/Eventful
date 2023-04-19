@@ -181,14 +181,18 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
     }
 
     async function checkEventCode(){
-        //axios post to php code here
-        //"https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-event-code.php"
-        const response = await axios.post('http://localhost/check-event-code.php',{
+        
+        const validUser = await checkSessionId()
+        if(!validUser){
+            navigate("/login")
+            return
+        }
+
+        const response = await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-event-code.php",{
           eventID: eventID,
           eventCode: eventCode
         }) 
     
-        console.log(response.data)
         setFeedback(response.data)
     
       }
@@ -239,7 +243,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
             <input id = 'event-code-enter' type='text' style={{display:'block'}} onChange={(e) => setEventCode(e.target.value)}/>
             <button id="code-submit-btn" onClick={checkEventCode}>Submit Code</button>
             </div></>}
-            {feedBack && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
+            {feedBack && showEventPopup && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
         </div>
         {showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div>}
     </>

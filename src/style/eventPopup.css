@@ -1,0 +1,634 @@
+
+.event-popup-background{
+    border: 1000px solid rgb(0, 0, 0);
+    position: fixed;
+    opacity: 50%;
+    height: 100%;
+    top: 0px;
+}
+
+.like-counter{
+    position: relative;
+    margin-left: 58%;
+    bottom: 35px;
+    color: white;
+}
+
+.dislike-counter{
+    position: relative;
+    margin-left: 32%;
+    bottom: 60px;
+    color: white;
+}
+
+.event-popup-display{
+    position: fixed;
+    bottom: -15px;
+    max-width: 450px;
+    height: 100%;
+    z-index: 1;
+}
+
+.image-info-boxes-div{
+    overflow-wrap: break-word;
+    margin: 10px;
+    position: relative;
+    bottom: -55px;
+}
+
+.event-x-button {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: 93%;
+    bottom: -50px;
+}
+
+.share-event-button{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: -33%;
+    bottom: -640px;
+}
+
+.comment-event-button{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: -32%;
+    bottom: -640px;
+}
+
+.poster-pfp-popup-feedview{
+    bottom: -50px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    right: 50px;
+}
+
+.post-popup-thumbnail{
+    position: relative;
+    bottom: 50px;
+    max-width: 100%;
+    height: 300px;
+    aspect-ratio: 1.5/1;
+}
+
+.like-event-button{
+    bottom: -638px;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: 30%;
+    z-index: 2;
+}
+.like-event-button:hover{
+    cursor: pointer;
+}
+
+.dislike-event-button{
+    bottom: -647px;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    right: 4%;
+    transform: scaleY(-1);
+    z-index: 2;
+}
+.dislike-event-button:hover{
+    cursor: pointer;
+}
+
+.description-box-container {
+    position: relative;
+    max-width: 100%;
+    bottom: 22px;
+}
+
+
+.description{
+    width: auto;
+    margin: auto;
+    position: relative;
+    bottom: 115px;
+    color: white;
+    text-align: left;
+    padding-left: 3%;
+}
+
+.description-box-title {
+    width: auto;
+    height: 100px;
+    padding: 10px;
+    border: 3px solid gray;
+    margin: auto;
+    background-color: #121212;
+    position: relative;
+    bottom: 30px;
+    color: white;
+    text-align: center;
+}
+
+.location-box-container {
+    position: relative;
+    max-width: 100%;
+    bottom: 54px;
+}
+
+.location-box-title{
+    width: auto;
+    height: 50px;
+    padding: 10px;
+    border: 3px solid gray;
+    margin: auto;
+    background-color: #121212;
+    position: relative;
+    bottom: 25px;
+    color: white;
+    text-align: center;
+}
+
+.location {
+    width: auto;
+    margin: auto;
+    position: relative;
+    bottom:70px;
+    color: white;
+    text-align: left;
+    padding-left: 3%;
+}
+
+
+.comments-box-container {
+    position: relative;
+    max-width: 100%;
+    bottom: 75px;
+}
+
+.comments-box-title {
+    width: auto;
+    height: 70px;
+    padding: 10px;
+    border: 3px solid gray;
+    margin: auto;
+    background-color: #121212;
+    position: relative;
+    bottom: 20px;
+    color: white;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.comments-box-title::-webkit-scrollbar {
+    display: none;
+}
+
+.comments-box-title { overflow: -moz-scrollbars-none; }
+
+.comments-box-title { -ms-overflow-style: none; }
+
+.comments {
+    width: auto;
+    margin: auto;
+    position: relative;
+    bottom: -5px;
+    color: white;
+    text-align: left;
+    right: 3px;
+    padding-left: 0%;
+}
+
+.commenter{
+    padding-bottom: 2.5%;
+}
+
+.comments-pfp{
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    position: relative;
+}
+
+.comment-time-stamp{
+    position: relative;
+    left: 30px;
+    top: 10px;
+}
+
+.the-comment{
+    display: inline;
+    padding-left: 1%;
+}
+
+.commenter-username{
+    display: inline-block;
+    padding-left: 1%;
+    color: beige;
+}
+
+@media screen and (max-width: 480px) {
+    .event-popup-display {
+        width: 60%;
+        bottom: -65px;
+        left: 20%;
+    }
+    .description-box-container {
+        width: 100%;
+    }
+    .comments-box-container {
+        width: 100%;
+    }
+    .location-box-container {
+        width: 100%;
+    }
+    .post-popup-thumbnail{
+        width: 100%;
+        height: 250px;
+    }
+    .poster-pfp-popup-feedview{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: -650px;
+        right: 16%;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
+    .event-x-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: -650px;
+        right: -92%;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .event-popup-display {
+        left:        40%;        /* Start with top left in the center */
+        top:         10%;
+        width:       400px;      /* The fixed width... */
+        height:      100px;      /* ...and height */
+        margin-left: -100px;     /* Shift over half the width */
+        margin-top:  -50px;      /* Shift up half the height */
+    }
+    .description-box-container {
+        width: 100%;
+        bottom: 22px;
+    }
+    .comments-box-container {
+        width: 100%;
+        bottom: 62px;
+    }
+    .location-box-container {
+        width: 100%;
+        bottom: 42px;
+    }
+    .post-popup-thumbnail{
+        width: 100%;
+        height: 250px;
+    }
+    .share-event-button{
+        bottom: -605px;
+        align-self:flex-start;
+        position: relative;
+        margin-left: -5%;
+    }
+    .like-counter{
+        position: relative;
+        margin-left: 63%;
+        bottom: 25px;
+        color: white;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 36%;
+        bottom: 50px;
+        color: white;
+    }
+    .comment-event-button{
+        bottom: -605px;
+        align-self:flex-start;
+        position: relative;
+    }
+    .like-event-button{
+        all:unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 600px;
+        right: -32%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 610px;
+        right: 5%;
+        transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
+
+    .event-x-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        bottom: -50px;
+        left: 93%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .event-popup-display {
+        left:        40%;        /* Start with top left in the center */
+        top:         10%;
+        width:       350px;      /* The fixed width... */
+        height:      100px;      /* ...and height */
+        margin-left: -120px;     /* Shift over half the width */
+        margin-top:  -50px;      /* Shift up half the height */
+    }
+    .description-box-container {
+        width: 100%;
+        bottom: 22px;
+    }
+    .comments-box-container {
+        width: 100%;
+        bottom: 62px;
+    }
+    .location-box-container {
+        width: 100%;
+        bottom: 42px;
+    }
+    .post-popup-thumbnail{
+        width: 100%;
+        height: 250px;
+    }
+    .share-event-button{
+        bottom: -605px;
+        align-self:flex-start;
+        position: relative;
+        margin-left: -10%;
+    }
+    .like-counter{
+        position: relative;
+        margin-left: 71%;
+        bottom: 25px;
+        color: white;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 42%;
+        bottom: 50px;
+        color: white;
+    }
+    .like-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 600px;
+        right: -36%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 610px;
+        right: 5%;
+        transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
+
+    .event-x-button{
+        all: unset;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        bottom: -50px;
+        left: 90%;
+    }
+  }
+
+  @media screen and (max-width: 471px){
+    .event-popup-display {
+        left:        45%;        /* Start with top left in the center */
+        top:         10%;
+        width:       243px;      /* The fixed width... */
+        height:      100px;      /* ...and height */
+        margin-left: -100px;     /* Shift over half the width */
+        margin-top:  -50px;      /* Shift up half the height */
+    }
+    .description-box-container {
+        width: 100%;
+        bottom: 22px;
+    }
+    .comments-box-container {
+        width: 100%;
+        bottom: 75px;
+    }
+    .location-box-container {
+        width: 100%;
+        bottom: 55px;
+    }
+    .post-popup-thumbnail{
+        width: 100%;
+        height: 220px;
+    }
+    .event-x-button{
+        left: 81%;
+    }
+    .poster-pfp-popup-feedview{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 50px;
+    }
+    .like-counter{
+        position: relative;
+        margin-left: 77%;
+        bottom: 41px;
+        color: white;
+        font-size: 15px;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 47%;
+        bottom: 60px;
+        color: white;
+        font-size: 15px;
+    }
+    .like-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        top: 560px;
+        right: -30%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        top: 565px;
+        right: 12%;
+        transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
+    .share-event-button{
+        bottom: -560px;
+        height: 30px;
+        width: 30px;
+        align-self:flex-start;
+        position: relative;
+        left: -44%;
+
+    }
+    .comment-event-button{
+        bottom: -560px;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        left: -43%;
+    }
+  }
+
+  @media screen and (max-width: 320px){
+    .event-popup-display {
+        left:        45%;        /* Start with top left in the center */
+        top:         10%;
+        width:       220px;      /* The fixed width... */
+        height:      100px;      /* ...and height */
+        margin-left: -100px;     /* Shift over half the width */
+        margin-top:  -50px;      /* Shift up half the height */
+    }
+    .description-box-container {
+        width: 100%;
+        bottom: 22px;
+    }
+    .comments-box-container {
+        width: 100%;
+        bottom: 75px;
+    }
+    .location-box-container {
+        width: 100%;
+        bottom: 55px;
+    }
+    .post-popup-thumbnail{
+        width: 100%;
+        height: 220px;
+    }
+    .event-x-button{
+        left: 81%;
+    }
+    .poster-pfp-popup-feedview{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 50px;
+    }
+    .like-counter{
+        position: relative;
+        margin-left: 80%;
+        bottom: 41px;
+        color: white;
+        font-size: 15px;
+    }
+    .dislike-counter{
+        position: relative;
+        margin-left: 50%;
+        bottom: 60px;
+        color: white;
+        font-size: 15px;
+    }
+    .like-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        top: 560px;
+        right: -28%;
+        z-index: 2;
+    }
+    .like-event-button:hover{
+        cursor: pointer;
+    }
+    .dislike-event-button{
+        all: unset;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        top: 565px;
+        right: 14%;
+        transform: scaleY(-1);
+        z-index: 2;
+    }
+    .dislike-event-button:hover{
+        cursor: pointer;
+    }
+    .share-event-button{
+        bottom: -560px;
+        height: 30px;
+        width: 30px;
+        align-self:flex-start;
+        position: relative;
+        left: -50%;
+
+    }
+    .comment-event-button{
+        bottom: -560px;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        left: -48%;
+    }
+  }

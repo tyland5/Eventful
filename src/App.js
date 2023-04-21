@@ -12,7 +12,6 @@ import PostButton from './components/createEvent/PostButton';
 import LoginPage from './components/signup-login-pages/login';
 import EditProfilePage from './components/Profile/EditProfilePage';
 import AccountSettingsPage from './components/Profile/AccountSettingsPage';
-import NewFeedArea from './components/EditDelete/NewFeedArea';
 import Tokens from './components/Tokens'
 import Tokensview from './components/Tokensview';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
@@ -52,7 +51,7 @@ function App() {
               {showSlideout && <SlideoutMenu />}
               <NewFeedArea/>
         </div>}></Route>
-        <Route path="/tokens" element={<Tokens/>}></Route>
+        <Route path="/tokens" element={<Tokensview/>}></Route>
       </Routes>
 
       

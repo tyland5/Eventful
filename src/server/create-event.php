@@ -81,6 +81,11 @@ if (isset($_POST)) {
     $stsm3 = $conn->prepare($sql3);
     $stsm3->bind_param("sssssssss", $username, $title, $dateTime, $location, $eventCode, $type, $description, $thumbnailName, $imageNames);
     $stsm3->execute();
+
+    $sql4 = "INSERT INTO `Post Analytics` (likes, dislikes, user_ids_who_disliked, user_ids_who_liked) VALUES (?, ?, ?, ?, ?)";
+    $stsm4 = $conn->prepare($sql4);
+    $stsm4->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $imageNames);
+    $stsm4->execute();
     
     //upload thumbnail onto webserver
     move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);

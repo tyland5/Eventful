@@ -19,7 +19,7 @@ function EditProfile () {
     }
 
     async function FillProfile() {
-        const response = await Axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/loadSettings.php');
+        const response = await Axios.get('http://localhost/loadSettings.php');
         if(response.data)
             setDetails({...details, name: response.data[1], displayname: response.data[2], website: response.data[3], bio: response.data[4]})
     }
@@ -31,7 +31,7 @@ function EditProfile () {
 
     const SaveProfile = details => {
         async function updateProfile(){
-            const {data} = await Axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-profile.php", {
+            const {data} = await Axios.post("http://localhost/edit-profile.php", {
                 name: details.name,
                 displayname: details.displayname,
                 website: details.website,

@@ -1,0 +1,101 @@
+.sideNav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 16%;
+    background-color: #262625;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .leader {
+    font-size: large;
+    color: white;
+  }
+
+  li a {
+    text-align: left;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  li a.active {
+    background-color: #e6e6e6;
+    color: black;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  .header-text {
+    background-color: black;
+  }
+
+  .light-row {
+    background-color: #e8e8e8;
+    height: 50px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dark-row {
+    background-color: #a6a4a4;
+    height: 50px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rank {
+    text-align: left;
+    margin-left: -44px;
+    padding: 13px;
+  }
+
+  .user {
+    text-align: left;
+    margin-left: 255px;
+    padding: 10px;
+  }
+
+  .badge {
+    text-align: left;
+    margin-left: 60px;
+    padding: 10px;
+  }
+
+  .eventsAttended {
+    text-align: left;
+    margin-left: 550px;
+    padding: 10px;
+  }
+
+  .leaderName {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 25px;
+  }
+
+  .leaderBadge {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 183px;
+    position: absolute;
+  }
+
+  .leaderEventsAttended {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 870px;
+    position: absolute;
+  }

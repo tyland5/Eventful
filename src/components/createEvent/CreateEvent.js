@@ -85,7 +85,7 @@ const CreateEvent = () => {
         for(let i = 0; i < eventImages.length; i++){
             fd.append('images[]', eventImages[i])
         }
-        const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/create-event.php', fd)
+        const response = await axios.post('http://localhost/create-event.php', fd)
         
         // make user log in again for having expired session. skill issue, bad luck :)
         if(response.data === "invalid session"){

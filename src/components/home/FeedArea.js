@@ -64,7 +64,7 @@ const FeedArea = () => {
         fd.append('filters[]', filterList[i])
       }
 
-      let siteURL = "https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-event.php"
+      let siteURL = "http://localhost/load-event.php"
       let localURL= "http://localhost/load-event.php"
       axios.post(siteURL, fd)
       // axios.get("http://localhost/load-event.php")
@@ -99,7 +99,7 @@ const FeedArea = () => {
     {post.map((value, idx) => {
           return (
             <FeedPost pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
-        thumbnail= {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
+        thumbnail= {`http://localhost/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
            )
           })}
     </div>

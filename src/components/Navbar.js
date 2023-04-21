@@ -11,7 +11,7 @@ function Navbar ({displaySlideoutMenu}) {
   
   useEffect(() => {
     // forces https connection
-    enforceHTTPS()
+    //enforceHTTPS()
     // checks if user is logged in. If so, set state
     checkSessionId().then(validUser =>{
         if(validUser){
@@ -22,7 +22,7 @@ function Navbar ({displaySlideoutMenu}) {
 
   const SignoutFunction = async () =>{
     setLoggedin(false)
-    await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
+    await axios.get('http://localhost/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
       }
@@ -45,6 +45,7 @@ function Navbar ({displaySlideoutMenu}) {
             <p className='nav-logo'>Company</p>
             <p className='nav-links'>Search</p>
             <p className='nav-links'>Notifications</p>
+            <Link to="/leaderboard" className="routing-link" ><p className='nav-links'>Badge Leaderboard</p></Link>
             {loggedin && <Link to="/edit-profile" className="routing-link" ><p className='nav-links'>Profile</p></Link>}
             {loggedin && <Link to="/account-settings" className="routing-link" ><p className='nav-links'>Account Settings</p></Link>}
             {loggedin && <Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link>}

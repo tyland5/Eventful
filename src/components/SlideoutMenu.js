@@ -30,7 +30,7 @@ const SlideoutMenu = () => {
 
   const SignoutFunction = async () =>{
     setLoggedin(false)
-    await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
+    await axios.get('http://localhost/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
       }

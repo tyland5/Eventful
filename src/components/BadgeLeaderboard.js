@@ -85,13 +85,13 @@ function Leaderboard () {
                 <div className='dark-row'>
                     <p className='rank'>8</p>
                     <p className='leaderName'>jeffreyp4</p>
-                    <p className='leaderBadge'>Bronze</p>
+                    <p className='leaderBadge'>Silver</p>
                     <p className='leaderEventsAttended'>37</p>
                 </div>
                 <div className='light-row'>
                     <p className='rank'>7</p>
                     <p className='leaderName'>coder69</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <p className='leaderBadge'>Bronze</p>
                     <p className='leaderEventsAttended'>33</p>
                 </div>
                 <div className='dark-row'>

@@ -64,6 +64,11 @@ if (isset($_POST)) {
 		$stsm = $conn->prepare($sql);
 		$stsm->bind_param("sss", $username, $hashed_password, $email);
 		$stsm->execute();
+		$stsm->close();
+
+		$sql2 = "INSERT INTO `User Attendance` () VALUES ()";
+		$stsm2 = $conn->prepare($sql2);
+		$stsm2->execute();
 
 		$message = "Inserted into DB";
 		echo $message;

@@ -29,6 +29,7 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
     const [currentDislikes, setCurrentDislikes] = useState(0)
     const [eventCode, setEventCode] = useState("")
     const [feedBack, setFeedback] = useState("")
+    const [showCodePrompt, setShowCodePrompt] = useState(false)
 
     // checks the current likes sets the likes to that number for displaying
     const CheckCurrentLikes = async () =>{
@@ -130,7 +131,6 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
         displayEventPopup()
         displayCommentPopup()
     }
-
 
 
     const configs = {
@@ -439,7 +439,7 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
             showEventPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventPopup}></img>}
             {showEventPopup && <img className='like-event-button'src={LikeButton} onClick={ClickedLike}></img>}
             {showEventPopup && <img className='dislike-event-button'src={LikeButton} onClick={ClickedDislike}></img>}
-            {showEventPopup && <img className='share-event-button'src={ShareButton}></img>}
+            {showEventPopup && <img className='share-event-button'src={ShareButton} onClick={() => setShowCodePrompt(!showCodePrompt)}></img>} 
             {showEventPopup && <img className='comment-event-button'src={CommentButton} onClick= {displayCommentPopup} ></img>}
             
             <div className = 'comment-popup'>
@@ -448,12 +448,16 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
             {showEventPopup && (<EventPopup post_id = {post_id} pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
             {showEventPopup && <h1 className='like-counter'>{currentLikes}</h1>}
             {showEventPopup && <h1 className='dislike-counter'>{currentDislikes}</h1>}
-            {showEventPopup && <><div className='event-code-submit'>
+
+            
+            {showEventPopup && showCodePrompt && <><div className='event-code-submit'>
             <label htmlFor='event-code-enter' style={{display:'block', color: 'white'}}>Enter event code here for attendance</label>
             <input id = 'event-code-enter' type='text' style={{display:'block'}} onChange={(e) => setEventCode(e.target.value)}/>
+            {feedBack && showEventPopup && showCodePrompt && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
+            <button id="cancel-code-submit" style = {{marginRight: '10px'}} onClick={() => setShowCodePrompt(!showCodePrompt)}>Close</button>
             <button id="code-submit-btn" onClick={checkEventCode}>Submit Code</button>
             </div></>}
-            {feedBack && showEventPopup && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
+          
         </div>
         
         {showCommentPopup && <div className='event-popup-background' onClick={displayEventandCommentPopup}></div> ||

@@ -18,7 +18,7 @@ const AccountSettingsPage = () => {
     }
 
     async function FillProfile() {
-        const response = await Axios.get('http://localhost/loadAccSettings.php');
+        const response = await Axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/loadAccSettings.php');
         console.log(response);
         if(response.data)
             setDetails({...details, firstname: response.data[1], lastname: response.data[2], email: response.data[3], phonenumber: response.data[4], password: response.data[5]})
@@ -32,7 +32,7 @@ const AccountSettingsPage = () => {
     const SaveSettings = details => {
         console.log(details);
         async function updateProfile(){
-            const {data} = await Axios.post('http://localhost/edit-settings.php', {
+            const {data} = await Axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-settings.php', {
                 firstname: details.firstname,
                 lastname: details.lastname,
                 email: details.email,

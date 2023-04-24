@@ -27,7 +27,7 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
 
     // checks the current likes sets the likes to that number for displaying
     const CheckCurrentLikes = async () =>{
-        await axios.post("http://localhost/current-likes.php", {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-likes.php", {
             id: eventID}).then((val) =>{
                 //console.log("current likes: ")
                 //console.log(val.data)

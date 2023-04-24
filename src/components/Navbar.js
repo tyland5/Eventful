@@ -11,7 +11,7 @@ function Navbar ({displaySlideoutMenu}) {
   
   useEffect(() => {
     // forces https connection
-    //enforceHTTPS()
+    enforceHTTPS()
     // checks if user is logged in. If so, set state
     checkSessionId().then(validUser =>{
         if(validUser){
@@ -22,7 +22,7 @@ function Navbar ({displaySlideoutMenu}) {
 
   const SignoutFunction = async () =>{
     setLoggedin(false)
-    await axios.get('http://localhost/signout.php').then((response) => {
+    await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
       }

@@ -13,6 +13,7 @@ import EditProfilePage from './components/Profile/EditProfilePage';
 import AccountSettingsPage from './components/Profile/AccountSettingsPage';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
 import BadgeLeaderboard from './components/BadgeLeaderboard'
+import MobileBadgeLeaderboard from './components/MobileBadgeLeaderboard'
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
@@ -45,6 +46,7 @@ function App() {
         <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/leaderboard" element={<BadgeLeaderboard/>}></Route>
+        <Route path='/mobile-leaderboard' element={<MobileBadgeLeaderboard/>}></Route>
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}

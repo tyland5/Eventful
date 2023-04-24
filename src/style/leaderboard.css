@@ -14,6 +14,15 @@
     color: white;
   }
 
+  a {
+    text-align: left;
+    color: white;
+    font-size: 15px;
+    padding: 8px;
+    display: block;
+    text-decoration: none;
+  }
+
   li a {
     text-align: left;
     color: white;
@@ -97,5 +106,86 @@
     text-align: left;
     margin-top: 12px;
     margin-left: 870px;
+    position: absolute;
+  }
+
+  /* mobile view css */
+
+  .mobileBadgeNav {
+    width: 100%;
+    background-color: #262625;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: medium;
+    height: 50px;
+  }
+
+  .userMobile {
+    text-align: left;
+    margin-left: 55px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .badgeMobile {
+    text-align: left;
+    margin-left: 70px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .eventsAttendedMobile {
+    text-align: center;
+    margin-left: 50px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .light-row-mobile {
+    background-color: #e8e8e8;
+    height: 50px;
+    display: flex;
+    margin-left: 10%;
+    flex-direction: row;
+  }
+
+  .dark-row-mobile {
+    background-color: #a6a4a4;
+    height: 50px;
+    display: flex;
+    margin-left: 10%;
+    flex-direction: row;
+  }
+
+  .rankMobile {
+    text-align: left;
+    padding: 13px;
+  }
+
+  .leaderEventsAttendedMobile {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 320px;
+    position: absolute;
+  }
+
+  .badge-pic {
+    height: 30px;
+    width: 30px;
+    margin-left: 185px;
+    padding: 10px;
+    position: absolute;
+  }
+
+  .badge-pic-mobile {
+    height: 30px;
+    width: 30px;
+    margin-left: 180px;
+    padding: 10px;
     position: absolute;
   }

@@ -11,7 +11,7 @@ const SlideoutMenu = () => {
 
   useEffect(() => {
     // forces https connection
-    enforceHTTPS()
+    //enforceHTTPS()
     // checks if user is logged in. If so, set state
     checkSessionId().then(validUser =>{
         if(validUser){
@@ -51,6 +51,9 @@ const SlideoutMenu = () => {
             </li>
             <li>
             {!loggedin && <Link to="/signup" className="routing-link">Sign Up</Link>}
+            </li>
+            <li>
+            <Link to="/mobile-leaderboard" className="routing-link">Leaderboard</Link>
             </li>
             <li>
             {loggedin && <Link to="/edit-profile" className="routing-link">Profile</Link>}

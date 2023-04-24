@@ -5,6 +5,9 @@ import React, { useState } from 'react'
 import Axios from 'axios';
 import Navbar from './Navbar';
 import SlideoutMenu from './SlideoutMenu';
+import goldBadge from '../images/goldnew.png'
+import silverBadge from '../images/silvernew-1.png'
+import bronzeBadge from '../images/Bronzenew.png'
 
 function Leaderboard () {
 
@@ -43,61 +46,61 @@ function Leaderboard () {
                 <div className='light-row'>
                     <p className='rank'>1</p>
                     <p className='leaderName'>johntolo99</p>
-                    <p className='leaderBadge'>Gold</p>
+                    <img className="badge-pic" src = {goldBadge}></img>
                     <p className='leaderEventsAttended'>64</p>
                 </div>
                 <div className='dark-row'>
                     <p className='rank'>2</p>
                     <p className='leaderName'>asmith47</p>
-                    <p className='leaderBadge'>Gold</p>
+                    <img className="badge-pic" src = {goldBadge}></img>
                     <p className='leaderEventsAttended'>61</p>
                 </div>
                 <div className='light-row'>
                     <p className='rank'>3</p>
                     <p className='leaderName'>cseStud39</p>
-                    <p className='leaderBadge'>Gold</p>
+                    <img className="badge-pic" src = {goldBadge}></img>
                     <p className='leaderEventsAttended'>55</p>
                 </div>
                 <div className='dark-row'>
                     <p className='rank'>4</p>
                     <p className='leaderName'>jgreen48</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <img className="badge-pic" src = {silverBadge}></img>
                     <p className='leaderEventsAttended'>54</p>
                 </div>
                 <div className='light-row'>
                     <p className='rank'>5</p>
                     <p className='leaderName'>eventGoer6</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <img className="badge-pic" src = {silverBadge}></img>
                     <p className='leaderEventsAttended'>50</p>
                 </div>
                 <div className='dark-row'>
                     <p className='rank'>6</p>
                     <p className='leaderName'>maryb716</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <img className="badge-pic" src = {silverBadge}></img>
                     <p className='leaderEventsAttended'>45</p>
                 </div>
                 <div className='light-row'>
                     <p className='rank'>7</p>
                     <p className='leaderName'>potterh713</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <img className="badge-pic" src = {silverBadge}></img>
                     <p className='leaderEventsAttended'>39</p>
                 </div>
                 <div className='dark-row'>
                     <p className='rank'>8</p>
                     <p className='leaderName'>jeffreyp4</p>
-                    <p className='leaderBadge'>Silver</p>
+                    <img className="badge-pic" src = {silverBadge}></img>
                     <p className='leaderEventsAttended'>37</p>
                 </div>
                 <div className='light-row'>
-                    <p className='rank'>7</p>
+                    <p className='rank'>9</p>
                     <p className='leaderName'>coder69</p>
-                    <p className='leaderBadge'>Bronze</p>
+                    <img className="badge-pic" src = {bronzeBadge}></img>
                     <p className='leaderEventsAttended'>33</p>
                 </div>
                 <div className='dark-row'>
-                    <p className='rank' style={{marginLeft: '-50px'}}>8</p>
+                    <p className='rank' style={{marginLeft: '-50px'}}>10</p>
                     <p className='leaderName'>billsmafia21</p>
-                    <p className='leaderBadge'>Bronze</p>
+                    <img className="badge-pic" src = {bronzeBadge}></img>
                     <p className='leaderEventsAttended'>31</p>
                 </div>
             </div>

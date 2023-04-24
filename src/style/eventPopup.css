@@ -52,6 +52,7 @@
     position: relative;
     left: -33%;
     bottom: -640px;
+    z-index: 2;
 }
 
 .comment-event-button{
@@ -262,7 +263,14 @@
 .event-code-submit{
     margin-top: 30px;
     position: relative;
-    bottom: 20px;
+    bottom: 400px;
+    background-color: black;
+    z-index: 3;
+    font-size: 1.4rem;
+    padding: 10px;
+}
+.event-code-submit *{
+    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 480px) {
@@ -339,6 +347,7 @@
         align-self:flex-start;
         position: relative;
         margin-left: -5%;
+        z-index: 2;
     }
     .like-counter{
         position: relative;
@@ -426,6 +435,7 @@
         align-self:flex-start;
         position: relative;
         margin-left: -10%;
+        z-index: 2;
     }
     .like-counter{
         position: relative;
@@ -561,6 +571,7 @@
         align-self:flex-start;
         position: relative;
         left: -44%;
+        z-index: 2;
 
     }
     .comment-event-button{
@@ -655,6 +666,7 @@
         align-self:flex-start;
         position: relative;
         left: -50%;
+        z-index: 2;
 
     }
     .comment-event-button{

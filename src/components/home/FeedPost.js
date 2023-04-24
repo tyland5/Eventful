@@ -11,11 +11,14 @@ import axios from 'axios'
 import { enforceHTTPS, checkSessionId } from '../../App';
 import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
 import { isArray, isNull, result } from 'lodash';
+import AddComment from '../event-popup/add-comment';
 
 
-const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
+const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, eventTag, allowClickEvent, eventID}) => {
     const navigate = useNavigate()
+
     const [showEventPopup, setEventPopup] = useState(false)
+    const [showCommentPopup, setCommentPopup] = useState(false)
     let postFeedView = "post-feedview"
 
     let likeThumbsUpImage = LikeButton
@@ -24,6 +27,9 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
 
     const [currentLikes, setCurrentLikes] = useState(0)
     const [currentDislikes, setCurrentDislikes] = useState(0)
+    const [eventCode, setEventCode] = useState("")
+    const [feedBack, setFeedback] = useState("")
+    const [showCodePrompt, setShowCodePrompt] = useState(false)
 
     // checks the current likes sets the likes to that number for displaying
     const CheckCurrentLikes = async () =>{
@@ -104,12 +110,27 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         }
     }
 
+    function displayCommentPopup(){
+        setCommentPopup(!showCommentPopup)
+
+        if (showCommentPopup){
+            postFeedView = "post-feedview-opaque"
+        }
+        else{
+            postFeedView = "post-feedview"
+        }
+    }
+
     function checkAllowClickableEvent(){
         if (allowClickEvent.allowClickEvent) {
             displayEventPopup()
         }
     }
 
+    function displayEventandCommentPopup(){
+        displayEventPopup()
+        displayCommentPopup()
+    }
 
 
     const configs = {
@@ -159,9 +180,10 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/add-user-to-liked-event.php", {
             id: eventID}).then((val) =>{
             if(val.data === "not connected"){
+
                 }
                 else if (val.data === "done"){
-                console.log("added user to liked event")
+
                 }
             }, (error) => {
                 console.log(error);
@@ -363,6 +385,23 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
         })
     }
 
+    async function checkEventCode(){
+        
+        const validUser = await checkSessionId()
+        if(!validUser){
+            navigate("/login")
+            return
+        }
+
+        const response = await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/check-event-code.php",{
+          eventID: eventID,
+          eventCode: eventCode
+        }) 
+    
+        setFeedback(response.data)
+    
+      }
+
     
   return (
     <>
@@ -388,26 +427,46 @@ const FeedPost = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, a
                     <p className = "num-bookmarked-feedview">{numBookmarked} people are following this event</p>
                     <p className="tags-feedview">{eventTag}</p>
                 </div>
+                
+
             </div>
             
         </div>
         
         <div className='event-popup-display'>
             {showEventPopup && <img className ="poster-pfp-popup-feedview" src={pfp} alt = {`${posterName}'s profile pic`}/>}
-            {showEventPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventPopup}></img>}
+            {showCommentPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventandCommentPopup}></img> ||
+            showEventPopup && <img className='event-x-button'src={Xbutton} onClick={displayEventPopup}></img>}
             {showEventPopup && <img className='like-event-button'src={LikeButton} onClick={ClickedLike}></img>}
             {showEventPopup && <img className='dislike-event-button'src={LikeButton} onClick={ClickedDislike}></img>}
-
-            {showEventPopup && <img className='share-event-button'src={ShareButton}></img>}
-
-            {showEventPopup && <img className='comment-event-button'src={CommentButton}></img>}
-            {showEventPopup && (<EventPopup pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
+            {showEventPopup && <img className='share-event-button'src={ShareButton} onClick={() => setShowCodePrompt(!showCodePrompt)}></img>} 
+            {showEventPopup && <img className='comment-event-button'src={CommentButton} onClick= {displayCommentPopup} ></img>}
+            
+            <div className = 'comment-popup'>
+                {showCommentPopup && (<AddComment post_id = {post_id} closeCommentAfterSubmit = {displayCommentPopup}/>)}
+            </div>
+            {showEventPopup && (<EventPopup post_id = {post_id} pfp={pfp} posterName={posterName} title={title} thumbnail={thumbnail} numBookmarked={numBookmarked} eventTag={eventTag}/>)}
             {showEventPopup && <h1 className='like-counter'>{currentLikes}</h1>}
             {showEventPopup && <h1 className='dislike-counter'>{currentDislikes}</h1>}
+
+            
+            {showEventPopup && showCodePrompt && <><div className='event-code-submit'>
+            <label htmlFor='event-code-enter' style={{display:'block', color: 'white'}}>Enter event code here for attendance</label>
+            <input id = 'event-code-enter' type='text' style={{display:'block'}} onChange={(e) => setEventCode(e.target.value)}/>
+            {feedBack && showEventPopup && showCodePrompt && <p style={{color:'white', fontSize:'16px'}}>{feedBack}</p>}
+            <button id="cancel-code-submit" style = {{marginRight: '10px'}} onClick={() => setShowCodePrompt(!showCodePrompt)}>Close</button>
+            <button id="code-submit-btn" onClick={checkEventCode}>Submit Code</button>
+            </div></>}
+          
         </div>
-        {showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div>}
+        
+        {showCommentPopup && <div className='event-popup-background' onClick={displayEventandCommentPopup}></div> ||
+        showEventPopup && <div className='event-popup-background' onClick={displayEventPopup}></div> 
+        }
+        
     </>
   )
 }
 
 export default FeedPost
+

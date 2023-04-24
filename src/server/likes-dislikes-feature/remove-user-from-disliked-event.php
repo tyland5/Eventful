@@ -70,13 +70,26 @@ if (isset($_POST)) {
     //$stsm4->fetch();   
     //$stsm4->close();
     */
-    
+
 
     $list_of_users = json_decode($json_list_of_users);
     $list_removed_user = array_diff($list_of_users, $current_user);
 
+    
+    $list_of_users = json_decode($json_list_of_users);
+    $index_of_user = array_search($current_user, $list_of_users);
+    //
+    foreach ($list_of_users as $user){
+        if ($user === $current_user){
+            unset($list_of_users[$index_of_user]);
+            break;
+        }
+    }
 
-    $to_insert = json_encode($list_removed_user);
+    
+    $list_of_users = array_values($list_of_users);
+
+    $to_insert = json_encode($list_of_users);
     $sql5 = "UPDATE `Post Analytics` SET `user_ids_who_disliked`=(?) WHERE `post_id`=(?)";
     $stsm5 = $conn->prepare($sql5);
     $stsm5->bind_param("si", $to_insert, $postID);

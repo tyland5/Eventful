@@ -14,6 +14,7 @@ const CreateEvent = () => {
     const [eventTitle, setEventTitle] = useState("")
     const [eventDateTime, changeEventDateTime] = useState(new Date())
     const [eventLocation, setEventLocation] = useState("")
+    const [eventCode, setEventCode] = useState("")
     const [eventType, setEventType] = useState("")
     const [eventDescription, setEventDescription] = useState("")
     const [eventThumbnailPrev, setEventThumbnailPrev] = useState("")
@@ -68,7 +69,7 @@ const CreateEvent = () => {
         //might have to use google api to validate address
         //might have to check date so it's not before current
         if(eventTitle === "" || eventLocation === "" || eventType === "" || eventType === "Select Type" || 
-        eventThumbnailPrev === "" || eventImagesPrev.length === 0 || eventDescription ===""){
+        eventThumbnailPrev === "" || eventImagesPrev.length === 0 || eventDescription ==="" || eventCode ===""){
             setSubmittable(false)
             return
         }
@@ -79,6 +80,7 @@ const CreateEvent = () => {
         fd.append('title', eventTitle)
         fd.append('dateTime', eventDateTime.getTime())
         fd.append('location', eventLocation)
+        fd.append('eventCode', eventCode)
         fd.append('type', eventType)
         fd.append('description', eventDescription)
         fd.append('thumbnail', eventThumbnail)
@@ -125,6 +127,11 @@ const CreateEvent = () => {
             <div className='create-event-section'>
                 <label hmtlFor="create-location">Where?</label>
                 <input id="create-location" type="text" onChange = {(e) => setEventLocation(e.target.value)}/>
+            </div>
+
+            <div className='create-event-section'>
+                <label hmtlFor="create-event-code">Secret Event Code</label>
+                <input id="create-event-code" type="text" onChange = {(e) => setEventCode(e.target.value)}/>
             </div>
 
             <div className='create-event-section'>

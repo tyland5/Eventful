@@ -28,6 +28,7 @@ if (isset($_POST)) {
     $title = htmlspecialchars($_POST['title']);
     $dateTime = $_POST['dateTime'];
     $location = htmlspecialchars($_POST['location']);
+    $eventCode = $_POST['eventCode'];
     $type = $_POST['type'];
     $description = htmlspecialchars($_POST['description']);
     $thumbnail = $_FILES["thumbnail"];
@@ -76,18 +77,23 @@ if (isset($_POST)) {
     }
    
     //insert post information into database
-    $sql3 = "INSERT INTO Posts (poster, title, time, location, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql3 = "INSERT INTO Posts (poster, title, time, location, event_code, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stsm3 = $conn->prepare($sql3);
-    $stsm3->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $imageNames);
+    $stsm3->bind_param("sssssssss", $username, $title, $dateTime, $location, $eventCode, $type, $description, $thumbnailName, $imageNames);
     $stsm3->execute();
+    $stsm3->close();
 
-    $sql4 = "INSERT INTO `Post Analytics` (likes, dislikes, user_ids_who_disliked, user_ids_who_liked) VALUES (?, ?, ?, ?, ?)";
-    $stsm4 = $conn->prepare($sql4);
-    $stsm4->bind_param("ssssssss", $username, $title, $dateTime, $location, $type, $description, $thumbnailName, $imageNames);
-    $stsm4->execute();
-    
     //upload thumbnail onto webserver
     move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);
+
+    $zero = 0;
+    $empty = "";
+    $sql4 = "INSERT INTO `Post Analytics` (likes, dislikes, user_ids_who_disliked, user_ids_who_liked) VALUES (?, ?, ?, ?)";
+    $stsm4 = $conn->prepare($sql4);
+    $stsm4->bind_param("iiss", $zero, $zero, $empty, $empty);
+    $stsm4->execute();
+    
+    
 
     return;
     

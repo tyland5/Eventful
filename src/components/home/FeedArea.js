@@ -98,8 +98,8 @@ const FeedArea = () => {
       <PostButton/>
     {post.map((value, idx) => {
           return (
-            <FeedPost pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
-        thumbnail= {`http://localhost/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
+            <FeedPost post_id = {post[idx].post_id} pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
+        thumbnail= {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
            )
           })}
     </div>

@@ -23,6 +23,7 @@
     text-decoration: none;
   }
 
+  /* NEEDS TO BE FIXED SINCE MESSES UP MOBILE NAV BAR */
   li a {
     text-align: left;
     color: white;
@@ -41,6 +42,7 @@
     background-color: #555;
     color: white;
   }
+  
 
   .header-text {
     background-color: black;    

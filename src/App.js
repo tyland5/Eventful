@@ -16,9 +16,15 @@ import Tokensview from './components/Tokensview';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
 import BadgeLeaderboard from './components/BadgeLeaderboard'
 import MobileBadgeLeaderboard from './components/MobileBadgeLeaderboard'
+import VolunteerLeaderboard from './components/Leaderboard-layout/VolunteerLeaderboard'
+import EntertainmentLeaderboard from './components/Leaderboard-layout/EntertainmentLeaderboard'
+import FoodLeaderboard from './components/Leaderboard-layout/FoodLeaderboard'
+import AdultLeaderboard from './components/Leaderboard-layout/AdultLeaderboard'
+
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
+
 
 
 
@@ -49,6 +55,10 @@ function App() {
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/leaderboard" element={<BadgeLeaderboard/>}></Route>
         <Route path='/mobile-leaderboard' element={<MobileBadgeLeaderboard/>}></Route>
+        <Route path='/volunteer-leaderboard' element={<VolunteerLeaderboard/>}></Route>
+        <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
+        <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
+        <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}

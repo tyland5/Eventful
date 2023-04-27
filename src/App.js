@@ -16,6 +16,7 @@ import Tokensview from './components/Tokensview';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
 import BadgeLeaderboard from './components/BadgeLeaderboard'
 import MobileBadgeLeaderboard from './components/MobileBadgeLeaderboard'
+import SearchEvent from './components/searchEvent/SearchEvent';
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
@@ -38,11 +39,13 @@ function App() {
             <div className="App">
               <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}
-              <FeedArea />
+              <FeedArea showFilterButton={true} query={""}/>
+              <PostButton/>
             </div>
         }>
         </Route>
         <Route path="create-event" element={<CreateEvent/>}></Route>
+        <Route path="/search-event" element={<SearchEvent/>}></Route>
         <Route path="/edit-profile" element={<EditProfilePage />}></Route>
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>

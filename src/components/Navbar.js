@@ -42,9 +42,8 @@ function Navbar ({displaySlideoutMenu}) {
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>
             </div>
-            <p className='nav-logo'>Company</p>
-            <p className='nav-links'>Search</p>
-            <p className='nav-links'>Notifications</p>
+            <Link to ="/" className='routing-link'><p className='nav-logo'>Company</p></Link>
+            <Link to = "/search-event" className="routing-link"><p className='nav-links'>Search</p></Link> 
             <Link to="/leaderboard" className="routing-link" ><p className='nav-links'>Leaderboard</p></Link>
             {loggedin && <Link to="/edit-profile" className="routing-link" ><p className='nav-links'>Profile</p></Link>}
             {loggedin && <Link to="/account-settings" className="routing-link" ><p className='nav-links'>Account Settings</p></Link>}

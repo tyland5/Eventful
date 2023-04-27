@@ -54,7 +54,7 @@ const FeedPost = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, ev
 
     // checks the current dislikes sets the dislikes to that number for displaying
     const CheckCurrentDislikes = async () =>{
-        await axios.post("http://localhost/current-dislikes.php", {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/current-dislikes.php", {
             id: eventID}).then((val) =>{
                 //console.log("current dislikes: ")
                 //console.log(val.data)

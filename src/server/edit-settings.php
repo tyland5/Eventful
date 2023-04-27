@@ -21,7 +21,9 @@ else{
 }
 
 $sql = "SELECT * FROM `Sessions` ORDER BY `expiration` DESC LIMIT 1";
-$res = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$res = $stmt->get_result(); 
 $row = mysqli_fetch_row($res);
 $user_id = $row[0];
 
@@ -36,16 +38,20 @@ if (isset($_POST)) {
     $password = $data['password'];
 
     $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
-    $res = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
 
     if($res->num_rows > 0) {
         $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`='$password' WHERE `User ID`='$user_id'";
-        $res = $conn->query($sql);
+        $stmt2 = $conn->prepare($sql);
+        $stmt2->execute();
     }
 
     else {
         $sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
-	    $res = $conn->query($sql);
+	    $stmt3 = $conn->prepare($sql);
+        $stmt3->execute();
     }
 }
 ?>

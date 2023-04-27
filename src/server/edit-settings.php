@@ -2,7 +2,7 @@
 // PLACE THIS FILE IN YOUR HTDOCS
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials: false");
+header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
@@ -36,14 +36,15 @@ if (isset($_POST)) {
     $email = $data['email'];
     $phonenumber = $data['phonenumber'];
     $password = $data['password'];
-
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    
     $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();
 
     if($res->num_rows > 0) {
-        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`='$password' WHERE `User ID`='$user_id'";
+        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`= '$password' WHERE `User ID`='$user_id'";
         $stmt2 = $conn->prepare($sql);
         $stmt2->execute();
     }
@@ -53,5 +54,10 @@ if (isset($_POST)) {
 	    $stmt3 = $conn->prepare($sql);
         $stmt3->execute();
     }
+    
+    $sql = "UPDATE `Users` SET `Password`=?,`Email`=? WHERE `user_id` = '$user_id'";
+    $stmt4 = $conn->prepare($sql);
+    $stmt4->bind_param("ss", $password, $email);
+    $stmt4->execute();
 }
 ?>

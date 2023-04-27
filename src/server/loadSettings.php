@@ -19,14 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 $sql = "SELECT * FROM `Sessions` ORDER BY `expiration` DESC LIMIT 1";
-$res = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$res = $stmt->get_result(); 
 $row = mysqli_fetch_row($res);
 $user_id = $row[0];
 
 //Upon receiving a GET request from axios
 if (isset($_GET)) {
     $sql = "SELECT * FROM `Edit Profile` WHERE `User ID` = '$user_id'";
-    $res = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
     $row = mysqli_fetch_row($res);
     echo json_encode($row);
 }

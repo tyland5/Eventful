@@ -3,6 +3,7 @@ import Tokens from './Tokens'
 import Navbar from './Navbar'
 import { useEffect } from 'react';
 import React, { useState } from 'react'
+import SlideoutMenu from './SlideoutMenu';
 
 const Tokensview = () =>{
    const isMobile = window.innerWidth > 480;
@@ -25,14 +26,16 @@ const Tokensview = () =>{
 
    if (!isMobile){
     return(
-    
     <>
     {renderPage && <>
       <div className='navigator'>
-      <div style = {{display: "flex"}}>
-      <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
-      </div>
-      </div>
+                <div style = {{display: "flex"}}>
+                    <div className="App" style = {{textAlign: 'left'}}>
+                        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+                        {showSlideout && <SlideoutMenu />}
+                    </div>
+                </div>
+            </div>
       <div  id="feed-area" >
       <Tokens x={response[0]['recreation']} event="Recreation" />
       <hr></hr>
@@ -56,11 +59,14 @@ const Tokensview = () =>{
       <>
 
       {renderPage && <>
-      <div className='navigator'>
-      <div style = {{display: "flex"}}>
-      <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
-      </div>
-      </div>
+        <div className='navigator'>
+                <div style = {{display: "flex"}}>
+                    <div className="App" style = {{textAlign: 'left'}}>
+                        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+                        {showSlideout && <SlideoutMenu />}
+                    </div>
+                </div>
+            </div>
       <div className="post-feedview" style={{marginLeft:"260px",marginTop:"20px"}}>
       <Tokens x={response[0]['recreation']} event="Recreation" />
       <hr></hr>

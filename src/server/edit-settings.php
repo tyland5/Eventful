@@ -2,7 +2,7 @@
 // PLACE THIS FILE IN YOUR HTDOCS
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials: false");
+header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
@@ -21,7 +21,9 @@ else{
 }
 
 $sql = "SELECT * FROM `Sessions` ORDER BY `expiration` DESC LIMIT 1";
-$res = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$res = $stmt->get_result(); 
 $row = mysqli_fetch_row($res);
 $user_id = $row[0];
 
@@ -34,18 +36,28 @@ if (isset($_POST)) {
     $email = $data['email'];
     $phonenumber = $data['phonenumber'];
     $password = $data['password'];
-
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    
     $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
-    $res = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
 
     if($res->num_rows > 0) {
-        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`='$password' WHERE `User ID`='$user_id'";
-        $res = $conn->query($sql);
+        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`= '$password' WHERE `User ID`='$user_id'";
+        $stmt2 = $conn->prepare($sql);
+        $stmt2->execute();
     }
 
     else {
         $sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
-	    $res = $conn->query($sql);
+	    $stmt3 = $conn->prepare($sql);
+        $stmt3->execute();
     }
+    
+    $sql = "UPDATE `Users` SET `Password`=?,`Email`=? WHERE `user_id` = '$user_id'";
+    $stmt4 = $conn->prepare($sql);
+    $stmt4->bind_param("ss", $password, $email);
+    $stmt4->execute();
 }
 ?>

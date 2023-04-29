@@ -11,12 +11,13 @@ import bronzeBadge from '../images/Bronzenew.png'
 import LeaderboardRow from './Leaderboard-layout/Leaderboard-display-users';
 import axios from 'axios'
 import diamondBadge from '../images/blue-star.png'
+import blankImage from '../images/empty_img.png'
 
 function Leaderboard () {
 
     const[createLeaderboard, setLeaderboard] = useState([])
     const displayLeaderboard = async () => {
-        await axios.post("http://localhost/leaderboard-data.php", {category: "recreation"}).then((val) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "recreation"}).then((val) =>{
             //console.log("current dislikes: ")
             console.log(val.data)
             setLeaderboard(val.data)
@@ -66,7 +67,7 @@ function Leaderboard () {
     }
 
     function BadgeType(attendance){
-        if (attendance < 5){
+        if (attendance >= 1 && attendance < 5){
             return bronzeBadge
         }
         else if(attendance >= 5 && attendance < 10){
@@ -77,6 +78,9 @@ function Leaderboard () {
         }
         else if(attendance >= 20){
             return diamondBadge
+        }
+        else if (attendance == 0){
+            return blankImage
         }
     }
 

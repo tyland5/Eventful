@@ -20,6 +20,12 @@ import VolunteerLeaderboard from './components/Leaderboard-layout/VolunteerLeade
 import EntertainmentLeaderboard from './components/Leaderboard-layout/EntertainmentLeaderboard'
 import FoodLeaderboard from './components/Leaderboard-layout/FoodLeaderboard'
 import AdultLeaderboard from './components/Leaderboard-layout/AdultLeaderboard'
+import MobileAdultLeaderboard from './components/Leaderboard-layout/MobileAdultLeaderboard'
+import MobileFoodLeaderboard from './components/Leaderboard-layout/MobileFoodLeaderboard'
+import MobileVolunteerLeaderboard from './components/Leaderboard-layout/MobileVolunteerLeaderboard'
+import MobileEntertainmentLeaderboard from './components/Leaderboard-layout/MobileEntertainmentLeaderboard'
+
+
 
 
 import axios from 'axios';
@@ -59,6 +65,10 @@ function App() {
         <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
         <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
         <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
+        <Route path='/mobile-adult-leaderboard' element={<MobileAdultLeaderboard/>}></Route>
+        <Route path='/mobile-volunteer-leaderboard' element={<MobileVolunteerLeaderboard/>}></Route>
+        <Route path='/mobile-food-leaderboard' element={<MobileFoodLeaderboard/>}></Route>
+        <Route path='/mobile-entertainment-leaderboard' element={<MobileEntertainmentLeaderboard/>}></Route>
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}

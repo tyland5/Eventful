@@ -26,7 +26,7 @@ if (isset($_POST)) {
     
     $category = $data["category"];
     $top10 = [];
-    $amount = 10;
+    $amount = 20;
 
     if ($category == "recreation"){
         //$currentLikes = "SELECT likes FROM Posts";
@@ -61,7 +61,7 @@ if (isset($_POST)) {
         $list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         //$row = mysqli_fetch_array($result);
 
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < $amount; $i++){
             $sql3 = "SELECT Username FROM `Users` WHERE user_id=(?)"; 
             $stsm3 = $conn->prepare($sql3);
             $stsm3->bind_param("i", $list[$i]["user_id"]);
@@ -87,7 +87,7 @@ if (isset($_POST)) {
         $list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         //$row = mysqli_fetch_array($result);
 
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < $amount; $i++){
             $sql3 = "SELECT Username FROM `Users` WHERE user_id=(?)"; 
             $stsm3 = $conn->prepare($sql3);
             $stsm3->bind_param("i", $list[$i]["user_id"]);
@@ -113,7 +113,7 @@ if (isset($_POST)) {
         $list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         //$row = mysqli_fetch_array($result);
 
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < $amount; $i++){
             $sql3 = "SELECT Username FROM `Users` WHERE user_id=(?)"; 
             $stsm3 = $conn->prepare($sql3);
             $stsm3->bind_param("i", $list[$i]["user_id"]);
@@ -137,7 +137,7 @@ if (isset($_POST)) {
         $list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         //$row = mysqli_fetch_array($result);
 
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < $amount; $i++){
             $sql3 = "SELECT Username FROM `Users` WHERE user_id=(?)"; 
             $stsm3 = $conn->prepare($sql3);
             $stsm3->bind_param("i", $list[$i]["user_id"]);

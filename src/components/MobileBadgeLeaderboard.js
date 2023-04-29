@@ -1,30 +1,82 @@
 import '../style/profile.css';
 import '../style/leaderboard.css';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
 import Navbar from './Navbar';
 import SlideoutMenu from './SlideoutMenu';
 import goldBadge from '../images/goldnew.png'
 import silverBadge from '../images/silvernew-1.png'
 import bronzeBadge from '../images/Bronzenew.png'
+import LeaderboardMobile from './Leaderboard-layout/Mobile-Leaderboard-display'
+import axios from 'axios'
+import diamondBadge from '../images/blue-star.png'
+import blankImage from '../images/empty_img.png'
 
 function MobileLeaderboard () {
 
+    const[createLeaderboard, setLeaderboard] = useState([])
+    const displayLeaderboard = async () => {
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "recreation"}).then((val) =>{
+            //console.log("current dislikes: ")
+            console.log(val.data)
+            setLeaderboard(val.data)
+        if(val.data === "not connected"){
+            //console.log("not connected to database")
+            }
+            else if (val.data === "done"){
+            //console.log("all done")
+            }
+        }, (error) => {
+            console.log(error);
+        });
+    }
+    useEffect(() => {
+        displayLeaderboard()
+    }, [])
     const [showSlideout, setShowSlideout] = useState(false)
 
     function displaySlideoutMenu(){
         setShowSlideout(!showSlideout)
     }
 
+    function RowColor(idx){
+        if (idx == 0){
+            return "light-row-mobile"
+        }
+        else if (idx % 2 == 1){
+            return "dark-row-mobile"
+        }else{
+            return "light-row-mobile"
+        }
+    }
+
+    function BadgeType(attendance){
+        if (attendance >= 1 && attendance < 5){
+            return bronzeBadge
+        }
+        else if(attendance >= 5 && attendance < 10){
+            return silverBadge
+        }
+        else if(attendance >= 10 && attendance < 20){
+            return goldBadge
+        }
+        else if(attendance >= 20){
+            return diamondBadge
+        }
+        else if (attendance == 0){
+            return blankImage
+        }
+    }
+
     const MobileBadgeNav = () => {
         return(
             <div className='mobileBadgeNav'>
-                <a class='active' href='#recreation' style={{color: 'white'}}>Recreation</a>
-                <a href = '#volunteer' style={{color: 'white'}}>Volunteer</a>
-                <a href = '#entertainment' style={{color: 'white'}}>Entertainment</a>
-                <a href = '#food' style={{color: 'white'}}>Food</a>
-                <a href = '#adult' style={{color: 'white'}}>Adult</a>
+                <Link to="/mobile-leaderboard" className='routing-link'><a class='active' href='#recreation' style={{color: 'white'}}>Recreation</a></Link>
+                <Link to="/mobile-volunteer-leaderboard" className='routing-link'><a href = '#volunteer' style={{color: 'white'}}>Volunteer</a></Link>
+                <Link to="/mobile-entertainment-leaderboard" className='routing-link'><a href = '#entertainment' style={{color: 'white'}}>Entertainment</a></Link>
+                <Link to="/mobile-food-leaderboard" className='routing-link'><a href = '#food' style={{color: 'white'}}>Food</a></Link>
+                <Link to="/mobile-adult-leaderboard" className='routing-link'><a href = '#adult' style={{color: 'white'}}>Adult</a></Link>
             </div>
         )
     }
@@ -37,66 +89,11 @@ function MobileLeaderboard () {
                     <p className='badgeMobile'>Badge</p>
                     <p className='eventsAttendedMobile'>Events Attended</p>
                 </div>
-                <div className='light-row-mobile'>
-                    <p className='rank'>1</p>
-                    <p className='leaderName'>johntolo99</p>
-                    <img className="badge-pic-mobile" src = {goldBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>64</p>
-                </div>
-                <div className='dark-row-mobile'>
-                    <p className='rank'>2</p>
-                    <p className='leaderName'>asmith47</p>
-                    <img className="badge-pic-mobile" src = {goldBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>61</p>
-                </div>
-                <div className='light-row-mobile'>
-                    <p className='rank'>3</p>
-                    <p className='leaderName'>cseStud39</p>
-                    <img className="badge-pic-mobile" src = {goldBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>55</p>
-                </div>
-                <div className='dark-row-mobile'>
-                    <p className='rank'>4</p>
-                    <p className='leaderName'>jgreen48</p>
-                    <img className="badge-pic-mobile" src = {silverBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>54</p>
-                </div>
-                <div className='light-row-mobile'>
-                    <p className='rank'>5</p>
-                    <p className='leaderName'>eventGoer6</p>
-                    <img className="badge-pic-mobile" src = {silverBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>50</p>
-                </div>
-                <div className='dark-row-mobile'>
-                    <p className='rank'>6</p>
-                    <p className='leaderName'>maryb716</p>
-                    <img className="badge-pic-mobile" src = {silverBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>45</p>
-                </div>
-                <div className='light-row-mobile'>
-                    <p className='rank'>7</p>
-                    <p className='leaderName'>potterh713</p>
-                    <img className="badge-pic-mobile" src = {silverBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>39</p>
-                </div>
-                <div className='dark-row-mobile'>
-                    <p className='rank'>8</p>
-                    <p className='leaderName'>jeffreyp4</p>
-                    <img className="badge-pic-mobile" src = {silverBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>37</p>
-                </div>
-                <div className='light-row-mobile'>
-                    <p className='rank'>9</p>
-                    <p className='leaderName'>coder69</p>
-                    <img className="badge-pic-mobile" src = {bronzeBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>33</p>
-                </div>
-                <div className='dark-row-mobile'>
-                    <p className='rank' style={{marginLeft: '-50px'}}>10</p>
-                    <p className='leaderName'>billsmafia21</p>
-                    <img className="badge-pic-mobile" src = {bronzeBadge}></img>
-                    <p className='leaderEventsAttendedMobile'>31</p>
-                </div>
+                {createLeaderboard.map((value, idx) => {
+                    return (
+                        <LeaderboardMobile username={createLeaderboard[idx].user_id} rank={idx+1} rowColor={RowColor(idx)} badge={BadgeType(createLeaderboard[idx].recreation)} eventsAttended={createLeaderboard[idx].recreation}/>
+                    )
+                })}
             </div>
         )
     }

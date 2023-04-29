@@ -58,6 +58,12 @@ const SlideoutMenu = () => {
             <Link to="/mobile-leaderboard" className="routing-link">Leaderboard</Link>
             </li>
             <li>
+            {loggedin && <Link to="/event-manager" className="routing-link">Manage Events</Link>}
+            </li>
+            <li>
+            {loggedin && <Link to="/tokens" className="routing-link">Badges</Link>}
+            </li>
+            <li>
             {loggedin && <Link to="/edit-profile" className="routing-link">Profile</Link>}
             </li>
             <li>

@@ -16,10 +16,22 @@ import Tokensview from './components/Tokensview';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
 import BadgeLeaderboard from './components/BadgeLeaderboard'
 import MobileBadgeLeaderboard from './components/MobileBadgeLeaderboard'
+import VolunteerLeaderboard from './components/Leaderboard-layout/VolunteerLeaderboard'
+import EntertainmentLeaderboard from './components/Leaderboard-layout/EntertainmentLeaderboard'
+import FoodLeaderboard from './components/Leaderboard-layout/FoodLeaderboard'
+import AdultLeaderboard from './components/Leaderboard-layout/AdultLeaderboard'
+import MobileAdultLeaderboard from './components/Leaderboard-layout/MobileAdultLeaderboard'
+import MobileFoodLeaderboard from './components/Leaderboard-layout/MobileFoodLeaderboard'
+import MobileVolunteerLeaderboard from './components/Leaderboard-layout/MobileVolunteerLeaderboard'
+import MobileEntertainmentLeaderboard from './components/Leaderboard-layout/MobileEntertainmentLeaderboard'
+
+
+
 import SearchEvent from './components/searchEvent/SearchEvent';
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
+
 
 
 
@@ -52,6 +64,14 @@ function App() {
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/leaderboard" element={<BadgeLeaderboard/>}></Route>
         <Route path='/mobile-leaderboard' element={<MobileBadgeLeaderboard/>}></Route>
+        <Route path='/volunteer-leaderboard' element={<VolunteerLeaderboard/>}></Route>
+        <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
+        <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
+        <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
+        <Route path='/mobile-adult-leaderboard' element={<MobileAdultLeaderboard/>}></Route>
+        <Route path='/mobile-volunteer-leaderboard' element={<MobileVolunteerLeaderboard/>}></Route>
+        <Route path='/mobile-food-leaderboard' element={<MobileFoodLeaderboard/>}></Route>
+        <Route path='/mobile-entertainment-leaderboard' element={<MobileEntertainmentLeaderboard/>}></Route>
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}

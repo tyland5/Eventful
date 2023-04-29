@@ -1,23 +1,23 @@
-import '../style/profile.css';
-import '../style/leaderboard.css';
+import '../../style/profile.css';
+import '../../style/leaderboard.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
-import Navbar from './Navbar';
-import SlideoutMenu from './SlideoutMenu';
-import goldBadge from '../images/goldnew.png'
-import silverBadge from '../images/silvernew-1.png'
-import bronzeBadge from '../images/Bronzenew.png'
-import LeaderboardRow from './Leaderboard-layout/Leaderboard-display-users';
+import Navbar from '../Navbar';
+import SlideoutMenu from '../SlideoutMenu';
+import goldBadge from '../../images/goldnew.png'
+import silverBadge from '../../images/silvernew-1.png'
+import bronzeBadge from '../../images/Bronzenew.png'
+import LeaderboardRow from '../Leaderboard-layout/Leaderboard-display-users';
 import axios from 'axios'
-import diamondBadge from '../images/blue-star.png'
-import blankImage from '../images/empty_img.png'
+import diamondBadge from '../../images/blue-star.png'
+import blankImage from '../../images/empty_img.png'
 
 function Leaderboard () {
 
     const[createLeaderboard, setLeaderboard] = useState([])
     const displayLeaderboard = async () => {
-        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "recreation"}).then((val) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "volunteer"}).then((val) =>{
             //console.log("current dislikes: ")
             console.log(val.data)
             setLeaderboard(val.data)
@@ -46,8 +46,8 @@ function Leaderboard () {
         return(
             <ul className='sideNav'>
                 <div style={{backgroundColor:'#262625', height:'42px'}}/>
-                <Link to="/leaderboard" className="routing-link"><li><a class='active' href='#recreation'>Recreation</a></li></Link>
-                <Link to="/volunteer-leaderboard" className="routing-link"><li><a href = '#volunteer'>Volunteer</a></li></Link>
+                <Link to="/leaderboard" className="routing-link"><li><a href='#recreation'>Recreation</a></li></Link>
+                <Link to="/volunteer-leaderboard" className="routing-link"><li><a class='active' href = '#volunteer'>Volunteer</a></li></Link>
                 <Link to="/entertainment-leaderboard" className="routing-link"><li><a href = '#entertainment'>Entertainment</a></li></Link>
                 <Link to="/food-leaderboard" className="routing-link"><li><a href = '#food'>Food</a></li></Link>
                 <Link to="/adult-leaderboard" className="routing-link"><li><a href = '#adult'>Adult</a></li></Link>
@@ -99,7 +99,7 @@ function Leaderboard () {
                 </div>
                 {createLeaderboard.map((value, idx) => {
                     return (
-                        <LeaderboardRow username={createLeaderboard[idx].user_id} rank={idx+1} rowColor={RowColor(idx)} badge={BadgeType(createLeaderboard[idx].recreation)} eventsAttended={createLeaderboard[idx].recreation}/>
+                        <LeaderboardRow username={createLeaderboard[idx].user_id} rank={idx+1} rowColor={RowColor(idx)} badge={BadgeType(createLeaderboard[idx].volunteer)} eventsAttended={createLeaderboard[idx].volunteer}/>
                     )
                 })}
             </div>

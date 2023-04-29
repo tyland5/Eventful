@@ -1,23 +1,24 @@
-import '../style/profile.css';
-import '../style/leaderboard.css';
+import '../../style/profile.css';
+import '../../style/leaderboard.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
-import Navbar from './Navbar';
-import SlideoutMenu from './SlideoutMenu';
-import goldBadge from '../images/goldnew.png'
-import silverBadge from '../images/silvernew-1.png'
-import bronzeBadge from '../images/Bronzenew.png'
-import LeaderboardMobile from './Leaderboard-layout/Mobile-Leaderboard-display'
+import Navbar from '../Navbar';
+import SlideoutMenu from '../SlideoutMenu';
+import goldBadge from '../../images/goldnew.png'
+import silverBadge from '../../images/silvernew-1.png'
+import bronzeBadge from '../../images/Bronzenew.png'
+import LeaderboardRow from './Leaderboard-display-users';
 import axios from 'axios'
-import diamondBadge from '../images/blue-star.png'
-import blankImage from '../images/empty_img.png'
+import diamondBadge from '../../images/blue-star.png'
+import blankImage from '../../images/empty_img.png'
+import LeaderboardMobile from './Mobile-Leaderboard-display'
 
 function MobileLeaderboard () {
 
     const[createLeaderboard, setLeaderboard] = useState([])
     const displayLeaderboard = async () => {
-        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "recreation"}).then((val) =>{
+        await axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/leaderboard-data.php", {category: "entertainment"}).then((val) =>{
             //console.log("current dislikes: ")
             console.log(val.data)
             setLeaderboard(val.data)
@@ -72,9 +73,9 @@ function MobileLeaderboard () {
     const MobileBadgeNav = () => {
         return(
             <div className='mobileBadgeNav'>
-                <Link to="/mobile-leaderboard" className='routing-link'><a class='active' href='#recreation' style={{color: 'white'}}>Recreation</a></Link>
+                <Link to="/mobile-leaderboard" className='routing-link'><a href='#recreation' style={{color: 'white'}}>Recreation</a></Link>
                 <Link to="/mobile-volunteer-leaderboard" className='routing-link'><a href = '#volunteer' style={{color: 'white'}}>Volunteer</a></Link>
-                <Link to="/mobile-entertainment-leaderboard" className='routing-link'><a href = '#entertainment' style={{color: 'white'}}>Entertainment</a></Link>
+                <Link to="/mobile-entertainment-leaderboard" className='routing-link'><a className="active" href = '#entertainment' style={{color: 'white'}}>Entertainment</a></Link>
                 <Link to="/mobile-food-leaderboard" className='routing-link'><a href = '#food' style={{color: 'white'}}>Food</a></Link>
                 <Link to="/mobile-adult-leaderboard" className='routing-link'><a href = '#adult' style={{color: 'white'}}>Adult</a></Link>
             </div>
@@ -91,7 +92,7 @@ function MobileLeaderboard () {
                 </div>
                 {createLeaderboard.map((value, idx) => {
                     return (
-                        <LeaderboardMobile username={createLeaderboard[idx].user_id} rank={idx+1} rowColor={RowColor(idx)} badge={BadgeType(createLeaderboard[idx].recreation)} eventsAttended={createLeaderboard[idx].recreation}/>
+                        <LeaderboardMobile username={createLeaderboard[idx].user_id} rank={idx+1} rowColor={RowColor(idx)} badge={BadgeType(createLeaderboard[idx].entertainment)} eventsAttended={createLeaderboard[idx].entertainment}/>
                     )
                 })}
             </div>

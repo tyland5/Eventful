@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .sideNav {
     list-style-type: none;
     margin: 0;
@@ -7,6 +12,9 @@
     position: fixed;
     height: 100%;
     overflow: auto;
+  }
+  .category-text{
+    font-size: 20px;
   }
 
   .leader {
@@ -49,7 +57,8 @@
   
 
   .header-text {
-    background-color: black;    
+    background-color: black;   
+    margin-left: 3%; 
   }
 
   .light-row {
@@ -76,19 +85,21 @@
 
   .user {
     text-align: left;
-    margin-left: 340px;
+    margin-left: 20%;
     padding: 10px;
   }
 
   .badge {
+    position: absolute;
     text-align: left;
-    margin-left: 60px;
+    margin-left: 53%;
     padding: 10px;
   }
 
   .eventsAttended {
+    position: absolute;
     text-align: left;
-    margin-left: 550px;
+    margin-left: 80%;
     padding: 10px;
   }
 
@@ -111,9 +122,156 @@
     color: black;
     text-align: left;
     margin-top: 12px;
-    margin-left: 870px;
+    margin-left: 65%;
     position: absolute;
   }
+
+  @media screen and (max-width:1023px){
+    .leader{
+      width: 100%;
+      margin-left: 2%;
+    }
+    .user{
+      margin-left: 20%;
+    }
+    .eventsAttended{
+      margin-left: 74%;
+    }
+    .leaderEventsAttended{
+      margin-left: 61%;
+    }
+    .rank{
+      position: relative;
+      left: 3px;
+    }
+    .sideNav{
+      width: 18%;
+    }
+    .category-text{
+      font-size: 18px;
+    }
+}
+
+@media screen and (max-width:800px){
+  .leader{
+    width: 100%;
+    margin-left: 8%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 100px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 3px;
+  }
+  .sideNav{
+    width: 23%;
+  }
+  .category-text{
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:700px){
+  .leader{
+    width: 100%;
+    font-size: 15px;
+    margin-left: 12%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 100px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 3px;
+  }
+  .sideNav{
+    width: 25%;
+  }
+  .category-text{
+    font-size: 15px;
+  }
+  .dark-row{
+    height: 45px;
+  }
+  .light-row{
+    height: 45px;
+  }
+  .badge-pic{
+    max-width: 25px;
+    max-height: 25px;
+    margin-left: 10%;
+  }
+}
+
+@media screen and (max-width:500px){
+  .leader{
+    width: 100%;
+    font-size: 10px;
+    margin-left: 9%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 90px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 16px;
+  }
+  .sideNav{
+    width: 24%;
+  }
+  .category-text{
+    font-size: 9px;
+  }
+  .dark-row{
+    height: 35px;
+  }
+  .light-row{
+    height: 35px;
+  }
+  .badge-pic{
+    max-width: 25px;
+    max-height: 25px;
+    margin-right: 15%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* mobile view css */
 
@@ -183,7 +341,7 @@
   .badge-pic {
     height: 30px;
     width: 30px;
-    margin-left: 185px;
+    margin-left: 34%;
     padding: 10px;
     position: absolute;
   }

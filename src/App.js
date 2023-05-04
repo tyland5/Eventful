@@ -63,15 +63,10 @@ function App() {
         <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/leaderboard" element={<BadgeLeaderboard/>}></Route>
-        <Route path='/mobile-leaderboard' element={<MobileBadgeLeaderboard/>}></Route>
         <Route path='/volunteer-leaderboard' element={<VolunteerLeaderboard/>}></Route>
         <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
         <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
         <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
-        <Route path='/mobile-adult-leaderboard' element={<MobileAdultLeaderboard/>}></Route>
-        <Route path='/mobile-volunteer-leaderboard' element={<MobileVolunteerLeaderboard/>}></Route>
-        <Route path='/mobile-food-leaderboard' element={<MobileFoodLeaderboard/>}></Route>
-        <Route path='/mobile-entertainment-leaderboard' element={<MobileEntertainmentLeaderboard/>}></Route>
         <Route path="/event-manager" element={<div className="App">
         <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}

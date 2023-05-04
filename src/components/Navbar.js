@@ -50,7 +50,7 @@ function Navbar ({displaySlideoutMenu}) {
             {loggedin && <Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link>}
             {!loggedin && <Link to="/login" className="routing-link" ><p className='nav-links'>Login</p></Link>}
             {!loggedin && <Link to="/signup" className="routing-link" ><p className='nav-links'>Sign Up</p></Link>}
-            {loggedin && <Link to = "/" classname="routing-link"><p className='nav-links' onClick={SignoutFunction}>Sign Out</p></Link>}
+            {loggedin && <Link to = "/" className="routing-link"><p className='nav-links' onClick={SignoutFunction}>Sign Out</p></Link>}
             {loggedin && <Link to="/tokens" className="routing-link" ><p className='nav-links'>Badges</p></Link>}
 
         </div>

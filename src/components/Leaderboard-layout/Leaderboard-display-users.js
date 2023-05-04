@@ -1,7 +1,7 @@
 import React from 'react'
 import addIcon from "../../images/add-post-icon.png"
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-
+import '../../style/leaderboard.css'
 const LeaderboardRow = ({username, rank, rowColor, badge, eventsAttended}) => {
   return (
     <>

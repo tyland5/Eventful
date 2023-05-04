@@ -24,7 +24,7 @@ if (isset($_POST)) {
     $post_id = $data;
     
 
-    $sql = "SELECT post_id, user_id, username, comment, date FROM Comments WHERE post_id = ?";
+    $sql = "SELECT post_id, user_id, c.username, comment, date, pfp FROM Comments c JOIN Users USING(user_id) WHERE post_id = ?";
     //find all comments for specific post
     $stsm = $conn->prepare($sql);
     $stsm->bind_param("i", $post_id);

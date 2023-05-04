@@ -119,7 +119,7 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
                       <>
                      
                           <p className='comment-time-stamp'>{discordDate(comment[idx].date)}</p>
-                          <img className='comments-pfp' src = {pfp}></img>
+                          <img className='comments-pfp' src = {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${comment[idx].pfp}`}></img>
                           <p className='commenter-username'>{comment[idx].username} :</p>
                           <p className='the-comment'>{comment[idx].comment}</p>
                           {/* <p > {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date}</p > */}

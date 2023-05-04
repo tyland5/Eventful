@@ -60,9 +60,10 @@ if (isset($_POST)) {
 	} else {
 		//insert into db
 		
-		$sql = "INSERT INTO Users (Username, Password, Email) VALUES (?,?,?)";
+		$default_pfp = "dummy-pfp.png";
+		$sql = "INSERT INTO Users (Username, Password, Email, pfp) VALUES (?,?,?,?)";
 		$stsm = $conn->prepare($sql);
-		$stsm->bind_param("sss", $username, $hashed_password, $email);
+		$stsm->bind_param("ssss", $username, $hashed_password, $email, $default_pfp);
 		$stsm->execute();
 		$stsm->close();
 

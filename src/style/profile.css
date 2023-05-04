@@ -41,3 +41,11 @@ p.profile-text {
   .profile-button{
     padding: 150px;
   }
+
+  .profile-pic-button {
+    font-family: 'Times';
+    font-size: 13px;
+    padding: 4px;
+    background-color: #FFE455;
+    border-radius: 6;
+  }

@@ -11,8 +11,8 @@ function EditProfile () {
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
     const [refreshed, setRefresh] = useState(true);
-
     const [showSlideout, setShowSlideout] = useState(false)
+    const [profilePic, setProfilePic] = useState(pfp)
     
     function displaySlideoutMenu(){
         setShowSlideout(!showSlideout)
@@ -49,6 +49,18 @@ function EditProfile () {
         setSave(true);
     }
 
+    const uploadPic = e => {
+        const image = URL.createObjectURL(e.target.files[0])
+        setProfilePic(image)
+        console.log(image)
+        const fd = new FormData()
+        fd.append('image', profilePic, profilePic.name)
+        // const {data} = await Axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-profile-pic.php")
+        // .then(res => {
+        //     console.log(res)
+        // })
+    }
+
     return (
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
@@ -61,10 +73,11 @@ function EditProfile () {
             </div>
             <br></br>
             <br></br>
-            <img className="profile-pfp" src = {pfp}></img>
+            <img className="profile-pfp" src = {profilePic}></img>
             <br></br>
             <br></br>
-            <button style = {{fontFamily: "Times", backgroundColor: "#FFE455", borderRadius:6}}>Edit Profile Photo</button>
+            <label htmlFor='filePicker' className='profile-pic-button'>Edit Profile Pic</label>
+            <input id='filePicker' type='file' accept='image/png, image/jpg, image/jpeg' style={{display:'none'}} onChange={(e) => uploadPic(e)}></input>
             <br></br>
             <br></br>
             <br></br>

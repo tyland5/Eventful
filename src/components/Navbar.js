@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios'
 import { checkSessionId } from '../App';
 import { enforceHTTPS } from '../App';
-
 function Navbar ({displaySlideoutMenu}) {
   
   const [loggedin, setLoggedin] = useState(false);
@@ -42,16 +41,16 @@ function Navbar ({displaySlideoutMenu}) {
                 <div className = "hamburger"></div>
                 <div className = "hamburger"></div>
             </div>
-            <Link to ="/" className='routing-link'><p className='nav-logo'>Company</p></Link>
+            <Link to ="/" className='routing-link'><p className='nav-logo'>EventFul</p></Link>
             <Link to = "/search-event" className="routing-link"><p className='nav-links'>Search</p></Link> 
             <Link to="/leaderboard" className="routing-link" ><p className='nav-links'>Leaderboard</p></Link>
-            {loggedin && <Link to="/edit-profile" className="routing-link" ><p className='nav-links'>Profile</p></Link>}
-            {loggedin && <Link to="/account-settings" className="routing-link" ><p className='nav-links'>Account Settings</p></Link>}
-            {loggedin && <Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link>}
-            {!loggedin && <Link to="/login" className="routing-link" ><p className='nav-links'>Login</p></Link>}
-            {!loggedin && <Link to="/signup" className="routing-link" ><p className='nav-links'>Sign Up</p></Link>}
-            {loggedin && <Link to = "/" classname="routing-link"><p className='nav-links' onClick={SignoutFunction}>Sign Out</p></Link>}
-            {loggedin && <Link to="/tokens" className="routing-link" ><p className='nav-links'>Badges</p></Link>}
+            {loggedin && <div id = "links"><Link to="/edit-profile" className="routing-link" ><p className='nav-links'>Profile</p></Link></div>}
+            {loggedin && <div id = "links"><Link to="/account-settings" className="routing-link" ><p className='nav-links'>Account Settings</p></Link></div>}
+            {loggedin && <div id = "links"><Link to ="/event-manager" className = "routing-link"><p className='nav-links'>Manage Events</p></Link></div>}
+            {!loggedin && <div id = "links"><Link to="/login" className="routing-link" ><p className='nav-links'>Login</p></Link></div>}
+            {!loggedin && <div id = "links"><Link to="/signup" className="routing-link" ><p className='nav-links'>Sign Up</p></Link></div>}
+            {loggedin && <div id = "links"><Link to="/tokens" className="routing-link" ><p className='nav-links'>Badges</p></Link></div>}
+            {loggedin && <div id = "links"><Link to = "/" className="routing-link"><p className='nav-links' onClick={SignoutFunction}>Sign Out</p></Link></div>}
 
         </div>
     </div>

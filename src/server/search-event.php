@@ -21,7 +21,7 @@ if (isset($_POST)) {
 
     $query = "%" . $query . "%";
     // doesn't seem to be case sensitive
-    $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images FROM Posts WHERE title LIKE ? OR description LIKE ? ";
+    $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images, pfp FROM Posts JOIN Users ON poster = username WHERE title LIKE ? OR description LIKE ? ORDER BY post_id";
     $stsm = $conn->prepare($sql);
     $stsm->bind_param("ss", $query, $query);
     $stsm->execute();

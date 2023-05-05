@@ -46,11 +46,11 @@ function Leaderboard () {
         return(
             <ul className='sideNav'>
                 <div style={{backgroundColor:'#262625', height:'42px'}}/>
-                <Link to="/leaderboard" className="routing-link"><li><a href='#recreation'><p className='category-text'>Recreation</p></a></li></Link>
-                <Link to="/volunteer-leaderboard" className="routing-link"><li><a href = '#volunteer'><p className='category-text'>Volunteer</p></a></li></Link>
-                <Link to="/entertainment-leaderboard" className="routing-link"><li><a href = '#entertainment'><p className='category-text'>Entertainment</p></a></li></Link>
-                <Link to="/food-leaderboard" className="routing-link"><li><a class='active' href = '#food'><p className='category-text'>Food</p></a></li></Link>
-                <Link to="/adult-leaderboard" className="routing-link"><li><a href = '#adult'><p className='category-text'>Adult</p></a></li></Link>
+                <Link to="/leaderboard" className="routing-link-category"><li><a href='#recreation'><p className='category-text'>Recreation</p></a></li></Link>
+                <Link to="/volunteer-leaderboard" className="routing-link-category"><li><a href = '#volunteer'><p className='category-text'>Volunteer</p></a></li></Link>
+                <Link to="/entertainment-leaderboard" className="routing-link-category"><li><a href = '#entertainment'><p className='category-text'>Entertainment</p></a></li></Link>
+                <Link to="/food-leaderboard" className="routing-link-category"><li><a class='active' href = '#food'><p className='category-text'>Food</p></a></li></Link>
+                <Link to="/adult-leaderboard" className="routing-link-category"><li><a href = '#adult'><p className='category-text'>Adult</p></a></li></Link>
             </ul>
         )
     }

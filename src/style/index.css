@@ -21,12 +21,28 @@ body{
   position: sticky;
   top: 0px; /*need this for sticky */
   z-index: 2;
+  overflow: hidden;
 }
 
+.routing-link:hover{
+  background-color: #f9f5bd;
+  display: block;
+  padding: 18px;
+}
+.routing-link:hover .nav-links{
+  background-color: #f9f5bd;
+  color: black;
+}
+
+.nav-links:visited{
+  color: black;
+  display: block;
+}
 
 .routing-link {
   color: black;
   text-decoration: none;
+  display: block;
 }
 
 .hamburger{

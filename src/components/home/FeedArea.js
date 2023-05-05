@@ -106,7 +106,7 @@ const FeedArea = ({showFilterButton, query}) => {
     <div className ="feed-area">
     {post.map((value, idx) => {
           return (
-            <FeedPost post_id = {post[idx].post_id} pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
+            <FeedPost post_id = {post[idx].post_id} pfp = {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].pfp}`} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
         thumbnail= {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
            )
           })}

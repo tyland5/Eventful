@@ -25,8 +25,23 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
     )
   }
 
+  const [description, setDescription] = useState([]);
+
+  useEffect(() => {
+
+    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-description.php", post_id)
+    // axios.get("http://localhost/load-event.php")
+    .then(val => {
+
+      if(val.data !== "Nothing"){
+        setDescription(val.data)
+      }
+      
+      })
+
+  }, [description]);
+
   const [comment, setComment] = useState([]);
-  const[error, setError] = useState("");
 
   useEffect(() => {
 
@@ -70,14 +85,27 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
           <div className='description-box-container'>
             <p className='description-box-title'>Description</p>
             <p className='description'>
-                Come to the event for tons of fun and games!
+            {description.map((value, idx) => {
+                    return (
+                      <>
+                          {description[idx].description}
+                      </>
+                    )
+                    })}
+                
             </p>
           </div>
 
           <div className='location-box-container'>
             <p className='location-box-title'>Location</p>
             <p className='location'>
-                madison square garden
+            {description.map((value, idx) => {
+                    return (
+                      <>
+                          {description[idx].location}
+                      </>
+                    )
+                    })}
             </p>
           </div>
 
@@ -91,7 +119,7 @@ const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, 
                       <>
                      
                           <p className='comment-time-stamp'>{discordDate(comment[idx].date)}</p>
-                          <img className='comments-pfp' src = {pfp}></img>
+                          <img className='comments-pfp' src = {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${comment[idx].pfp}`}></img>
                           <p className='commenter-username'>{comment[idx].username} :</p>
                           <p className='the-comment'>{comment[idx].comment}</p>
                           {/* <p > {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date}</p > */}

@@ -3,8 +3,11 @@ import gold from '../images/goldnew.png'
 import bronze from '../images/Bronzenew.png'
 import silver from '../images/silvernew.png'
 import nobadge from '../images/nobadge.png'
+
  const Tokens = ({x,event}) =>{
+
     x = parseInt(x)
+
     if(x>20){
         return(
         <>

@@ -29,10 +29,6 @@ body{
   text-decoration: none;
 }
 
-.routing-link:hover{
-  background-color:rgb(255, 253, 129);
-}
-
 .hamburger{
   width: 2.8rem;
   height: .5rem;

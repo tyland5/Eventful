@@ -55,7 +55,7 @@ const SlideoutMenu = () => {
             <Link to="/search-event" className="routing-link">Search</Link>
             </li>
             <li>
-            <Link to="/mobile-leaderboard" className="routing-link">Leaderboard</Link>
+            <Link to="/leaderboard" className="routing-link">Leaderboard</Link>
             </li>
             <li>
             {loggedin && <Link to="/edit-profile" className="routing-link">Profile</Link>}

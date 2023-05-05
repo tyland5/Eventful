@@ -107,17 +107,19 @@ function Leaderboard () {
     }
 
     return (
-        <div className='App' style={{textAlign:'center'}}>
-            <div className='navigator'>
-                <div style = {{display: "flex"}}>
-                    <div className="App" style = {{textAlign: 'left'}}>
-                        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
-                        {showSlideout && <SlideoutMenu />}
+        <div className="leaderboard-body">
+            <div className='App' style={{textAlign:'center'}}>
+                <div className='navigator'>
+                    <div style = {{display: "flex"}}>
+                        <div className="App" style = {{textAlign: 'left'}}>
+                            <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+                            {showSlideout && <SlideoutMenu />}
+                        </div>
                     </div>
                 </div>
+                <SideNav/>
+                <Leaderboard/>
             </div>
-            <SideNav/>
-            <Leaderboard/>
         </div>
     )
 }

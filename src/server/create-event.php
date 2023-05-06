@@ -50,18 +50,18 @@ if (isset($_POST)) {
     $stsm->bind_result($username);
     $stsm->fetch();
     $stsm->close(); //need this to do another query
-    
-    //get the latest post id number so you can create good image name on server
-    $sql2 = "SELECT post_id FROM Posts ORDER BY post_id DESC LIMIT 1"; 
+   
+    $dummy = "";
+    //insert post information into database
+    $sql2 = "INSERT INTO Posts (poster, title, time, location, event_code, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stsm2 = $conn->prepare($sql2);
+    $stsm2->bind_param("sssssssss", $username, $title, $dateTime, $location, $eventCode, $type, $description, $dummy, $dummy);
     $stsm2->execute();
-    $stsm2->bind_result($postID);
-    $stsm2->fetch();   
+    $postID = $stsm2->insert_id; //done in case an event was deleted
     $stsm2->close();
 
     //setting the name for thumbnail that will be in the webserver and database
-    $postID = $postID + 1;
-    $thumbnailName = "post" . $postID . "_thumbnail." . pathinfo($thumbnail['name'], PATHINFO_EXTENSION);   
+    $thumbnailName = "post" . $postID . "_thumbnail." . pathinfo($thumbnail['name'], PATHINFO_EXTENSION);    
     $imageNames = "";
 
     //upload images onto webserver
@@ -75,16 +75,15 @@ if (isset($_POST)) {
             move_uploaded_file($tmp_name, "uploads/" . $name);
         }
     }
-   
-    //insert post information into database
-    $sql3 = "INSERT INTO Posts (poster, title, time, location, event_code, type, description, thumbnail, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stsm3 = $conn->prepare($sql3);
-    $stsm3->bind_param("sssssssss", $username, $title, $dateTime, $location, $eventCode, $type, $description, $thumbnailName, $imageNames);
-    $stsm3->execute();
-    $stsm3->close();
 
     //upload thumbnail onto webserver
     move_uploaded_file($thumbnail["tmp_name"], "uploads/" . $thumbnailName);
+
+    $sql3 = "UPDATE Posts SET thumbnail = ?, images = ? WHERE post_id = ?";
+    $stsm3 = $conn->prepare($sql3);
+    $stsm3->bind_param("ssi", $thumbnailName, $imageNames, $postID);
+    $stsm3->execute();
+    $stsm3->close();
 
     $zero = 0;
     $empty = "";

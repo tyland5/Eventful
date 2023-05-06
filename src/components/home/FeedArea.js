@@ -6,7 +6,7 @@ import rutgers_park from "../../images/rutgers-park.jpg"
 import PostButton from '../createEvent/PostButton'
 import axios from 'axios'
 
-const FeedArea = () => {
+const FeedArea = ({showFilterButton, query}) => {
   const[allowClickEvent, setClickEvent] = useState(true)
   const[showFilters, setShowFilters] = useState(false)
   const[filter, setFilter] = useState(new Set()) //upon first render of page, want to show all events
@@ -51,7 +51,16 @@ const FeedArea = () => {
   
     useEffect(() => {
       
-      //enforcehttps here in the future. Not needed now
+      //for search event. "creates new" feedArea each time?
+      if(query !== ""){
+        axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/search-event.php",{
+          query:query
+        }).then(val =>{
+          setPost(val.data)
+        })
+        
+        return
+      }
       
       //For first render. All events should show
       if(filter.size === 0){
@@ -83,7 +92,7 @@ const FeedArea = () => {
     <>
 
     {/* Filter section */}
-    <p className='filter-btn' onClick={() => {setShowFilters(!showFilters); setFilter(new Set())}}>Filters</p>
+    {showFilterButton && <p className='filter-btn' onClick={() => {setShowFilters(!showFilters); setFilter(new Set())}}>Filters</p>}
     {showFilters && eventTags.map(event => {
       return(
       <div className='filter-choice'>
@@ -95,10 +104,9 @@ const FeedArea = () => {
 
 
     <div className ="feed-area">
-      <PostButton/>
     {post.map((value, idx) => {
           return (
-            <FeedPost pfp = {dummy_pfp} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
+            <FeedPost post_id = {post[idx].post_id} pfp = {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].pfp}`} posterName = {post[idx].poster} title = {post[idx].title} eventID = {post[idx].post_id} 
         thumbnail= {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${post[idx].thumbnail}`} numBookmarked = "400" eventTag= {post[idx].type} allowClickEvent={allowClickEvent}/>
            )
           })}

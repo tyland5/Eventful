@@ -22,35 +22,52 @@ else{
 //Upon receiving a POST request from axios
 if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
-    
+
+
     $postID = $data["id"];
+    $session_id = $_COOKIE["session"];
 
     //$currentLikes = "SELECT likes FROM Posts";
-    $sql2 = "SELECT likes FROM Posts WHERE post_id=(?)"; 
+    
+    $sql2 = "SELECT user_id FROM Sessions WHERE session_id=(?)"; 
     $stsm1 = $conn->prepare($sql2);
-    $stsm1->bind_param("i", $postID);
+    $stsm1->bind_param("s", $session_id);
     $stsm1->execute();
-    $stsm1->bind_result($currentLikes);
+    $stsm1->bind_result($current_user);
     $stsm1->fetch();   
     $stsm1->close();
+    
+
+
     //$id = $postID
     //$stsm = $conn->prepare($currentLikes);
     //$stsm->bind_param("i", $id);
     //$stsm->execute();
+    
+    $sql3 = "SELECT user_ids_who_liked FROM `Post Analytics` WHERE post_id=(?)"; 
+    $stsm3 = $conn->prepare($sql3);
+    $stsm3->bind_param("i", $postID);
+    $stsm3->execute();
+    $stsm3->bind_result($json_list_of_users);
+    $stsm3->fetch();   
+    $stsm3->close();
 
 
+    $list_of_users = json_decode($json_list_of_users);
 
-    $newLikes = $currentLikes + 1;
-    //$result = mysqli_query($conn, "UPDATE `Posts` SET `likes`='$currentLikes' WHERE `post_id`='$postID'");
+    $list_size = count($list_of_users);
+    $user_in_list = FALSE;
+    foreach ($list_of_users as $user){
+        if ($user == $current_user){
+            $user_in_list = TRUE;
+        }
+    }
 
-    $result = "UPDATE Posts SET likes=(?) WHERE post_id=(?)"; 
-    $stsm2 = $conn->prepare($result);
-    $stsm2->bind_param("ii", $newLikes, $postID);
-    $stsm2->execute();
-    $stsm2->bind_result($result2);
-    $stsm2->fetch();   
-    $stsm2->close();
-    echo $newLikes;
+    if ($user_in_list){
+        echo "liked";
+    }else{
+        echo "not liked";
+    }
 
     
 }

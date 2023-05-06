@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "../../style/eventPopup.css";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Xbutton from '../../images/X-button.png'
 import FeedPost from '../home/FeedPost'
+import axios from 'axios'
 
 
-const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup, event}) => {
+const EventPopup = ({post_id, pfp, posterName, title, thumbnail, numBookmarked, eventTag, displayEventPopup, event}) => {
   
   var date = new Date().getDate(); //To get the Current Date
   var month = new Date().getMonth() + 1; //To get the Current Month
@@ -24,6 +25,58 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
     )
   }
 
+  const [description, setDescription] = useState([]);
+
+  useEffect(() => {
+
+    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-description.php", post_id)
+    // axios.get("http://localhost/load-event.php")
+    .then(val => {
+
+      if(val.data !== "Nothing"){
+        setDescription(val.data)
+      }
+      
+      })
+
+  }, [description]);
+
+  const [comment, setComment] = useState([]);
+
+  useEffect(() => {
+
+    axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/load-comment.php", post_id)
+    // axios.get("http://localhost/load-event.php")
+    .then(val => {
+
+      if(val.data !== "Nothing"){
+        setComment(val.data)
+        // console.log(val.data);
+      }
+      
+      })
+
+  }, [comment]);
+
+  function discordDate(omg) {
+    const formatter = new Intl.DateTimeFormat('en-us', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    })
+    
+    const iStillDontUnderstandWhyAnyoneThoughtMonthDayYearWasAGoodIdeaForADateFormatButWhatDoIKnow
+      = formatter.format(new Date(omg))
+
+    return iStillDontUnderstandWhyAnyoneThoughtMonthDayYearWasAGoodIdeaForADateFormatButWhatDoIKnow
+  }
+
+
+
+
   return (
     <>
       
@@ -32,14 +85,27 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
           <div className='description-box-container'>
             <p className='description-box-title'>Description</p>
             <p className='description'>
-                Come to the event for tons of fun and games!
+            {description.map((value, idx) => {
+                    return (
+                      <>
+                          {description[idx].description}
+                      </>
+                    )
+                    })}
+                
             </p>
           </div>
 
           <div className='location-box-container'>
             <p className='location-box-title'>Location</p>
             <p className='location'>
-                madison square garden
+            {description.map((value, idx) => {
+                    return (
+                      <>
+                          {description[idx].location}
+                      </>
+                    )
+                    })}
             </p>
           </div>
 
@@ -47,29 +113,25 @@ const EventPopup = ({pfp, posterName, title, thumbnail, numBookmarked, eventTag,
             <div className='comments-box-title'>Comments
               <div className='comments'>
                 <p className='commenter'>
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>carrot eater:</p>
-                  <p className='the-comment'>I enjoyed this event</p>
-                </p>
-                <p className='commenter'>
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>garry:</p>
-                  <p className='the-comment'>Event could have been longer</p>
-                </p>
-                <p className='commenter'>
-                  <p className='comment-time-stamp'>{month}/{date}/{year}</p>
-                  <img className='comments-pfp' src={pfp} alt = {`${posterName}'s profile pic`}></img>
-                  <p className='commenter-username'>bonvoyage:</p>
-                  <p className='the-comment'>Food stands were decent. However, there was one lady who didn't give me enough popcorn, so 7/10 event</p>
-                </p>
+
+                {comment.map((value, idx) => {
+                    return (
+                      <>
+                     
+                          <p className='comment-time-stamp'>{discordDate(comment[idx].date)}</p>
+                          <img className='comments-pfp' src = {`https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploads/${comment[idx].pfp}`}></img>
+                          <p className='commenter-username'>{comment[idx].username} :</p>
+                          <p className='the-comment'>{comment[idx].comment}</p>
+                          {/* <p > {pfp} posterName = {comment[idx].user_id} comment = {comment[idx].comment} date = {comment[idx].date}</p > */}
+                      </>
+                    )
+                    })}
+
+                  </p>
               </div>
             </div>
           </div>
         </div>
-  
-        
 
       
 

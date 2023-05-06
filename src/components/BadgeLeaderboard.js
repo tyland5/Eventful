@@ -88,7 +88,7 @@ function Leaderboard () {
         return (
             <div className='leader'>
                 <div style={{backgroundColor:'black', height:'10px'}}/>
-                <p className='header-text' style={{textAlign: 'left', paddingLeft: '220px'}}>Leaderboard</p>
+                <p className='header-text' style={{textAlign: 'left', paddingLeft: '0px'}}>Leaderboard</p>
                 <div style={{backgroundColor:'black', height:'10px'}}/>
                 <div style={{backgroundColor: "#6F38C5", height: "4px"}}/>
                 <br></br>

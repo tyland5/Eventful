@@ -12,12 +12,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $conn = mysqli_connect("oceanus.cse.buffalo.edu", "dchen83", "50360060", "cse442_2023_spring_team_b_db", "3306");
 if($conn -> connect_error){
-    print("Connection Failed");
+    //print("Connection Failed");
     die("connection failed");
 
-}
-else{
-    print("Connected fine\n");
 }
 
 $sql = "SELECT * FROM `Sessions` ORDER BY `expiration` DESC LIMIT 1";
@@ -36,28 +33,35 @@ if (isset($_POST)) {
     $email = $data['email'];
     $phonenumber = $data['phonenumber'];
     $password = $data['password'];
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    
-    $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $res = $stmt->get_result();
 
-    if($res->num_rows > 0) {
-        $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`= '$password' WHERE `User ID`='$user_id'";
-        $stmt2 = $conn->prepare($sql);
-        $stmt2->execute();
-    }
+    if (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*(_|[^\w])).{8,16}$/', $password)) {
+		echo "Password Too Weak";
+		return;
+	}
+    else{
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        
+        $sql = "SELECT * FROM `Account Settings` WHERE `User ID` = '$user_id'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->get_result();
 
-    else {
-        $sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
-	    $stmt3 = $conn->prepare($sql);
-        $stmt3->execute();
-    }
-    
-    $sql = "UPDATE `Users` SET `Password`=?,`Email`=? WHERE `user_id` = '$user_id'";
-    $stmt4 = $conn->prepare($sql);
-    $stmt4->bind_param("ss", $password, $email);
-    $stmt4->execute();
+        if($res->num_rows > 0) {
+            $sql = "UPDATE `Account Settings` SET `User ID`= '$user_id',`First Name`='$firstname',`Last Name`= '$lastname',`Email`='$email', `Phone Number`='$phonenumber', `Password`= '$password' WHERE `User ID`='$user_id'";
+            $stmt2 = $conn->prepare($sql);
+            $stmt2->execute();
+        }
+
+        else {
+            $sql = "INSERT INTO `Account Settings` (`User ID`, `First Name`, `Last Name`, `Email`, `Phone Number`, `Password`) VALUES ('".$user_id."', '".$firstname."','".$lastname."','".$email."','".$phonenumber."','".$password."')";
+            $stmt3 = $conn->prepare($sql);
+            $stmt3->execute();
+        }
+        
+        $sql = "UPDATE `Users` SET `Password`=?,`Email`=? WHERE `user_id` = '$user_id'";
+        $stmt4 = $conn->prepare($sql);
+        $stmt4->bind_param("ss", $password, $email);
+        $stmt4->execute();
+}
 }
 ?>

@@ -10,6 +10,7 @@ const AccountSettingsPage = () => {
     const [details, setDetails] = useState({firstname: "", lastname: "", email: "", phonenumber: "", password: ""});
     const [save, setSave]=useState(false);
     const [refreshed, setRefresh] = useState(true);
+    const [validPass, setValidPass] = useState(true);
 
     const [showSlideout, setShowSlideout] = useState(false)
   
@@ -40,13 +41,16 @@ const AccountSettingsPage = () => {
                 password: details.password
         })
         console.log(data)
+        if(data === "Password Too Weak"){
+            setValidPass(false);
+        }
+        else if(data !== "Password Too Weak"){
+            setValidPass(true);
+        }
         return data
 
             };
-            updateProfile().then(val => {
-                console.log(val);
-                console.log("Changes Saved");
-            })
+            updateProfile();
         }
 
     const SaveHandler = async (e) => {
@@ -66,6 +70,7 @@ const AccountSettingsPage = () => {
             </div>
             </div>
             <br></br>
+            {!validPass && <div className="error">Password Too Weak</div>}
             <br></br>
             <p className='profile-text'>First Name</p>
             <br></br>
@@ -98,7 +103,7 @@ const AccountSettingsPage = () => {
             <button style = {{backgroundColor: '#00C52B', height:40, fontFamily: "Times", borderRadius:8}} onClick = {SaveHandler}>Save Changes</button>
             <br></br>
             <br></br>
-            {save && <p className='profile-text'>Changes Saved!</p>}
+            {save && validPass && <p className='profile-text'>Changes Saved!</p>}
             <div>setSave(false)</div>
             </div>
     )

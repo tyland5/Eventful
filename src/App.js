@@ -67,11 +67,14 @@ function App() {
         <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
         <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
         <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
-        <Route path="/event-manager" element={<div className="App">
-        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+        <Route path="/event-manager" element={
+            <div className="NewApp">
+              <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}
-              <NewFeedArea />
-        </div>}></Route>
+              <NewFeedArea showFilterButton={true} query={""}/>
+              <PostButton/>
+            </div>}>
+        </Route>
         <Route path="/tokens" element={<Tokensview/>}></Route>
       </Routes>
 

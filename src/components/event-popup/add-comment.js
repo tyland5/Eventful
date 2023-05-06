@@ -78,17 +78,13 @@ const AddComment = ({post_id, closeCommentAfterSubmit}) => {
         // <div className='comment-div'>
         <form id='add-comment' style = {{width: "100px"}}  onSubmit={onSubmit}>
         
-            <div className='add-comment-field' style = {{width: "20px"}}>
-                {/* <label className="add-comment-field">Add your comment</label> */}
-                <textarea type="text" placeholder = "Please enter your comment here..." style = {{width: "420px", height: "60px"}} rows="4" cols="50"onChange = {(e) => setComment(e.target.value)}/>
-                {canPost && <button type = "submit" style = {{width: "100px", height: "45px"}} className='comment-submit-button' >Post</button>}
-                {!canPost && <button type = "submit" style = {{width: "100px", height: "45px"}} className='button-disable' disabled >Post</button>}
-                
-                
+            <div className='event-popup-display' style = {{width: "20px"}}>
+                <textarea type="text" className = 'add-comment-field' placeholder = "Please enter your comment here..." rows="4" cols="50"onChange = {(e) => setComment(e.target.value)}/>
+                {canPost && <button type = "submit" className='comment-submit-button' >Post</button>}
+                {!canPost && <button type = "submit" className='button-disable' disabled >Post</button>}
+      
             </div>
             
-            
-        
         </form>
     
   )

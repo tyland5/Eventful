@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 $sql = "SELECT * FROM `Sessions` ORDER BY `expiration` DESC LIMIT 1";
-$res = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$res = $stmt->get_result(); 
 $row = mysqli_fetch_row($res);
 $user_id = $row[0];
 
@@ -34,16 +36,21 @@ if (isset($_POST)) {
     $bio = $data['bio'];
 
     $sql = "SELECT * FROM `Edit Profile` WHERE `User ID` = '$user_id'";
-    $res = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    
 
     if($res->num_rows > 0) {
         $sql = "UPDATE `Edit Profile` SET `User ID`= '$user_id',`Name`='$name',`Display Name`= '$displayname',`Website`='$website', `Bio`='$bio' WHERE `User ID`='$user_id'";
-        $res = $conn->query($sql);
+        $stmt2 = $conn->prepare($sql);
+        $stmt2->execute();
     }
 
     else {
         $sql = "INSERT INTO `Edit Profile`(`User ID`, `Name`, `Display Name`, `Website`, `Bio`) VALUES ('".$user_id."', '".$name."','".$displayname."','".$website."','".$bio."')";
-	    $res = $conn->query($sql);
+	    $stmt3 = $conn->prepare($sql);
+        $stmt3->execute();
     }
 }
 

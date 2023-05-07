@@ -11,7 +11,6 @@ const SlideoutMenu = () => {
 
   useEffect(() => {
     // forces https connection
-    enforceHTTPS()
     // checks if user is logged in. If so, set state
     checkSessionId().then(validUser =>{
         if(validUser){
@@ -29,7 +28,7 @@ const SlideoutMenu = () => {
   }
 
   const SignoutFunction = async () =>{
-    
+    setLoggedin(false)
     await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/signout.php').then((response) => {
       if(response.data === "not connected"){
         console.log("not connected to database")
@@ -53,13 +52,25 @@ const SlideoutMenu = () => {
             {!loggedin && <Link to="/signup" className="routing-link">Sign Up</Link>}
             </li>
             <li>
+            <Link to="/search-event" className="routing-link">Search</Link>
+            </li>
+            <li>
+            <Link to="/leaderboard" className="routing-link">Leaderboard</Link>
+            </li>
+            <li>
             {loggedin && <Link to="/edit-profile" className="routing-link">Profile</Link>}
             </li>
             <li>
             {loggedin && <Link to="/account-settings" className="routing-link">Account Settings</Link>}
             </li>
             <li>
-            {loggedin && <p onClick={SignoutFunction}>Sign Out</p>}
+            {loggedin && <Link to="/event-manager" className="routing-link">Manage Events</Link>}
+            </li>
+            <li>
+            {loggedin && <Link to="/tokens" className="routing-link">Badges</Link>}
+            </li>
+            <li>
+            {loggedin && <Link to = "/" className='routing-link'><p onClick={SignoutFunction}>Sign Out</p></Link>}
             </li>
         </ul>
     </div>

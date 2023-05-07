@@ -52,6 +52,7 @@
     position: relative;
     left: -33%;
     bottom: -640px;
+    z-index: 2;
 }
 
 .comment-event-button{
@@ -61,6 +62,38 @@
     position: relative;
     left: -32%;
     bottom: -640px;
+    z-index: 2;
+}
+textarea.add-comment-field{
+    bottom: -568px;
+    left: 12px;
+
+    width: 420px;
+    height: 60px;
+    position: relative;
+    z-index: 2;
+}
+button.comment-submit-button{
+    bottom: -568px;
+    left: 340px;
+    width: 100px;
+    height: 45px;
+    background-color: rgb(255, 255, 108);
+    position: relative;
+    z-index: 2;
+}
+button.button-disable{
+    bottom: -568px;
+    left: 340px;
+    width: 100px;
+    height: 45px;
+    background-color: rgb(255, 255, 230);
+    position: relative;
+    z-index: 2;
+}
+.comment-popup{
+    position: fixed;
+    z-index: 2;
 }
 
 .poster-pfp-popup-feedview{
@@ -232,6 +265,19 @@
     color: beige;
 }
 
+.event-code-submit{
+    margin-top: 30px;
+    position: relative;
+    bottom: 400px;
+    background-color: black;
+    z-index: 3;
+    font-size: 1.4rem;
+    padding: 10px;
+}
+.event-code-submit *{
+    margin-bottom: 15px;
+}
+
 @media screen and (max-width: 480px) {
     .event-popup-display {
         width: 60%;
@@ -306,6 +352,7 @@
         align-self:flex-start;
         position: relative;
         margin-left: -5%;
+        z-index: 2;
     }
     .like-counter{
         position: relative;
@@ -323,6 +370,32 @@
         bottom: -605px;
         align-self:flex-start;
         position: relative;
+    }
+    textarea.add-comment-field{
+        width: 370px;
+        height: 60px;
+        bottom: -530px;
+        left: 12px;
+        position: relative;
+        z-index: 2;
+    }
+    button.comment-submit-button{
+        bottom: -533px;
+        left: 300px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 108);
+        position: relative;
+        z-index: 2;
+    }
+    button.button-disable{
+        bottom: -533px;
+        left: 300px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 230);
+        position: relative;
+        z-index: 2;
     }
     .like-event-button{
         all:unset;
@@ -393,6 +466,33 @@
         align-self:flex-start;
         position: relative;
         margin-left: -10%;
+        z-index: 2;
+    }
+    textarea.add-comment-field{
+        width: 320px;
+        height: 60px;
+        bottom: -530px;
+        left: 12px;
+        position: relative;
+        z-index: 2;
+    }
+    button.comment-submit-button{
+        bottom: -533px;
+        left: 300px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 108);
+        position: relative;
+        z-index: 2;
+    }
+    button.button-disable{
+        bottom: -533px;
+        left: 300px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 230);
+        position: relative;
+        z-index: 2;
     }
     .like-counter{
         position: relative;
@@ -480,6 +580,33 @@
         position: relative;
         top: 50px;
     }
+    textarea.add-comment-field{
+        width: 215px;
+        height: 60px;
+        bottom: -490px;
+        left: 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+    button.comment-submit-button{
+        bottom: -450px;
+        left: 240px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 108);
+        position: relative;
+        z-index: 2;
+    }
+    button.button-disable{
+        bottom: -450px;
+        left: 240px;
+        width: 85px;
+        height: 42px;
+        background-color: rgb(255, 255, 230);
+        position: relative;
+        z-index: 2;
+    }
     .like-counter{
         position: relative;
         margin-left: 77%;
@@ -528,6 +655,7 @@
         align-self:flex-start;
         position: relative;
         left: -44%;
+        z-index: 2;
 
     }
     .comment-event-button{
@@ -622,6 +750,7 @@
         align-self:flex-start;
         position: relative;
         left: -50%;
+        z-index: 2;
 
     }
     .comment-event-button{

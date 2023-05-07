@@ -1,0 +1,354 @@
+body {
+  overflow-x: hidden;
+}
+
+.sideNav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 16%;
+    background-color: #262625;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  .category-text{
+    font-size: 20px;
+  }
+
+  .leader {
+    font-size: large;
+    color: white;
+  }
+
+  .routing-link-category {
+    text-decoration: none;
+  }
+
+  .side-nav a {
+    text-align: left;
+    color: white;
+    font-size: 15px;
+    padding: 8px;
+    display: block;
+    text-decoration: none;
+  }
+
+  /* NEEDS TO BE FIXED SINCE MESSES UP MOBILE NAV BAR */
+  li a {
+    text-align: left;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  li a.active {
+    background-color: #e6e6e6;
+    color: black;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+
+  .header-text {
+    background-color: black;   
+    margin-left: 20%; 
+  }
+
+  .light-row {
+    background-color: #e8e8e8;
+    height: 50px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dark-row {
+    background-color: #a6a4a4;
+    height: 50px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rank {
+    text-align: left;
+    margin-left: -44px;
+    padding: 13px;
+  }
+
+  .user {
+    text-align: left;
+    margin-left: 20%;
+    padding: 10px;
+  }
+
+  .badge {
+    position: absolute;
+    text-align: left;
+    margin-left: 53%;
+    padding: 10px;
+  }
+
+  .eventsAttended {
+    position: absolute;
+    text-align: left;
+    margin-left: 80%;
+    padding: 10px;
+  }
+
+  .leaderName {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 25px;
+  }
+
+  .leaderBadge {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 183px;
+    position: absolute;
+  }
+
+  .leaderEventsAttended {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 65%;
+    position: absolute;
+  }
+
+  @media screen and (max-width:1023px){
+    .leader{
+      width: 100%;
+      margin-left: 2%;
+    }
+    .user{
+      margin-left: 20%;
+    }
+    .eventsAttended{
+      margin-left: 74%;
+    }
+    .leaderEventsAttended{
+      margin-left: 61%;
+    }
+    .rank{
+      position: relative;
+      left: 3px;
+    }
+    .sideNav{
+      width: 18%;
+    }
+    .category-text{
+      font-size: 18px;
+    }
+}
+
+@media screen and (max-width:800px){
+  .leader{
+    width: 100%;
+    margin-left: 8%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 100px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 3px;
+  }
+  .sideNav{
+    width: 23%;
+  }
+  .category-text{
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:700px){
+  .leader{
+    width: 100%;
+    font-size: 15px;
+    margin-left: 12%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 100px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 3px;
+  }
+  .sideNav{
+    width: 25%;
+  }
+  .category-text{
+    font-size: 15px;
+  }
+  .dark-row{
+    height: 45px;
+  }
+  .light-row{
+    height: 45px;
+  }
+  .badge-pic{
+    max-width: 25px;
+    max-height: 25px;
+    margin-left: 10%;
+  }
+}
+
+@media screen and (max-width:500px){
+  .leader{
+    width: 100%;
+    font-size: 10px;
+    margin-left: 9%;
+  }
+  .user{
+    margin-left: 20%;
+  }
+  .eventsAttended{
+    margin-left: 71%;
+    top: 90px;
+  }
+  .leaderEventsAttended{
+    margin-left: 56%;
+  }
+  .rank{
+    position: relative;
+    left: 16px;
+  }
+  .sideNav{
+    width: 24%;
+  }
+  .category-text{
+    font-size: 9px;
+  }
+  .dark-row{
+    height: 35px;
+  }
+  .light-row{
+    height: 35px;
+  }
+  .badge-pic{
+    max-width: 25px;
+    max-height: 25px;
+    margin-right: 15%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* mobile view css */
+
+  .mobileBadgeNav {
+    width: 100%;
+    background-color: #262625;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: medium;
+    height: 50px;
+  }
+
+  .userMobile {
+    text-align: left;
+    margin-left: 55px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .badgeMobile {
+    text-align: left;
+    margin-left: 70px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .eventsAttendedMobile {
+    text-align: center;
+    margin-left: 50px;
+    padding: 7px;
+    font-size: 15px;
+    position: sticky;
+  }
+
+  .light-row-mobile {
+    background-color: #e8e8e8;
+    height: 50px;
+    display: flex;
+    margin-left: 10%;
+    flex-direction: row;
+  }
+
+  .dark-row-mobile {
+    background-color: #a6a4a4;
+    height: 50px;
+    display: flex;
+    margin-left: 10%;
+    flex-direction: row;
+  }
+
+  .rankMobile {
+    text-align: left;
+    padding: 13px;
+  }
+
+  .leaderEventsAttendedMobile {
+    color: black;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 320px;
+    position: absolute;
+  }
+
+  .badge-pic {
+    height: 30px;
+    width: 30px;
+    margin-left: 34%;
+    padding: 10px;
+    position: absolute;
+  }
+
+  .badge-pic-mobile {
+    height: 30px;
+    width: 30px;
+    margin-left: 180px;
+    padding: 10px;
+    position: absolute;
+  }

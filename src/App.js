@@ -4,7 +4,6 @@ import SlideoutMenu from './components/SlideoutMenu';
 
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import SignUpPage from './components/signup-login-pages/signup.js';
-import Profile from './components/Profile/Profile.js';
 import React, {useState} from 'react'
 import CreateEvent from './components/createEvent/CreateEvent';
 import PostButton from './components/createEvent/PostButton';
@@ -12,10 +11,27 @@ import PostButton from './components/createEvent/PostButton';
 import LoginPage from './components/signup-login-pages/login';
 import EditProfilePage from './components/Profile/EditProfilePage';
 import AccountSettingsPage from './components/Profile/AccountSettingsPage';
+import Tokens from './components/Tokens'
+import Tokensview from './components/Tokensview';
 import NewFeedArea from './components/EditDelete/NewFeedArea'
+import BadgeLeaderboard from './components/BadgeLeaderboard'
+import MobileBadgeLeaderboard from './components/MobileBadgeLeaderboard'
+import VolunteerLeaderboard from './components/Leaderboard-layout/VolunteerLeaderboard'
+import EntertainmentLeaderboard from './components/Leaderboard-layout/EntertainmentLeaderboard'
+import FoodLeaderboard from './components/Leaderboard-layout/FoodLeaderboard'
+import AdultLeaderboard from './components/Leaderboard-layout/AdultLeaderboard'
+import MobileAdultLeaderboard from './components/Leaderboard-layout/MobileAdultLeaderboard'
+import MobileFoodLeaderboard from './components/Leaderboard-layout/MobileFoodLeaderboard'
+import MobileVolunteerLeaderboard from './components/Leaderboard-layout/MobileVolunteerLeaderboard'
+import MobileEntertainmentLeaderboard from './components/Leaderboard-layout/MobileEntertainmentLeaderboard'
+
+
+
+import SearchEvent from './components/searchEvent/SearchEvent';
 
 import axios from 'axios';
 import EventPopup from './components/event-popup/event-popup-view';
+
 
 
 
@@ -35,20 +51,31 @@ function App() {
             <div className="App">
               <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}
-              <FeedArea />
+              <FeedArea showFilterButton={true} query={""}/>
+              <PostButton/>
             </div>
         }>
         </Route>
         <Route path="create-event" element={<CreateEvent/>}></Route>
+        <Route path="/search-event" element={<SearchEvent/>}></Route>
         <Route path="/edit-profile" element={<EditProfilePage />}></Route>
         <Route path="/account-settings" element={<AccountSettingsPage />}></Route>
         <Route path="/login" element={<LoginPage setSessionId = {setSessionId}/>}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/event-manager" element={<div className="App">
-        <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+        <Route path="/leaderboard" element={<BadgeLeaderboard/>}></Route>
+        <Route path='/volunteer-leaderboard' element={<VolunteerLeaderboard/>}></Route>
+        <Route path='/entertainment-leaderboard' element={<EntertainmentLeaderboard/>}></Route>
+        <Route path='/food-leaderboard' element={<FoodLeaderboard/>}></Route>
+        <Route path='/adult-leaderboard' element={<AdultLeaderboard/>}></Route>
+        <Route path="/event-manager" element={
+            <div className="NewApp">
+              <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
               {showSlideout && <SlideoutMenu />}
-              <NewFeedArea/>
-        </div>}></Route>
+              <NewFeedArea showFilterButton={true} query={""}/>
+              <PostButton/>
+            </div>}>
+        </Route>
+        <Route path="/tokens" element={<Tokensview/>}></Route>
       </Routes>
 
       

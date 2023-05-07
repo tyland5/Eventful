@@ -1,17 +1,18 @@
-import pfp from '../../images/pfp.jpg';
+import pfp from '../../images/dummy-pfp.png';
 import '../../style/profile.css';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react'
 import Axios from 'axios';
 import Navbar from '../Navbar';
+import SlideoutMenu from '../SlideoutMenu';
 
 function EditProfile () {
 
     const [details, setDetails] = useState({name: "", displayname: "", website: "", bio: ""});
     const [save, setSave]=useState(false);
     const [refreshed, setRefresh] = useState(true);
-
     const [showSlideout, setShowSlideout] = useState(false)
+    const [displayPic, setDisplayPic] = useState(pfp)
     
     function displaySlideoutMenu(){
         setShowSlideout(!showSlideout)
@@ -23,9 +24,19 @@ function EditProfile () {
             setDetails({...details, name: response.data[1], displayname: response.data[2], website: response.data[3], bio: response.data[4]})
     }
 
+    async function getUserPfp() {
+        const response = await Axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/uploadPfp.php');
+        if(response.data){
+            console.log(response.data)
+            const url = 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/' + response.data;
+            setDisplayPic(url)
+        }
+    }
+
     if(refreshed){
         setRefresh(false);
         FillProfile();
+        getUserPfp();
     }
 
     const SaveProfile = details => {
@@ -48,19 +59,34 @@ function EditProfile () {
         setSave(true);
     }
 
+    const uploadPic = async e => {
+        const image = URL.createObjectURL(e.target.files[0])
+        setDisplayPic(image)
+        console.log(e.target.files[0])
+
+        const fd = new FormData()
+        fd.append('image', e.target.files[0])
+        const {data} = await Axios.post("https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442b/edit-profile-pic.php", fd)
+        console.log(data)
+    }
+
     return (
         <div className='App' style={{textAlign:'center'}}>
             <div className='navigator'>
             <div style = {{display: "flex"}}>
-            <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+            <div className="App" style = {{textAlign: 'left'}}>
+              <Navbar displaySlideoutMenu={displaySlideoutMenu}/>
+              {showSlideout && <SlideoutMenu />}
             </div>
             </div>
+            </div>
             <br></br>
             <br></br>
-            <img className="profile-pfp" src = {pfp}></img>
+            <img className="profile-pfp" src = {displayPic}></img>
             <br></br>
             <br></br>
-            <button style = {{fontFamily: "Times", backgroundColor: "#FFE455", borderRadius:6}}>Edit Profile Photo</button>
+            <label htmlFor='filePicker' className='profile-pic-button'>Edit Profile Pic</label>
+            <input id='filePicker' type='file' accept='image/png, image/jpg, image/jpeg' style={{display:'none'}} onChange={(e) => uploadPic(e)}></input>
             <br></br>
             <br></br>
             <br></br>

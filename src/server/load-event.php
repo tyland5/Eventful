@@ -22,7 +22,7 @@ if (isset($_POST)) {
     $filters = $_POST['filters']; //works properly
 
     if($filters[0] == "all"){
-        $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images FROM Posts";
+        $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images, pfp FROM Posts JOIN Users ON poster = username ORDER BY post_id ";
         $stsm = $conn->prepare($sql);
         $stsm->execute();
 
@@ -32,8 +32,8 @@ if (isset($_POST)) {
         return;
     }
 
-    // there are filters
-    $sql = "SELECT poster, title, type, location, description, thumbnail, images FROM Posts WHERE ";
+    // there are filters "SELECT poster, title, type, location, description, thumbnail, images FROM Posts WHERE ";
+    $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images, pfp FROM Posts JOIN Users ON poster = username WHERE ";
     $sql .= "type = ? ";
 
     if(count($filters) > 1){
@@ -41,6 +41,7 @@ if (isset($_POST)) {
             $sql .= "OR type = ? ";
         }
     }
+    $sql .= "ORDER BY post_id";
 
     $stsm = $conn->prepare($sql);
     $types = str_repeat("s", count($filters));

@@ -1,5 +1,4 @@
 <?php
-// PLACE THIS FILE IN YOUR HTDOCS
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
 header("Access-Control-Allow-Headers: *");
@@ -12,33 +11,26 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $conn = mysqli_connect("oceanus.cse.buffalo.edu", "dchen83", "50360060", "cse442_2023_spring_team_b_db", "3306");
 if($conn -> connect_error){
-    echo "not connected";
     die("connection failed");
-}
-else{
-    //print("Connected fine");
 }
 
 //Upon receiving a POST request from axios
 if (isset($_POST)) {
     $data = json_decode(file_get_contents('php://input'), true);
-    
-    $postID = $data["id"];
+    $query = $data["query"];
 
-    //$currentLikes = "SELECT likes FROM Posts";
-    $sql2 = "SELECT likes FROM Posts WHERE post_id=(?)"; 
-    $stsm1 = $conn->prepare($sql2);
-    $stsm1->bind_param("i", $postID);
-    $stsm1->execute();
-    $stsm1->bind_result($currentLikes);
-    $stsm1->fetch();   
-    $stsm1->close();
+    $query = "%" . $query . "%";
+    // doesn't seem to be case sensitive
+    $sql = "SELECT post_id, poster, title, type, location, description, thumbnail, images, pfp FROM Posts JOIN Users ON poster = username WHERE title LIKE ? OR description LIKE ? ORDER BY post_id";
+    $stsm = $conn->prepare($sql);
+    $stsm->bind_param("ss", $query, $query);
+    $stsm->execute();
 
+    $resultSet = $stsm->get_result();
+    $data = $resultSet->fetch_all(MYSQLI_ASSOC);
+    echo json_encode($data);
+    return;
 
-    echo $currentLikes;
-
-    
 }
-
 
 ?>

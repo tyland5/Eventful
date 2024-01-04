@@ -2,7 +2,8 @@
 This project is a social media website that's meant to help people find events that are occuring in their area. This helps individuals if they want to do stuff with their friends or family, and can help organizations advertise whatever events they are hosting. Some features we support are filtering events, searching for events, and a unique leaderboard/badge system! The badge system works as follows: whenever a user attends an event, they can input an event code that the creator made (when they create an event post) and distributes. Our platform keeps track of the number and types of events user attends, and constantly updates the leaderboard. Below are some screenshots of our project
 
 ### Home page
-![image](https://github.com/tyland5/Eventful/assets/78653062/b95b8dfb-3abb-43d1-a98b-e3f304747ec2)
+![image](https://github.com/tyland5/Eventful/assets/78653062/cfc99df6-1442-4a51-9f46-98a104f31c47)
+
 
 
 ### Leaderboard
